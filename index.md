@@ -6,6 +6,9 @@ hero:
   name: Dark Factories & AI-Generated Code
   text: Research Report
   tagline: Spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams.
+  image:
+    src: /dark-factory-hero.png
+    alt: Pencil illustration of a dark factory; a figure with a torch illuminates equipment representing specifications, scenarios, workflow, consultancy, and constitution.
   actions:
     - text: Read the report
       link: /report/
@@ -27,6 +30,8 @@ footer: Part of Elixirr Digital — Your digital partner. Experience digital sol
 ---
 
 <div class="vp-doc" style="margin-top: 2rem;">
+
+*Hero artwork: a dark factory lit by a single torch; the illuminated equipment represents the report’s themes — specifications (blueprints), scenarios & validation (gauges), workflow (pipeline), consultancy (roles board), and constitution (ledger).*
 
 **Document type:** Research report  
 **Audience:** PHP-based development team (WordPress & Laravel)  

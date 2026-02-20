@@ -67,3 +67,40 @@
 .VPFooter .copyright {
   opacity: 0.85;
 }
+
+/* --------------------------------------------------------------------------
+   Home hero: larger artwork
+   -------------------------------------------------------------------------- */
+.VPHero .image-container {
+  width: 420px;
+  height: 420px;
+}
+
+@media (min-width: 640px) {
+  .VPHero .image-container {
+    width: 520px;
+    height: 520px;
+  }
+}
+
+@media (min-width: 960px) {
+  .VPHero .image-container .image-src,
+  .VPHero .image-container :deep(.image-src) {
+    max-width: 480px;
+    max-height: 480px;
+  }
+}
+
+.VPHero .image-container .image-src,
+.VPHero .image-container :deep(.image-src) {
+  max-width: 280px;
+  max-height: 280px;
+}
+
+@media (min-width: 640px) {
+  .VPHero .image-container .image-src,
+  .VPHero .image-container :deep(.image-src) {
+    max-width: 380px;
+    max-height: 380px;
+  }
+}
