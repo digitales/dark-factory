@@ -23,7 +23,7 @@ const slots = useSlots()
 const heroImageSlotExists = computed(() => !!slots['home-hero-image'])
 provide('hero-image-slot-exists', heroImageSlotExists)
 
-const isHome = computed(() => frontmatter.layout === 'home')
+const isHome = computed(() => frontmatter.value?.layout === 'home')
 const showSpotlight = computed(() => isHome.value && isDark.value)
 
 const mouseX = ref('50%')
@@ -62,6 +62,7 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
       <div class="spotlight-overlay" aria-hidden="true" :style="overlayStyle" />
     </template>
 
+    <div class="layout-content" :class="{ 'has-spotlight': showSpotlight }">
     <slot name="layout-top" />
     <VPSkipLink />
     <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
@@ -105,6 +106,7 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
     </VPContent>
     <VPFooter />
     <slot name="layout-bottom" />
+    </div>
   </div>
   <Content v-else />
 </template>
@@ -119,6 +121,14 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
 
 .Layout.has-spotlight {
   isolation: isolate;
+}
+
+.layout-content.has-spotlight {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .spotlight-bg,
@@ -153,13 +163,7 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
 </style>
 
 <style>
-/* When spotlight is active, layout content sits above it and needs a transparent background so the effect is visible */
-.Layout.has-spotlight .VPContent,
-.Layout.has-spotlight .VPHome {
-  position: relative;
-  z-index: 1;
-}
-
+/* When spotlight is active, content and footer let the spotlight show through */
 .Layout.has-spotlight .VPContent {
   background: transparent;
 }
@@ -169,9 +173,7 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
 }
 
 .Layout.has-spotlight .VPFooter {
-  position: relative;
-  z-index: 1;
-  background: rgba(6, 6, 8, 0.7);
+  background: rgba(6, 6, 8, 0.75);
   backdrop-filter: blur(8px);
 }
 </style>
