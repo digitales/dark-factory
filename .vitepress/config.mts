@@ -8,8 +8,8 @@ export default defineConfig({
   // GitHub Pages: set VITEPRESS_BASE in CI to e.g. '/repo-name/'. Local/dev: './'
   base: process.env.VITEPRESS_BASE ?? './',
   themeConfig: {
-    siteTitle: 'Elixirr Digital',
-    logoLink: { link: 'https://www.elixirrdigital.com', target: '_blank', rel: 'noopener' },
+    siteTitle: 'Research',
+    logoLink: '/',
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Report', link: '/report/' },
