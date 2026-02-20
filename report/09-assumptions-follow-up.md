@@ -3,9 +3,11 @@ title: Assumptions and Follow-Up Questions
 description: Assumptions made in the report and follow-up questions for the team.
 ---
 
-## 9. Assumptions and Follow-Up Questions
+<div class="report-section-image-wrapper">
+  <img src="/report/report-09-assumptions-follow-up.png" alt="Assumptions and follow-up — incremental adoption, questions for the team" loading="lazy" class="report-section-image">
+</div>
 
-![Assumptions and follow-up — incremental adoption, questions for the team](/report/report-09-assumptions-follow-up.png)
+## 9. Assumptions and Follow-Up Questions
 
 ### 9.1 Assumptions Made in This Report
 

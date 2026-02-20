@@ -3,9 +3,12 @@ title: How the Dark Factory Forms a New Development Workflow
 description: Shift in bottleneck, role of specs and validation, interactive vs non-interactive modes.
 ---
 
-## 3. How the Dark Factory Forms a New Development Workflow
+<figure class="report-section-image-wrapper" aria-labelledby="fig-workflow-caption">
+  <img src="/report/report-03-new-development-workflow.png" alt="Bottleneck shifting from code speed to spec precision" loading="lazy" class="report-section-image">
+  <figcaption id="fig-workflow-caption">Bottleneck shifting from code speed to spec precision</figcaption>
+</figure>
 
-![Bottleneck shifting from code speed to spec precision](/report/report-03-new-development-workflow.png)
+## 3. How the Dark Factory Forms a New Development Workflow
 
 ### 3.1 Shift in Bottleneck
 

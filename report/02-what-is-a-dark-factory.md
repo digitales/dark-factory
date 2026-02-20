@@ -3,9 +3,12 @@ title: What Is a Dark Factory?
 description: Definition, core characteristics, and the five levels of automation.
 ---
 
-## 2. What Is a Dark Factory?
+<figure class="report-section-image-wrapper" aria-labelledby="fig-dark-factory-caption">
+  <img src="/report/report-02-what-is-a-dark-factory.png" alt="Dark factory: specs in, software out; no humans on the floor" loading="lazy" class="report-section-image">
+  <figcaption id="fig-dark-factory-caption">Dark factory: specs in, software out; no humans on the floor</figcaption>
+</figure>
 
-![Dark factory: specs in, software out; no humans on the floor](/report/report-02-what-is-a-dark-factory.png)
+## 2. What Is a Dark Factory?
 
 ### 2.1 Definition
 

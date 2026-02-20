@@ -3,9 +3,12 @@ title: Recommended Approach for Creating Specifications
 description: Spec-driven development, checkpoints, Spec Kit pattern, and Cursor rules.
 ---
 
-## 6. Recommended Approach for Creating Specifications
+<figure class="report-section-image-wrapper" aria-labelledby="fig-specs-caption">
+  <img src="/report/report-06-creating-specifications.png" alt="Specify → Plan → Tasks → Implement with checkpoints" loading="lazy" class="report-section-image">
+  <figcaption id="fig-specs-caption">Specify → Plan → Tasks → Implement with checkpoints</figcaption>
+</figure>
 
-![Specify → Plan → Tasks → Implement with checkpoints](/report/report-06-creating-specifications.png)
+## 6. Recommended Approach for Creating Specifications
 
 ### 6.1 Spec-Driven Development (SDD) as the Overarching Approach
 

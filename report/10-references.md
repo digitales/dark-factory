@@ -3,9 +3,11 @@ title: References and Further Reading
 description: Primary sources and additional references for Dark Factories and spec-driven development.
 ---
 
-## 10. References and Further Reading
+<div class="report-section-image-wrapper">
+  <img src="/report/report-10-references.png" alt="References and further reading — primary sources and additional references" loading="lazy" class="report-section-image">
+</div>
 
-![References and further reading — primary sources and additional references](/report/report-10-references.png)
+## 10. References and Further Reading
 
 ### 10.1 Primary Sources (Provided Links)
 

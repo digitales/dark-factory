@@ -3,9 +3,12 @@ title: Dark Factory in a Consultancy Environment
 description: Consultancy model, collaboration vs competition, developer advantages, and recommendations.
 ---
 
-## 4A. Dark Factory in a Consultancy Environment
+<figure class="report-section-image-wrapper" aria-labelledby="fig-consultancy-caption">
+  <img src="/report/report-04a-consultancy-environment.png" alt="Business spec and technical plan: collaboration between consultancy and dev team" loading="lazy" class="report-section-image">
+  <figcaption id="fig-consultancy-caption">Business spec and technical plan: collaboration between consultancy and dev team</figcaption>
+</figure>
 
-![Business spec and technical plan: collaboration between consultancy and dev team](/report/report-04a-consultancy-environment.png)
+## 4A. Dark Factory in a Consultancy Environment
 
 This section addresses how Dark Factory and spec-driven workflows apply when the development team sits inside a consultancy (e.g. Elixirr as parent company): whether developers are at odds with consultants, whether the structure gives consultants power to replace the dev team, and what competitive advantage the development team retains.
 

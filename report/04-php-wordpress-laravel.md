@@ -3,9 +3,12 @@ title: Application to a PHP / WordPress & Laravel Team
 description: Efficiencies, future-proofing, and stack-specific guidance.
 ---
 
-## 4. Application to a PHP / WordPress & Laravel Team
+<figure class="report-section-image-wrapper" aria-labelledby="fig-php-wp-laravel-caption">
+  <img src="/report/report-04-php-wordpress-laravel.png" alt="Intent and specs as portable assets across WordPress, Laravel and PHP" loading="lazy" class="report-section-image">
+  <figcaption id="fig-php-wp-laravel-caption">Intent and specs as portable assets across WordPress, Laravel and PHP</figcaption>
+</figure>
 
-![Intent and specs as portable assets across WordPress, Laravel and PHP](/report/report-04-php-wordpress-laravel.png)
+## 4. Application to a PHP / WordPress & Laravel Team
 
 ### 4.1 Efficiencies
 

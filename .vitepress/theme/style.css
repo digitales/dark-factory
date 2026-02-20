@@ -3,6 +3,19 @@
  * Aligns with elixirrdigital.com — "Your digital partner", "The Challenger Consultancy"
  */
 
+/* Accessibility: screen-reader-only text (e.g. table context, link purpose) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* --------------------------------------------------------------------------
    Brand palette (professional, digital, authoritative)
    - Brand: deep blue/slate accent used across elixirrdigital.com
@@ -125,6 +138,27 @@
 .VPHero .image-container :deep(.image-src) {
   max-width: 280px;
   max-height: 280px;
+}
+
+/* Report section pages: image above first heading, constrained size for fast perceived load */
+.vp-doc .report-section-image-wrapper {
+  margin-bottom: 1.5rem;
+}
+.vp-doc .report-section-image {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  object-position: left center;
+  border-radius: 6px;
+}
+@media (min-width: 640px) {
+  .vp-doc .report-section-image {
+    max-width: 560px;
+    max-height: 320px;
+  }
 }
 
 @media (min-width: 640px) {

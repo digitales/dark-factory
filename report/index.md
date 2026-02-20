@@ -7,7 +7,9 @@ This report summarises research into **Dark Factories** and **AI-generated code*
 
 ## Report sections
 
-Each section has an illustration at the top of its page. Below, the sections with their images:
+Each section has an illustration at the top of its page. Below, the sections with their images.
+
+In the table below, the first column links to each section, the second column shows the section illustration, and the third column gives a short description. Use the first column to jump to a section.
 
 | Section | Illustration | Description |
 |--------|--------------|-------------|

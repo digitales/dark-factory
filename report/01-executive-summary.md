@@ -3,9 +3,12 @@ title: Executive Summary
 description: Key findings on Dark Factories and AI-generated code for PHP, WordPress and Laravel teams.
 ---
 
-## 1. Executive Summary
+<figure class="report-section-image-wrapper" aria-labelledby="fig-exec-summary-caption">
+  <img src="/report/report-01-executive-summary.png" alt="Key findings and pipeline overview" loading="lazy" class="report-section-image">
+  <figcaption id="fig-exec-summary-caption">Key findings and pipeline overview</figcaption>
+</figure>
 
-![Key findings and pipeline overview](/report/report-01-executive-summary.png)
+## 1. Executive Summary
 
 This report summarises research into **Dark Factories** and **AI-generated code** workflows. A Dark Factory in software is a development model where **humans do not write or review code**; they write specifications and approve outcomes. AI agents implement from specs, run validation (often scenario-based), and produce shippable artifacts. The research addresses how this can apply to a PHP-based team (WordPress and Laravel) for efficiency and future-proofing, defines **scenario-based development**, and outlines a **recommended approach and structure for specifications**, with pointers to examples and tooling. It also covers **consultancy dynamics**: how these workflows apply when the dev team sits inside a consultancy (e.g. Elixirr), whether developers are at odds with consultants, whether consultants could replace the dev team, and what competitive advantage the development team retains.
 

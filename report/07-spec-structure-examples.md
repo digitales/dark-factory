@@ -3,9 +3,11 @@ title: Recommended Structure for Specifications and Examples
 description: Spec Kit style structure, templates, scenario docs, and public references.
 ---
 
-## 7. Recommended Structure for Specifications and Examples
+<div class="report-section-image-wrapper">
+  <img src="/report/report-07-spec-structure-examples.png" alt="spec.md, plan.md, tasks.md and scenario docs structure" loading="lazy" class="report-section-image">
+</div>
 
-![spec.md, plan.md, tasks.md and scenario docs structure](/report/report-07-spec-structure-examples.png)
+## 7. Recommended Structure for Specifications and Examples
 
 ### 7.1 High-Level Structure (Spec Kit Style)
 
