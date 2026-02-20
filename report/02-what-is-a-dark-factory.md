@@ -5,6 +5,8 @@ description: Definition, core characteristics, and the five levels of automation
 
 ## 2. What Is a Dark Factory?
 
+![Dark factory: specs in, software out; no humans on the floor](/report/report-02-what-is-a-dark-factory.png)
+
 ### 2.1 Definition
 
 A **Dark Factory** in software development is a model where:

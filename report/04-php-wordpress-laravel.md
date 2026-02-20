@@ -5,6 +5,8 @@ description: Efficiencies, future-proofing, and stack-specific guidance.
 
 ## 4. Application to a PHP / WordPress & Laravel Team
 
+![Intent and specs as portable assets across WordPress, Laravel and PHP](/report/report-04-php-wordpress-laravel.png)
+
 ### 4.1 Efficiencies
 
 - **Spec-first reduces rework:** Clear specs (and plans) reduce misinterpretation and repeated implementation cycles, especially when agents generate code.

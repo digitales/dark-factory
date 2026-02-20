@@ -5,6 +5,8 @@ description: Primary sources and additional references for Dark Factories and sp
 
 ## 10. References and Further Reading
 
+![References and further reading — primary sources and additional references](/report/report-10-references.png)
+
 ### 10.1 Primary Sources (Provided Links)
 
 - Nate's Newsletter — *The dark factory is real, most developers are getting slower, and your org chart is the bottleneck* (5-level framework, spec as most valuable skill): [natesnewsletter.substack.com](https://natesnewsletter.substack.com/p/the-5-level-framework-that-explains)

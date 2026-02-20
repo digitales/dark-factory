@@ -5,6 +5,8 @@ description: Assumptions made in the report and follow-up questions for the team
 
 ## 9. Assumptions and Follow-Up Questions
 
+![Assumptions and follow-up — incremental adoption, questions for the team](/report/report-09-assumptions-follow-up.png)
+
 ### 9.1 Assumptions Made in This Report
 
 - The team is interested in **incremental** adoption: more spec-driven work and scenario-based validation first, with optional progression toward less human code writing/review over time.

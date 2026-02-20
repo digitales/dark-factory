@@ -5,6 +5,8 @@ description: Spec-driven development, checkpoints, Spec Kit pattern, and Cursor 
 
 ## 6. Recommended Approach for Creating Specifications
 
+![Specify → Plan → Tasks → Implement with checkpoints](/report/report-06-creating-specifications.png)
+
 ### 6.1 Spec-Driven Development (SDD) as the Overarching Approach
 
 Treat **specifications as the source of truth** and code as generated output:

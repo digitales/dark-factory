@@ -5,6 +5,8 @@ description: What scenarios are, why they matter beyond tests, satisfaction, and
 
 ## 5. Scenario-Based Development
 
+![Holdout scenarios and satisfaction as validation](/report/report-05-scenario-based-development.png)
+
 ### 5.1 What It Is
 
 **Scenario-based development** here means:

@@ -5,6 +5,8 @@ description: Spec Kit style structure, templates, scenario docs, and public refe
 
 ## 7. Recommended Structure for Specifications and Examples
 
+![spec.md, plan.md, tasks.md and scenario docs structure](/report/report-07-spec-structure-examples.png)
+
 ### 7.1 High-Level Structure (Spec Kit Style)
 
 A single feature or initiative can live under a feature directory, e.g.:
