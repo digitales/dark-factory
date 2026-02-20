@@ -1,0 +1,69 @@
+/**
+ * Elixirr Digital branding for VitePress
+ * Aligns with elixirrdigital.com — "Your digital partner", "The Challenger Consultancy"
+ */
+
+/* --------------------------------------------------------------------------
+   Brand palette (professional, digital, authoritative)
+   - Brand: deep blue/slate accent used across elixirrdigital.com
+   - Nav: subtle dark bar for a consultancy feel
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Brand: deep blue accent (links, buttons, hero) */
+  --vp-c-indigo-1: #0c4a6e;
+  --vp-c-indigo-2: #0369a1;
+  --vp-c-indigo-3: #0284c7;
+  --vp-c-indigo-soft: rgba(2, 132, 199, 0.12);
+
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  --vp-c-brand: var(--vp-c-brand-1);
+
+  /* Nav bar: slight elevation and border for clarity */
+  --vp-nav-bg-color: #fafafa;
+  --vp-nav-logo-height: 28px;
+
+  /* Home hero: brand-coloured title */
+  --vp-home-hero-name-color: var(--vp-c-brand-1);
+}
+
+.dark {
+  --vp-c-indigo-1: #7dd3fc;
+  --vp-c-indigo-2: #38bdf8;
+  --vp-c-indigo-3: #0ea5e9;
+  --vp-c-indigo-soft: rgba(56, 189, 248, 0.16);
+
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+  --vp-c-brand-soft: var(--vp-c-indigo-soft);
+  --vp-c-brand: var(--vp-c-brand-1);
+
+  --vp-nav-bg-color: var(--vp-c-bg);
+}
+
+/* Nav bar title: Elixirr Digital styling */
+.VPNavBarTitle .title {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Optional: subtle top border for nav (clean separation) */
+.VPNavBar .divider-line {
+  opacity: 0.6;
+}
+
+/* Report doc: comfortable reading width and spacing */
+.vp-doc {
+  --vp-c-brand-1: var(--vp-c-indigo-1);
+  --vp-c-brand-2: var(--vp-c-indigo-2);
+  --vp-c-brand-3: var(--vp-c-indigo-3);
+}
+
+/* Footer text alignment with brand */
+.VPFooter .copyright {
+  opacity: 0.85;
+}

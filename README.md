@@ -13,9 +13,16 @@ npm install
 
 ## Commands
 
-- **`npm run dev`** — Start dev server. If you deploy at site root, set `base: '/'` in `.vitepress/config.mts`.
+- **`npm run dev`** — Start dev server (uses relative base `./` for assets).
 - **`npm run build`** — Build static site to `.vitepress/dist`.
 - **`npm run preview`** — Preview the production build.
+
+## Deploy to GitHub Pages
+
+1. In the repo: **Settings → Pages → Build and deployment**: set **Source** to **GitHub Actions**.
+2. Push to `main` (or run the workflow manually: **Actions → Deploy to GitHub Pages → Run workflow**).
+
+The workflow (`.github/workflows/deploy-pages.yml`) builds the site with `base: /<repo-name>/` so assets and links work at `https://<user>.github.io/<repo>/`.
 
 ## Structure
 
