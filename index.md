@@ -8,7 +8,7 @@ hero:
   tagline: Spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams.
   image:
     src: /dark-factory-hero-collaboration.png
-    alt: Consultant and collaboration in the dark factory; figure with torch and roles board representing specifications, workflow, and constitution.
+    alt: Developers, designers, and consultants together in a modern office; figure in dungarees at the collaboration table.
   actions:
     - text: Read the report
       link: /report/
@@ -31,7 +31,7 @@ footer: Part of Elixirr Digital — Your digital partner. Experience digital sol
 
 <div class="vp-doc" style="margin-top: 2rem;">
 
-*Hero artwork: a dark factory lit by a single torch; the illuminated equipment represents the report’s themes — specifications (blueprints), scenarios & validation (gauges), workflow (pipeline), consultancy (roles board), and constitution (ledger).*
+*Hero image: developers, designers, and consultants together in a modern office, reflecting the report’s themes — specifications, workflow, and consultancy collaboration.*
 
 **Document type:** Research report  
 **Audience:** PHP-based development team (WordPress & Laravel)  

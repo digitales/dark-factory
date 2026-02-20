@@ -59,10 +59,10 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
     <!-- Homepage background: dark factory image (full page) -->
     <template v-if="isHome">
       <div class="home-bg" aria-hidden="true" :style="{ backgroundImage: `url(${factoryImageUrl})` }" />
-      <!-- Dark mode: cursor spotlight overlay -->
-      <div v-if="isDark" class="spotlight-overlay" aria-hidden="true" :style="overlayStyle" />
+      <!-- Dark mode: cursor spotlight overlay (visibility from :root.dark so first paint is correct) -->
+      <div class="spotlight-overlay" aria-hidden="true" :style="overlayStyle" />
       <!-- Light mode: light overlay so content stays readable -->
-      <div v-else class="home-bg-overlay" aria-hidden="true" />
+      <div class="home-bg-overlay" aria-hidden="true" />
     </template>
 
     <div class="layout-content" :class="{ 'has-spotlight': showSpotlight, 'has-home-bg': isHome }">
@@ -151,6 +151,20 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
   background-repeat: no-repeat;
 }
 
+/* Visibility from :root.dark so correct overlay shows on first load (before Vue hydration) */
+.spotlight-overlay {
+  display: none;
+}
+:root.dark .spotlight-overlay {
+  display: block;
+}
+.home-bg-overlay {
+  display: block;
+}
+:root.dark .home-bg-overlay {
+  display: none;
+}
+
 .home-bg-overlay {
   background: rgba(250, 250, 250, 0.88);
 }
@@ -184,12 +198,12 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
   background: transparent;
 }
 
-.Layout.has-spotlight .VPFooter {
+/* Footer: use :root.dark so dark/light footer is correct on first load (before Vue hydration) */
+:root.dark .Layout.has-home-bg .VPFooter {
   background: rgba(6, 6, 8, 0.75);
   backdrop-filter: blur(8px);
 }
-
-.Layout.has-home-bg:not(.has-spotlight) .VPFooter {
+:root:not(.dark) .Layout.has-home-bg .VPFooter {
   background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(8px);
 }
