@@ -7,8 +7,8 @@ hero:
   text: Research Report
   tagline: Spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams.
   image:
-    src: /dark-factory-hero.png
-    alt: Pencil illustration of a dark factory; a figure with a torch illuminates equipment representing specifications, scenarios, workflow, consultancy, and constitution.
+    src: /dark-factory-hero-collaboration.png
+    alt: Consultant and collaboration in the dark factory; figure with torch and roles board representing specifications, workflow, and constitution.
   actions:
     - text: Read the report
       link: /report/

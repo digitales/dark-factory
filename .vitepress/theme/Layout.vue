@@ -51,7 +51,7 @@ onUnmounted(() => {
   document.removeEventListener('mousemove', onMouseMove)
 })
 
-const factoryImageUrl = withBase('/dark-factory-hero-collaboration.png')
+const factoryImageUrl = withBase('/dark-factory-hero.png')
 </script>
 
 <template>
