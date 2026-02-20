@@ -3,9 +3,10 @@ title: Adopting the Shift — Workflow, Tools, Skills, and Constitution
 description: Workflow changes, Jira and GitHub, skills by level, constitutions, and agent rules.
 ---
 
-<div class="report-section-image-wrapper">
+<figure class="report-section-image-wrapper" aria-labelledby="fig-adopting-caption">
   <img src="/report/report-08-adopting-the-shift.png" alt="Spec-before-code gate, constitution, and skills by level" loading="lazy" class="report-section-image">
-</div>
+  <figcaption id="fig-adopting-caption">Spec-before-code gate, constitution, and skills by level</figcaption>
+</figure>
 
 ## 8. Adopting the Shift: Workflow, Tools, Skills, and Constitution
 
