@@ -7,7 +7,7 @@ This report summarises research into **Dark Factories** and **AI-generated code*
 
 ## Report sections
 
-Each section has an illustration at the top of its page. Below, the sections with a short description.
+Each section has an illustration at the top of its page. Below are the sections with a short description.
 
 | Section | Description |
 |--------|-------------|
@@ -15,12 +15,12 @@ Each section has an illustration at the top of its page. Below, the sections wit
 | [2. What Is a Dark Factory?](/report/02-what-is-a-dark-factory) | Definition, characteristics, five levels |
 | [3. New Development Workflow](/report/03-new-development-workflow) | Shift in bottleneck, specs, validation, StrongDM |
 | [4. PHP / WordPress & Laravel](/report/04-php-wordpress-laravel) | Efficiencies, future-proofing, stack specifics |
-| [4A. Consultancy Environment](/report/04a-consultancy-environment) | Elixirr context, collaboration, developer advantages |
-| [5. Scenario-Based Development](/report/05-scenario-based-development) | Scenarios, holdout, satisfaction |
-| [6. Creating Specifications](/report/06-creating-specifications) | SDD approach, checkpoints, Spec Kit, Cursor rules |
-| [7. Spec Structure & Examples](/report/07-spec-structure-examples) | Templates, scenario docs, public references |
-| [8. Adopting the Shift](/report/08-adopting-the-shift) | Workflow, Jira/GitHub, skills, constitution, agent rules |
-| [9. Assumptions & Follow-Up](/report/09-assumptions-follow-up) | Assumptions and questions for the team |
-| [10. References](/report/10-references) | Primary sources and further reading |
+| [5. Consultancy Environment](/report/04a-consultancy-environment) | Elixirr context, collaboration, developer advantages |
+| [6. Scenario-Based Development](/report/05-scenario-based-development) | Scenarios, holdout, satisfaction |
+| [7. Creating Specifications](/report/06-creating-specifications) | SDD approach, checkpoints, Spec Kit, Cursor rules |
+| [8. Spec Structure & Examples](/report/07-spec-structure-examples) | Templates, scenario docs, public references |
+| [9. Adopting the Shift](/report/08-adopting-the-shift) | Workflow, Jira/GitHub, skills, constitution, agent rules |
+| [10. Assumptions & Follow-Up](/report/09-assumptions-follow-up) | Assumptions and questions for the team |
+| [11. References](/report/10-references) | Primary sources and further reading |
 
 The report is structured so it can be read section by section from the sidebar or as a linked set of pages. The source Markdown is retained in the project; the full single-document version is available at `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` if needed.

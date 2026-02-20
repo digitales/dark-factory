@@ -8,9 +8,9 @@ description: What scenarios are, why they matter beyond tests, satisfaction, and
   <figcaption id="fig-scenario-caption">Holdout scenarios and satisfaction as validation</figcaption>
 </figure>
 
-## 5. Scenario-Based Development
+## 6. Scenario-Based Development
 
-### 5.1 What It Is
+### 6.1 What It Is
 
 **Scenario-based development** here means:
 
@@ -20,17 +20,17 @@ description: What scenarios are, why they matter beyond tests, satisfaction, and
 
 StrongDM explicitly repurposes the word **scenario** in this way, inspired by **scenario testing** (Cem Kaner): a test based on a hypothetical story of how the program is used, including motivations and context.
 
-### 5.2 Why Scenarios (Not Just Tests)
+### 6.2 Why Scenarios (Not Just Tests)
 
 - **Tests in-repo can be gamed:** The agent can change tests or implementation so that tests pass without satisfying real intent (e.g. `assert true`).
 - **Scenarios as holdout:** If scenarios are maintained separately and run against the built system, they act as an independent check: "Does this build satisfy these stories?"
 - **LLM-as-judge:** For agentic or UX-heavy behaviour, pass/fail may be "did this trajectory satisfy the user?"; an LLM can evaluate that (satisfaction) when strict assertions are hard to write.
 
-### 5.3 Satisfaction (Probabilistic Success)
+### 6.3 Satisfaction (Probabilistic Success)
 
 StrongDM introduces **satisfaction**: of all observed trajectories through all scenarios, what fraction likely satisfies the user? This is a move from boolean "tests pass" to a more empirical, probabilistic view of quality, which fits systems with LLM or agentic components.
 
-### 5.4 Practical Takeaway for the Team
+### 6.4 Practical Takeaway for the Team
 
 - Write **scenarios** in plain language (markdown): actor, goal, steps, expected outcome.
 - Keep a **holdout** set of scenarios that agents do not see during implementation.

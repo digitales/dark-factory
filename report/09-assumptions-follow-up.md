@@ -8,17 +8,17 @@ description: Assumptions made in the report and follow-up questions for the team
   <figcaption id="fig-assumptions-caption">Assumptions and follow-up — incremental adoption, questions for the team</figcaption>
 </figure>
 
-## 9. Assumptions and Follow-Up Questions
+## 10. Assumptions and Follow-Up Questions
 
-### 9.1 Assumptions Made in This Report
+### 10.1 Assumptions Made in This Report
 
-- The team is interested in **incremental** adoption: more spec-driven work and scenario-based validation first, with optional progression toward less human code writing/review over time.
+- The team is interested in **incremental** adoption: more spec-driven work and scenario-based validation first, with optional progression towards less human code writing/review over time.
 - "Dark Factory" is used as the **Level 5** ideal (no human code write/review); the team may operate at Level 3 or 4 (outcome-focused review, spec-driven implementation) and still benefit.
 - Tooling is flexible: Spec Kit, Cursor rules, Claude Code skills, or custom runbooks can implement the same workflow.
 - PHP, WordPress, and Laravel are the primary stacks; the same spec-driven and scenario-based ideas apply to both, with stack-specific principles in the "constitution."
 - Some references (e.g. StrongDM's $1,000/day heuristic, Digital Twin Universe) are cited for context; they are not a requirement for adopting the workflow.
 
-### 9.2 Follow-Up Questions for the Team
+### 10.2 Follow-Up Questions for the Team
 
 1. **Current maturity:** Where does the team sit today on the 0–5 scale? Are you already using AI for implementation, and do you review every diff or only outcomes?
 2. **Holdout scenarios:** Are you willing to maintain a separate set of scenarios (e.g. in `specs/scenarios/` or another repo) that are not visible to the agent during implementation?

@@ -8,9 +8,9 @@ description: Spec-driven development, checkpoints, Spec Kit pattern, and Cursor 
   <figcaption id="fig-specs-caption">Specify → Plan → Tasks → Implement with checkpoints</figcaption>
 </figure>
 
-## 6. Recommended Approach for Creating Specifications
+## 7. Recommended Approach for Creating Specifications
 
-### 6.1 Spec-Driven Development (SDD) as the Overarching Approach
+### 7.1 Spec-Driven Development (SDD) as the Overarching Approach
 
 Treat **specifications as the source of truth** and code as generated output:
 
@@ -21,13 +21,13 @@ Treat **specifications as the source of truth** and code as generated output:
 
 At each phase, **verify and refine** before moving on: does the spec capture intent? Does the plan respect constraints? Are tasks clear and complete?
 
-### 6.2 Checkpoints and Iteration
+### 7.2 Checkpoints and Iteration
 
 - **No single big dump:** Avoid one huge prompt that produces both spec and code. Use phases (Spec → Plan → Tasks → Implement) with explicit checkpoints.
 - **Constitution / principles:** Maintain a short document of principles (quality, security, stack, patterns). The plan phase should reference it so generated code stays on-brand.
 - **Ambiguity markers:** In specs, use something like `[NEEDS CLARIFICATION: …]` so that assumptions are not hidden; the team (or agent in the next phase) resolves them before implementation.
 
-### 6.3 Tools and Commands (Spec Kit Pattern)
+### 7.3 Tools and Commands (Spec Kit Pattern)
 
 GitHub's Spec Kit illustrates a **command-based** workflow that fits SDD:
 
@@ -39,7 +39,7 @@ GitHub's Spec Kit illustrates a **command-based** workflow that fits SDD:
 
 Similar flows can be implemented with Cursor rules, Claude Code skills, or internal runbooks. The important part is the **sequence and checkpoints**, not the exact tool.
 
-### 6.4 Cursor Rules and Skills
+### 7.4 Cursor Rules and Skills
 
 Cursor rules (and skills in Claude Code) act as **persistent context**: project conventions, stack, and patterns. For a PHP/WordPress/Laravel team:
 

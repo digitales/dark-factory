@@ -18,12 +18,12 @@ When you move to a new repo, this folder **is** the new project. The only extern
 
 - **Canonical report (original location):**  
   `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` (in the original Dezeen/workspace repo).
-- **In this project:** the report content is duplicated in **`report/index.md`** (with VitePress frontmatter). The body is the full report (all 10 sections).
+- **In this project:** the report content is duplicated in **`report/index.md`** (with VitePress frontmatter). The body is the full report (all 11 sections).
 - **For the new repo:** either:
   - **Option A:** Copy `DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` into the new repo (e.g. `docs/` or project root) and treat it as the single source of truth; update `report/index.md` by copying from it when the report changes, **or**
   - **Option B:** Keep only `report/index.md` as the source and remove references to an external path.
 
-One **fix was applied** to the report structure during this work: the heading **`## 5. Scenario-Based Development`** was added before `### 5.1 What It Is` so that section 5 is not nested under 4A.8. If you use a copy of the original MD file, ensure that fix is present (or re-apply it).
+One **fix was applied** to the report structure during this work: the heading **`## 6. Scenario-Based Development`** was added before `### 6.1 What It Is` so that section 6 is not nested under 5.8. If you use a copy of the original MD file, ensure that fix is present (or re-apply it).
 
 ---
 
@@ -90,7 +90,7 @@ Build has been verified (client + server bundles and page render).
 ## 7. Content Pages
 
 - **`index.md`** — Landing: title “Dark Factories & AI-Generated Code”, tagline, “Read the report” (primary) and “Elixirr Digital” (secondary) buttons, feature cards linking into report sections.
-- **`report/index.md`** — Full report with frontmatter; heading hierarchy matches sidebar. The flowchart in section 4A.3 is in a `mermaid` code block; **Mermaid is not currently enabled**, so it renders as a code block. A VitePress 1–compatible Mermaid plugin can be added later if you want it as a diagram.
+- **`report/index.md`** — Full report with frontmatter; heading hierarchy matches sidebar. The flowchart in section 5.3 is in a `mermaid` code block; **Mermaid is not currently enabled**, so it renders as a code block. A VitePress 1–compatible Mermaid plugin can be added later if you want it as a diagram.
 
 ---
 
@@ -112,7 +112,7 @@ Build has been verified (client + server bundles and page render).
 
 ## 9. Optional Enhancements (Not Done in This Conversation)
 
-- **Mermaid:** Enable a VitePress 1–compatible Mermaid plugin so the flowchart in 4A.3 renders as a diagram.
+- **Mermaid:** Enable a VitePress 1–compatible Mermaid plugin so the flowchart in 5.3 renders as a diagram.
 - **Logo:** Add an image under `public/` and use it in the theme or `themeConfig.logo`.
 - **PDF export:** Add a workflow (e.g. Puppeteer/Playwright or a VitePress plugin) to export the report as PDF from the built site.
 
@@ -125,7 +125,7 @@ Build has been verified (client + server bundles and page render).
 | **Purpose** | VitePress site for “Dark Factories & AI-Generated Code” research report |
 | **Branding** | Elixirr Digital (https://www.elixirrdigital.com), colour `#0d6b4c` |
 | **Source of truth** | Original: `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md`; in-site: `report/index.md` |
-| **Fix applied** | Added `## 5. Scenario-Based Development` before ### 5.1 |
+| **Fix applied** | Added `## 6. Scenario-Based Development` before ### 6.1 |
 | **VitePress** | 1.x; build verified |
 | **Deployment** | Set `base` in config to match deployment path (e.g. `'/'` for repo root) |
 
