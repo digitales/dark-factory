@@ -74,7 +74,7 @@ In a spec-driven, agent-assisted world, the mix of skills shifts by level. Below
 **Draft constitution for this team and company.** Below is a starter constitution that can live in the repo as `constitution.md` (or `docs/constitution.md`) and be refined by the team. It is written so that both humans and agents can follow it.
 
 ```markdown
-# [Product/Team Name] Development Constitution
+# Elixirr Digital Development Constitution
 
 ## 1. Stack and Versions
 - PHP 8.x (minimum version TBD); WordPress 6.x; Laravel 11.x (or as per project).
@@ -92,7 +92,7 @@ In a spec-driven, agent-assisted world, the mix of skills shifts by level. Below
 - No disabling or weakening tests to make a build pass; fix the implementation or the spec.
 
 ## 4. Security and Data
-- Follow [company] security guidelines (e.g. no secrets in repo, sanitisation, capability checks).
+- Follow Elixirr security guidelines (e.g. no secrets in repo, sanitisation, capability checks).
 - Personal data and access control: [reference internal policy or "as per client agreement"].
 
 ## 5. Naming and Structure

@@ -16,7 +16,7 @@ This section addresses how Dark Factory and spec-driven workflows apply when the
 
 Elixirr positions itself as "The Challenger Consultancy," combining strategy, digital, data, and AI consulting. It operates across practices such as Strategy & Transformation, Operational Excellence, Data & Technology, Digital Experience, and Research & Insights. The consultancy side advises clients on business strategy, transformation roadmaps, and digital opportunity.
 
-Elixirr Digital (formerly Den Creative) is the in-house product and engineering arm that builds and maintains digital products for clients—including, for example, Dezeen's websites, server infrastructure, and platforms (WordPress, Laravel, high-traffic publishing). The consultancy side defines *what* to build and *why* from a business perspective; the dev team implements, operates, and owns the technical delivery. In a Dark Factory world, the boundary between "consultant output" and "developer output" becomes a critical question.
+Elixirr Digital (formerly Den Creative) is the in-house product and engineering arm that builds and maintains digital products for clients—including, for example, client websites, server infrastructure, and platforms (WordPress, Laravel, high-traffic publishing). The consultancy side defines *what* to build and *why* from a business perspective; the dev team implements, operates, and owns the technical delivery. In a Dark Factory world, the boundary between "consultant output" and "developer output" becomes a critical question.
 
 ### 5.2 The Surface-Level Threat: Can Consultants Replace Developers?
 
@@ -73,7 +73,7 @@ Seven durable advantages that consultants (and other non-engineering roles) cann
 
 1. **Technical specification precision.** Turning vague business requirements into implementable specs—data models, API contracts, constraints, edge cases—requires engineering experience, not business strategy skills. Agents need this precision to generate correct code.
 2. **Validation and scenario design.** Knowing *what to test* and *how to catch real bugs*: holdout scenarios, integration edge cases, security and performance validation. These require deep system knowledge.
-3. **System and domain knowledge.** The existing codebase (e.g. Dezeen: 30,000+ articles, custom plugins, WordPress hooks, Laravel awards platform, Cloudflare/CDN, Algolia search) is accumulated expertise that no consultant or greenfield AI agent starts with.
+3. **System and domain knowledge.** The existing codebase (e.g. a large publishing client: 30,000+ articles, custom plugins, WordPress hooks, Laravel awards platform, Cloudflare/CDN, Algolia search) is accumulated expertise that no consultant or greenfield AI agent starts with.
 4. **Operational ownership.** Production systems need people who understand deployment, monitoring, incident response, caching, performance, and infrastructure. Consultants do not operate production.
 5. **Quality judgement.** Knowing when AI-generated code is architecturally sound versus when it introduces technical debt or subtle bugs. Gartner warns that prompt-to-app approaches could increase software defects significantly by 2028 without engineering oversight.
 6. **Tool and agent mastery.** Configuring Cursor rules, Claude Code skills, agent harnesses, and CI pipelines for AI workflows. The "factory floor" still needs operators who can tune and steer the system.
@@ -88,7 +88,7 @@ Reframing the developer role from "people who write code" to "people who operate
 - **Revenue leverage:** a smaller dev team generating more output is not a threat to the team; it is a higher-margin, more strategic asset for the consultancy group. The value is in outcomes and ownership, not in hours of typing code.
 - The real competitive threat is **external**: other consultancies adopting Dark Factory patterns. The advantage goes to the first consultancy whose dev team masters spec-driven, agent-operated workflows and can deliver with speed and quality.
 
-### 5.7 Recommendations for the Dezeen / Elixirr Digital Team
+### 5.7 Recommendations for the Elixirr Digital Team
 
 Concrete actions:
 
