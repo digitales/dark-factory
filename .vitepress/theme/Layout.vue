@@ -55,14 +55,17 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
 </script>
 
 <template>
-  <div v-if="frontmatter.layout !== false" class="Layout" :class="[frontmatter.pageClass, { 'has-spotlight': showSpotlight }]">
-    <!-- Full-page factory + dark overlay with cursor spotlight (dark mode home only) -->
-    <template v-if="showSpotlight">
-      <div class="spotlight-bg" aria-hidden="true" :style="{ backgroundImage: `url(${factoryImageUrl})` }" />
-      <div class="spotlight-overlay" aria-hidden="true" :style="overlayStyle" />
+  <div v-if="frontmatter.layout !== false" class="Layout" :class="[frontmatter.pageClass, { 'has-spotlight': showSpotlight, 'has-home-bg': isHome }]">
+    <!-- Homepage background: dark factory image (full page) -->
+    <template v-if="isHome">
+      <div class="home-bg" aria-hidden="true" :style="{ backgroundImage: `url(${factoryImageUrl})` }" />
+      <!-- Dark mode: cursor spotlight overlay -->
+      <div v-if="isDark" class="spotlight-overlay" aria-hidden="true" :style="overlayStyle" />
+      <!-- Light mode: light overlay so content stays readable -->
+      <div v-else class="home-bg-overlay" aria-hidden="true" />
     </template>
 
-    <div class="layout-content" :class="{ 'has-spotlight': showSpotlight }">
+    <div class="layout-content" :class="{ 'has-spotlight': showSpotlight, 'has-home-bg': isHome }">
     <slot name="layout-top" />
     <VPSkipLink />
     <VPBackdrop class="backdrop" :show="isSidebarOpen" @click="closeSidebar" />
@@ -119,11 +122,13 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
   position: relative;
 }
 
-.Layout.has-spotlight {
+.Layout.has-spotlight,
+.Layout.has-home-bg {
   isolation: isolate;
 }
 
-.layout-content.has-spotlight {
+.layout-content.has-spotlight,
+.layout-content.has-home-bg {
   position: relative;
   z-index: 1;
   min-height: 100vh;
@@ -131,18 +136,23 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
   flex-direction: column;
 }
 
-.spotlight-bg,
-.spotlight-overlay {
+.home-bg,
+.spotlight-overlay,
+.home-bg-overlay {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
 
-.spotlight-bg {
+.home-bg {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.home-bg-overlay {
+  background: rgba(250, 250, 250, 0.88);
 }
 
 .spotlight-overlay {
@@ -163,17 +173,24 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
 </style>
 
 <style>
-/* When spotlight is active, content and footer let the spotlight show through */
-.Layout.has-spotlight .VPContent {
+/* When home background or spotlight is active, content and footer show through */
+.Layout.has-spotlight .VPContent,
+.Layout.has-home-bg .VPContent {
   background: transparent;
 }
 
-.Layout.has-spotlight .VPHome {
+.Layout.has-spotlight .VPHome,
+.Layout.has-home-bg .VPHome {
   background: transparent;
 }
 
 .Layout.has-spotlight .VPFooter {
   background: rgba(6, 6, 8, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+.Layout.has-home-bg:not(.has-spotlight) .VPFooter {
+  background: rgba(250, 250, 250, 0.85);
   backdrop-filter: blur(8px);
 }
 </style>

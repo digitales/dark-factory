@@ -101,6 +101,11 @@
     align-items: stretch;
   }
 
+  /* Hide circular decoration so consultant image fills the column */
+  .VPHero.has-image .image-container .image-bg {
+    display: none;
+  }
+
   .VPHero .image-container .image-src,
   .VPHero .image-container :deep(.image-src) {
     position: relative;
