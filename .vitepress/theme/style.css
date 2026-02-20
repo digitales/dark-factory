@@ -136,11 +136,11 @@
 
 .VPHero .image-container .image-src,
 .VPHero .image-container :deep(.image-src) {
-  max-width: 280px;
-  max-height: 280px;
+  max-width: 320px;
+  max-height: 320px;
 }
 
-/* Report section pages: image above first heading, constrained size for fast perceived load */
+/* Report section pages: image above first heading, fills column width */
 .vp-doc .report-section-image-wrapper {
   margin-bottom: 1.5rem;
 }
@@ -152,25 +152,29 @@
 }
 .vp-doc .report-section-image {
   display: block;
-  max-width: 100%;
   width: 100%;
+  max-width: 688px;
   height: auto;
-  max-height: 280px;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
   border-radius: 6px;
 }
-@media (min-width: 640px) {
-  .vp-doc .report-section-image {
-    max-width: 560px;
-    max-height: 320px;
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .VPHero .image-container .image-src,
+  .VPHero .image-container :deep(.image-src) {
+    max-width: 480px;
+    max-height: 480px;
   }
 }
 
-@media (min-width: 640px) {
+/* Desktop: hero image fills the right column */
+@media (min-width: 960px) {
   .VPHero .image-container .image-src,
   .VPHero .image-container :deep(.image-src) {
-    max-width: 380px;
-    max-height: 380px;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
   }
 }
