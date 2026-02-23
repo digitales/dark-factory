@@ -4,7 +4,7 @@ description: Spec Kit style structure, templates, scenario docs, and public refe
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-structure-caption">
-  <img src="/report/report-07-spec-structure-examples.png" alt="spec.md, plan.md, tasks.md and scenario docs structure" loading="lazy" class="report-section-image">
+  <img src="/report/report-08-spec-structure-examples.png" alt="spec.md, plan.md, tasks.md and scenario docs structure" loading="lazy" class="report-section-image">
   <figcaption id="fig-structure-caption">spec.md, plan.md, tasks.md and scenario docs structure</figcaption>
 </figure>
 
@@ -93,4 +93,4 @@ Format (example):
 
 ### 8.7 Practising the structure
 
-To build fluency, the report includes **[Exercises and Practice](/report/07a-exercises)** (Section 9): hands-on exercises for writing specs, plans, tasks and holdout scenarios, plus a spec-delta review exercise. They use WordPress- and Laravel-friendly examples and can be run in 15–90 minutes each.
+To build fluency, the report includes **[Exercises and Practice](/report/09-exercises-and-practice)** (Section 9): hands-on exercises for writing specs, plans, tasks and holdout scenarios, plus a spec-delta review exercise. They use WordPress- and Laravel-friendly examples and can be run in 15–90 minutes each.

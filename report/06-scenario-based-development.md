@@ -4,7 +4,7 @@ description: What scenarios are, why they matter beyond tests, satisfaction, and
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-scenario-caption">
-  <img src="/report/report-05-scenario-based-development.png" alt="Holdout scenarios and satisfaction as validation" loading="lazy" class="report-section-image">
+  <img src="/report/report-06-scenario-based-development.png" alt="Holdout scenarios and satisfaction as validation" loading="lazy" class="report-section-image">
   <figcaption id="fig-scenario-caption">Holdout scenarios and satisfaction as validation</figcaption>
 </figure>
 

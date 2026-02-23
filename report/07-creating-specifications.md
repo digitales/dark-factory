@@ -4,7 +4,7 @@ description: Spec-driven development, checkpoints, Spec Kit pattern, and Cursor 
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-specs-caption">
-  <img src="/report/report-06-creating-specifications.png" alt="Specify → Plan → Tasks → Implement with checkpoints" loading="lazy" class="report-section-image">
+  <img src="/report/report-07-creating-specifications.png" alt="Specify → Plan → Tasks → Implement with checkpoints" loading="lazy" class="report-section-image">
   <figcaption id="fig-specs-caption">Specify → Plan → Tasks → Implement with checkpoints</figcaption>
 </figure>
 

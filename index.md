@@ -22,10 +22,10 @@ features:
     link: /report/02-what-is-a-dark-factory
   - title: Consultancy environment
     details: How the workflow applies when the dev team sits inside a consultancy (e.g. Elixirr); roles of consultants, developers, and account managers.
-    link: /report/04a-consultancy-environment
+    link: /report/05-consultancy-environment
   - title: Adopting the shift
     details: Workflow changes, Jira and GitHub, skills by level (junior to lead), constitutions, and agent rules—all in one place.
-    link: /report/08-adopting-the-shift
+    link: /report/10-adopting-the-shift
 footer: Part of Elixirr Digital — Your digital partner. Experience digital solutions that challenge the ordinary.
 ---
 

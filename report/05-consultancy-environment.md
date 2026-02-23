@@ -4,7 +4,7 @@ description: Consultancy model, collaboration vs competition, developer advantag
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-consultancy-caption">
-  <img src="/report/report-04a-consultancy-environment.png" alt="Business spec and technical plan: collaboration between consultancy and dev team" loading="lazy" class="report-section-image">
+  <img src="/report/report-05-consultancy-environment.png" alt="Business spec and technical plan: collaboration between consultancy and dev team" loading="lazy" class="report-section-image">
   <figcaption id="fig-consultancy-caption">Business spec and technical plan: collaboration between consultancy and dev team</figcaption>
 </figure>
 

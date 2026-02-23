@@ -80,7 +80,7 @@ This section gives the development team **concrete exercises** to practise the s
 
 **Goal:** Write 2–3 **scenarios** for a feature that could live in a holdout set (not visible to the agent during implementation).
 
-**Context:** Scenarios are end-to-end user stories used for validation: actor, goal, steps, expected outcome. See [Section 6](/report/05-scenario-based-development) and the scenario format in [Section 8.4](/report/07-spec-structure-examples#_8-4-scenario-documentation).
+**Context:** Scenarios are end-to-end user stories used for validation: actor, goal, steps, expected outcome. See [Section 6](/report/06-scenario-based-development) and the scenario format in [Section 8.4](/report/08-spec-structure-examples#_8-4-scenario-documentation).
 
 **Pick one feature:**
 

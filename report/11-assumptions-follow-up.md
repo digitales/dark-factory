@@ -4,7 +4,7 @@ description: Assumptions made in the report and follow-up questions for the team
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-assumptions-caption">
-  <img src="/report/report-09-assumptions-follow-up.png" alt="Assumptions and follow-up — incremental adoption, questions for the team" loading="lazy" class="report-section-image">
+  <img src="/report/report-11-assumptions-follow-up.png" alt="Assumptions and follow-up — incremental adoption, questions for the team" loading="lazy" class="report-section-image">
   <figcaption id="fig-assumptions-caption">Assumptions and follow-up — incremental adoption, questions for the team</figcaption>
 </figure>
 

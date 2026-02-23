@@ -4,7 +4,7 @@ description: Primary sources and additional references for Dark Factories and sp
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-references-caption">
-  <img src="/report/report-10-references.png" alt="References and further reading — primary sources and additional references" loading="lazy" class="report-section-image">
+  <img src="/report/report-12-references.png" alt="References and further reading — primary sources and additional references" loading="lazy" class="report-section-image">
   <figcaption id="fig-references-caption">References and further reading — primary sources and additional references</figcaption>
 </figure>
 
