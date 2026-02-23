@@ -3,6 +3,11 @@ title: Migration Intelligence (PHP / WP / Plugins)
 description: Impact analysis, runbooks, and ordered execution for PHP and WordPress upgrades.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-migration-caption">
+  <img src="/report/ai-pipeline-04-migration-intelligence.png" alt="Map with segmented route and runbook beside it" loading="lazy" class="report-section-image">
+  <figcaption id="fig-migration-caption">Map with segmented route and runbook beside it</figcaption>
+</figure>
+
 # Migration Intelligence (PHP / WP / Plugins)
 
 ## 1. Problem Context

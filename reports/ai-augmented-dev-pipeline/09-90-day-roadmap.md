@@ -3,6 +3,11 @@ title: 90-Day Roadmap
 description: Pilot phases 0–30, 30–60, 60–90 — CI, policy, Bionic, baseline, refactor, test, review.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-roadmap-caption">
+  <img src="/report/ai-pipeline-09-90-day-roadmap.png" alt="Path in three segments with milestones and figure at first segment" loading="lazy" class="report-section-image">
+  <figcaption id="fig-roadmap-caption">Path in three segments with milestones and figure at first segment</figcaption>
+</figure>
+
 # 90-Day Roadmap
 
 ## 1. Problem Context

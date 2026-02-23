@@ -208,7 +208,7 @@ Pencil-drawn section header concepts. Style: hand-sketched linework, light penci
 
 - **Medium:** Pencil on white or lightly textured paper.
 - **Line:** Hand-sketched, not vector-perfect.
-- **Colour:** Light pencil only (grey tones); no digital or saturated colour.
+- **Colour:** Pencil plus light colour wash only — soft grey lines, very light cream or sepia tint, minimal pale blue or warm grey accents; no saturated or digital colour.
 - **Tone:** Calm, professional, suitable for engineering/technical reports.
 - **Avoid:** Literal screens, UIs, robots, cartoon faces, exaggerated tech (gears, glowing chips), marketing flair.
 - **Emphasise:** Symbolic metaphors, human-in-control, gates and boundaries, ordered steps, and clarity of concept over literal representation.

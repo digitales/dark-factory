@@ -3,6 +3,11 @@ title: PR Review (AI-Augmented)
 description: First-pass PR review with Bionic — diff-only, no merge rights, guardrails and KPIs.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pr-review-caption">
+  <img src="/report/ai-pipeline-02-pr-review.png" alt="Manuscript with margin notes and human hand adding approval" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pr-review-caption">Manuscript with margin notes and human hand adding approval</figcaption>
+</figure>
+
 # PR Review (AI-Augmented)
 
 ## 1. Problem Context

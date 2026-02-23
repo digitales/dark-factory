@@ -3,6 +3,11 @@ title: Governance and Controls
 description: UK GDPR, data boundaries, redaction, client approval, safe deployment checklist.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-governance-caption">
+  <img src="/report/ai-pipeline-08-governance-and-controls.png" alt="Walled garden with one gate and figure with checklist" loading="lazy" class="report-section-image">
+  <figcaption id="fig-governance-caption">Walled garden with one gate and figure with checklist</figcaption>
+</figure>
+
 # Governance and Controls
 
 ## 1. Problem Context

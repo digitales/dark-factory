@@ -3,6 +3,11 @@ title: Documentation (AI-Assisted)
 description: README, runbooks, and API docs — Cursor drafts, human approval, ownership and checklist.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-documentation-caption">
+  <img src="/report/ai-pipeline-06-documentation.png" alt="Open ledger with hand editing a line and reference note" loading="lazy" class="report-section-image">
+  <figcaption id="fig-documentation-caption">Open ledger with hand editing a line and reference note</figcaption>
+</figure>
+
 # Documentation (AI-Assisted)
 
 ## 1. Problem Context

@@ -3,6 +3,11 @@ title: Test Generation (AI-Assisted)
 description: PHPUnit/Pest test suggestions via Cursor — human review, ownership, and rate limits.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-test-gen-caption">
+  <img src="/report/ai-pipeline-05-test-generation.png" alt="Hand mending a net, adding a strand to fill a gap" loading="lazy" class="report-section-image">
+  <figcaption id="fig-test-gen-caption">Hand mending a net, adding a strand to fill a gap</figcaption>
+</figure>
+
 # Test Generation (AI-Assisted)
 
 ## 1. Problem Context

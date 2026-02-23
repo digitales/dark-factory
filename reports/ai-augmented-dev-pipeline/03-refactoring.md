@@ -3,6 +3,11 @@ title: Refactoring (AI-Assisted)
 description: Rector in CI, Cursor locally — PHP 8.x and WP/Laravel refactors with guardrails.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-refactoring-caption">
+  <img src="/report/ai-pipeline-03-refactoring.png" alt="Stone path repaired one step at a time with a ruler" loading="lazy" class="report-section-image">
+  <figcaption id="fig-refactoring-caption">Stone path repaired one step at a time with a ruler</figcaption>
+</figure>
+
 # Refactoring (AI-Assisted)
 
 ## 1. Problem Context

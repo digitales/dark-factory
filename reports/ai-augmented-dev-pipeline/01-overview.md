@@ -3,6 +3,11 @@ title: Overview
 description: AI-augmented development pipelines — problem context, architecture, tooling, guardrails, KPIs, and next steps.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-overview-caption">
+  <img src="/report/ai-pipeline-01-overview.png" alt="Pipeline overview: two channels rejoining at a human gate" loading="lazy" class="report-section-image">
+  <figcaption id="fig-overview-caption">Pipeline overview: two channels rejoining at a human gate</figcaption>
+</figure>
+
 # AI-Augmented Development Pipelines — Overview
 
 ## 1. Problem Context

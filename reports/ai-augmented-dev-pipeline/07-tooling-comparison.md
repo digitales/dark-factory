@@ -3,6 +3,11 @@ title: Tooling Comparison (OSS vs SaaS)
 description: Bionic, Cursor, PHPStan, Rector — pilot choices at £200 and £500, no AI in CI.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-tooling-caption">
+  <img src="/report/ai-pipeline-07-tooling-comparison.png" alt="Two conduits feeding one container with a max level marked" loading="lazy" class="report-section-image">
+  <figcaption id="fig-tooling-caption">Two conduits feeding one container with a max level marked</figcaption>
+</figure>
+
 # Tooling Comparison (OSS vs SaaS)
 
 ## 1. Problem Context

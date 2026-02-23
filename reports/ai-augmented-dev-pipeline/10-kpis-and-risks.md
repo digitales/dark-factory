@@ -3,6 +3,11 @@ title: KPIs and Risks
 description: Quantifiable KPIs, risk register, stop conditions, and next actions for the pilot.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-kpis-caption">
+  <img src="/report/ai-pipeline-10-kpis-and-risks.png" alt="Balance with tokens on each side and hand with pencil reviewing" loading="lazy" class="report-section-image">
+  <figcaption id="fig-kpis-caption">Balance with tokens on each side and hand with pencil reviewing</figcaption>
+</figure>
+
 # KPIs and Risks
 
 ## 1. Problem Context
