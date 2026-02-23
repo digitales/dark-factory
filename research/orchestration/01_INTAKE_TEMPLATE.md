@@ -1,7 +1,7 @@
 # Initiative Intake
 
 ## Title
-<short name>
+`<short name>`
 
 ## Problem Statement
 What problem are we trying to solve (1–3 sentences)?
