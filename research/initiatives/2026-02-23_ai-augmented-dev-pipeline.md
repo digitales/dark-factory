@@ -182,7 +182,7 @@ Produce:
 - Alert: if projected monthly spend &gt; £450.
 - Weekly: 10-minute check of spend vs budget and usage.
 
-**Recommendation:** Fits with controls at £500; fits at £200 with Bionic-only PR review and no extra SaaS.
+**Recommendation:** Fits with controls at £500; fits at £200 with Bionic-only PR review and no extra SaaS. **For a hard £200/month ceiling**, see **Cost Governor: £200/month Hard Ceiling** (later in this document) for concrete rate limits, context caps, model tier, caching, CI enforcement, and minimal redesign.
 
 ---
 
@@ -1031,3 +1031,475 @@ Because **there is no AI in CI** in the Architect design, this checklist is mini
 - **Operational complexity:** Low.
 
 **Recommendation:** **Safe for production.** Pilot in one repo first; use the minimal checklist above; keep no AI in CI as a hard constraint so operational surface stays small and rollback is trivial.
+
+---
+
+# Governance: Review of Intake + Architect Output
+
+## 1. Data Exposure Risk
+
+**Assessment: Low**, provided controls below are in place and enforced.
+
+| Data flow | What is sent | Risk if uncontrolled |
+|-----------|--------------|------------------------|
+| **PR bot (Bionic/CodeRabbit)** | Diff + optional small context (changed files only) | Commit messages, branch names, or file content could contain client names, URLs, credentials, or PII if not redacted. |
+| **Cursor / Copilot** | Human-selected code or prompts | Developer may paste client URLs, tokens, or PII; or full files containing config/env. |
+| **CI (GitHub Actions)** | No AI; code only on GitHub-hosted runners | No data sent to AI; repo code is already in GitHub. |
+| **Documentation / migration** | Code or runbook text in prompts | Runbooks or doc drafts could reference client sites or env. |
+
+**Conditions for Low:** (1) PR bot receives **diff only** (or diff + minimal context); no `.env`, `wp-config`, or credentials in repo paths sent. (2) **No client names, live URLs, API keys, or PII** in PR title/description, branch names, or commit messages for PRs where bot runs. (3) Cursor/Copilot used only on **sanitised code**; no production credentials or client data in prompts. (4) **No indexing** of client repos to external AI (Cursor local/index only as per policy).
+
+If any of these are violated, risk becomes **Medium**; confirmed PII or credential leakage is **High** and must trigger immediate disable and review.
+
+---
+
+## 2. GDPR Sensitivity Assessment
+
+- **Code and diffs:** Generally not personal data under UK GDPR when limited to application code (no PII in code, no production DB dumps). Risk increases if commit messages, issue bodies, or PR descriptions contain names, emails, or other identifiers.
+- **Sub-processors:** Cursor, Copilot, CodeRabbit (or similar) may send prompts/diffs to US or other non-UK providers. Data Processing Agreements (DPAs) and Standard Contractual Clauses (SCCs) where applicable are required for lawful processing.
+- **Purpose and minimisation:** Use of AI is for development assistance only; no processing of production user data or client PII in the pipeline. Keep context sent to AI to the minimum necessary (e.g. changed files only, no full repo dump).
+- **Rights:** No automated decision-making affecting individuals; no profiling. If prompt content were ever logged centrally, retention and access would need to be defined (recommendation: do not log prompt content without explicit policy and lawful basis).
+
+**Conclusion:** Pipeline is **low sensitivity** for GDPR when code-only and no PII in diffs/prompts. **Higher sensitivity** if PR bot or any tool indexes issue/comment/commit content that may contain PII — restrict or redact; prefer tools that do not require full repo/org access.
+
+---
+
+## 3. External API Risk Assessment
+
+| Vendor / tool | Data sent | Risk | Mitigation |
+|---------------|-----------|------|------------|
+| **Cursor / Copilot** | Code, prompts (user-initiated) | Medium — code and prompts may be processed by third-party models; vendor terms and DPAs apply. | No client data in prompts; DPA in place; optional allow-list of models/endpoints. |
+| **CodeRabbit (or similar SaaS PR bot)** | Diff + optional context | Medium — diffs sent to vendor; possible US or other jurisdiction. | DPA/SCCs; restrict context to diff only; no credentials in repo; redaction policy. |
+| **Bionic (OSS)** | Depends on deployment (self-hosted vs hosted) | Lower if self-hosted; if hosted, same as SaaS. | Prefer self-hosted or verify DPA if hosted. |
+| **GitHub** | Code, PR metadata (existing) | Accepted — already in use; no new AI processing by GitHub in this design. | N/A. |
+
+**Summary:** External API risk is **Medium** for SaaS AI tools. Mitigate with contractual (DPA, SCCs), technical (no PII/credentials in payloads), and policy controls (redaction, no client data).
+
+---
+
+## 4. Client Approval Required?
+
+**Recommendation: Yes for transparency; formal sign-off depends on contract.**
+
+- **Transparency:** Clients should be informed that AI-assisted development tools are used (PR review, code/test/doc suggestions) under strict data and merge policies, with no client data or PII sent to AI and no autonomous merges.
+- **Formal approval:** If the contract or client process requires explicit approval for use of sub-processors or AI tools, obtain it. If there is no such requirement and no client data is processed, a formal sign-off may not be legally required — but **documenting** that clients have been informed is still recommended.
+- **Enterprise / public sector:** Some clients may require a questionnaire, DPA, or security annex. Have a one-pager and data boundaries document ready.
+
+**Answer:** **Yes** — at least inform clients and document; **formal sign-off** if contract or client demands it.
+
+---
+
+## 5. Logging & Audit Requirements
+
+| What to log | Where / how | Retention | Purpose |
+|-------------|-------------|-----------|---------|
+| **Which PRs received AI review** | PR description/template: “AI-assisted: yes”; or lightweight log (e.g. list of PR numbers) | Align with existing PR/audit retention | Demonstrate scope of AI use; support incident review. |
+| **PR bot activation** | Optional: weekly count of PRs with bot comments (e.g. in runbook or dashboard) | As needed for pilot | Confirm bot is in use; no need for per-PR central logging if GitHub already retains PR data. |
+| **Prompt content** | **Do not** log prompt or code content to central systems without a defined lawful basis, retention, and access policy. | N/A unless policy exists | Avoid storing code or possible PII in logs. |
+| **Incidents** | If AI is disabled due to data concern: record date, tool, reason, and remediation. | Per incident response policy | Audit trail for governance. |
+
+**Audit:** On request, be able to show (1) that PR bot and Cursor/Copilot are used only under documented policies, (2) that no client data is in scope for AI, and (3) which PRs were labelled or recorded as AI-assisted.
+
+---
+
+## 6. Redaction Requirements
+
+**Before any diff or code is sent to a PR bot or to Cursor/Copilot:**
+
+- **Must not be present:** Client names, client site URLs (production/staging), API keys, passwords, tokens, `.env` contents, `wp-config` credentials, database connection strings, or any PII (names, emails, phone numbers, etc.) in:
+  - PR title and description
+  - Branch names
+  - Commit messages
+  - File content in changed files (or exclude sensitive files from context)
+- **Repo-level:** Do not add files containing credentials or client-specific config to paths sent to the PR bot. Use `.cursorignore` or equivalent so that sensitive paths are not included in Cursor context where possible.
+- **If in doubt:** Redact or exclude. Prefer “no context” over “context that might contain client data”.
+
+**Operational redaction:** (1) PR template checklist: “I confirm no client names, URLs, credentials, or PII in this PR.” (2) .cursorrules (or equivalent): “Do not include client names, production URLs, credentials, or PII in prompts.” (3) Onboarding: short training on what must not be sent to AI.
+
+---
+
+## 7. Compliance Risk Score
+
+**Score: 2/5** (low to moderate) **with the controls in this section and in the policy controls below.**
+
+- **Without controls:** Score would be 4/5 (high): unconstrained sending of diffs and prompts could lead to PII or credential exposure and GDPR/contract issues.
+- **With controls:** Data boundaries are clear; no client data in AI path; reversible; auditable; client transparency. Remaining risk is human error (paste, wrong branch) and vendor compliance (DPA, sub-processor); hence 2/5.
+
+---
+
+## 8. Recommendation
+
+**Safe with Controls.** Proceed with the pipeline only if:
+
+1. Data boundaries and redaction requirements are documented and enforced.
+2. PR bot and Cursor/Copilot use are covered by policy (see below) and, where applicable, DPAs.
+3. Clients are informed (and formally approved if required by contract).
+4. Audit logging (which PRs AI-assisted; incidents) is in place; prompt content is not logged without policy.
+5. Kill switch and rollback are documented (disable PR bot; restrict Cursor use).
+
+If any client or repo cannot meet the redaction or “no client data” rule, **exclude that repo or client** from AI-assisted PR review and from use of Cursor/Copilot on that code until a safe process is in place.
+
+---
+
+## 9. Policy Controls by Workflow
+
+### 9.1 PR review (PR bot + human review)
+
+| Control | Requirement |
+|---------|-------------|
+| **Input** | PR bot receives only **diff** (and optionally minimal context). No full repo, no `.env`, no `wp-config`, no credentials in included paths. |
+| **Redaction** | PR title/description and branch name must not contain client names, production URLs, API keys, or PII. Add PR template checklist. |
+| **Merge** | Bot has **no merge rights**. Merge only after human review and CI pass. |
+| **Audit** | Record “AI-assisted review” on PR (template or label). Optionally log PR numbers for PRs that received bot comments. |
+| **Scope** | Allow disabling the bot per repo or per PR if client or sensitivity requires. |
+| **Vendor** | If SaaS PR bot: DPA and, where relevant, SCCs; restrict data to diff only. |
+
+### 9.2 Test generation (Cursor/Copilot → human commits)
+
+| Control | Requirement |
+|---------|-------------|
+| **Input** | Only **sanitised code** (no credentials, no client URLs, no PII) in prompts. Use selection or minimal file scope. |
+| **Output** | All generated tests are **reviewed and edited by a human** before commit. No autonomous test PRs. |
+| **Redaction** | .cursorrules: “No client names, production URLs, credentials, or PII in prompts.” Do not paste fixtures containing real client data. |
+| **Audit** | No need to log prompt content. Optional: track “test PRs created with AI assistance” at project level if desired for KPIs. |
+| **Ownership** | Named owner for “generated test quality” so tests are maintained and do not drift. |
+
+### 9.3 Documentation (Cursor/Copilot → human edits)
+
+| Control | Requirement |
+|---------|-------------|
+| **Input** | No client-specific details (client names, live URLs, credentials) in prompts. Use generic or redacted examples in runbooks. |
+| **Output** | All doc changes **approved and committed by a human**. No autonomous doc PRs. |
+| **Redaction** | Public or client-facing docs must not contain client names, production URLs, or credentials. Internal runbooks: same redaction for any content that could be sent to AI when drafting. |
+| **Audit** | Optional: “Doc PRs merged per month” as KPI; no need to log prompt content. |
+| **Ownership** | Named owner for “documentation update frequency” and doc quality. |
+
+### 9.4 Migration planning (runbooks, Rector, Cursor)
+
+| Control | Requirement |
+|---------|-------------|
+| **Input** | Migration runbooks or checklists drafted with Cursor must not include **client names, production URLs, or credentials**. Use placeholders (e.g. “CLIENT_SITE_URL”) or internal-only runbooks not sent to AI. |
+| **Execution** | Migration is **human-driven**; CI (PHPStan, Rector) runs on code only; no AI in CI. |
+| **Redaction** | If runbook is generated from codebase context, ensure code excerpts do not contain credentials or client-specific config. |
+| **Audit** | No specific logging required for migration planning; standard change management for actual upgrades. |
+| **Scope** | Runbooks are internal; do not expose client data in any shared or external artefact. |
+
+---
+
+**Summary:** Data exposure is **Low** with the above controls. Enforce redaction and “no client data in AI path” across all four workflows; require client transparency (and formal approval where contractually required); keep audit to “AI-assisted” visibility and incidents; do not log prompt content without policy. **Compliance risk score: 2/5. Recommendation: Safe with Controls.**
+---
+
+# Critic: Stress Test of Intake + All Outputs
+
+*Review of intake, Research Output, Architect, Dev Lead, DevOps, and Governance. No redesign; critique of what exists.*
+
+---
+
+## 1. Unrealistic Assumptions
+
+| Assumption | Why it may not hold |
+|------------|---------------------|
+| **"PR cycle time" will fall because of the bot** | Cycle time is driven by reviewer availability, scope of change, and iteration count. The bot does not approve or merge; if humans still do two rounds of review, cycle time may not drop. The 15% target is only testable if you compare like-for-like PRs (size, area) with vs without bot and control for reviewer. |
+| **"Documentation freshness" improves with AI** | Doc freshness improves only if someone applies AI-suggested changes. The doc KPI (≥1 doc PR/month) does not say who does it. Without a named owner and time allocation, "optional checklist on merge" often yields zero doc PRs. |
+| **"Test coverage +5%" is achievable in 90 days** | Coverage delta depends on adding tests to untested code. If the pilot repo is large and tests are sparse, one engineer editing AI-suggested tests for "1–2 services" may not move the needle on repo-wide %. The KPI is measurable but the target may be optimistic for the scope described. |
+| **"Upgrade planning time" drops 20%** | Planning time is one-off per upgrade. You get one data point per upgrade; comparing "this upgrade" to "last upgrade" is confounded by different scope, WP/PHP versions, and team familiarity. Causal attribution to AI/runbook is weak. |
+| **"No client data in AI path" is enforceable by policy alone** | Relies on developers never pasting a URL, client name, or env snippet. One paste into Cursor or one PR description with a client reference is enough to violate. Policy reduces but does not eliminate risk; detection is reactive (after the fact). |
+| **Baseline (PR cycle time, regression rate) is quick to capture** | Requires a period of "normal" PR volume. If the pilot repo has few PRs in weeks 1–4, baseline is noisy or unrepresentative. Dev Lead's 0.5 w for baseline may be tight. |
+| **Bionic is "optional" and low-friction** | If Bionic is OSS and self-hosted, "optional" hides setup and maintenance. If Bionic is used as a hosted service, it may have its own pricing and DPA requirements — same sub-processor concerns as CodeRabbit. |
+
+---
+
+## 2. Hidden Complexity
+
+- **PR bot tuning:** The doc says "tune or disable categories" and "2-week feedback loop" but does not specify who tunes, how (config file, vendor UI, or code), or how "noise" is measured. Teams often discover that turning off noise also turns off useful comments; tuning is iterative and can consume more than 0.5–1 w over the pilot.
+- **Rector + WP/Laravel version matrix:** In a monorepo or multi-version estate, "Rector with WP rules" may conflict with specific WP or plugin versions. Dev Lead adds 0.5–1 w for matrix/paths; the risk of "Rector breaks build" is acknowledged but the ongoing cost of keeping rule sets aligned with each WP/Laravel version is underplayed.
+- **Client communication:** Governance says "inform clients" and "formal sign-off if contract requires." The initiative does not define who drafts the one-pager, who sends it, or how objections are handled. For multiple clients, this can become a non-trivial coordination and tracking task.
+- **"Named owner" for doc and test KPIs:** Reconciliation and Dev Lead assign ownership to fix vague KPIs. In a small team, the same person may already own delivery; adding "doc freshness" and "test quality" without explicit time allocation can mean the owner has no bandwidth and the KPI is still unmet.
+- **Cost tracking in practice:** Cost Governor and DevOps assume "weekly 10-minute check" and "spreadsheet or doc." If no one owns it, the first time spend is noticed may be when the bill arrives. Alert at "projected > £450" requires something to project from (actuals per tool), which implies at least lightweight tracking from day one.
+
+---
+
+## 3. Over-Engineering Risk
+
+- **Option B vs Option A:** Option B adds coverage report, structured Cursor use (repo rules), test-generation trial, and docs trial. For a team with "limited engineering capacity" and "active client retainers," Option B's 4–6 weeks and four extra workflow touchpoints may be solving "we want better PRs and safer upgrades" with more moving parts than necessary. Option A (CI + optional Bionic + policy + baseline) already addresses the core intake; test and doc could stay ad-hoc until Option A is proven.
+- **Five KPIs for a 90-day pilot:** PR cycle time, regression rate, test coverage, upgrade planning time, documentation frequency. That is a lot to measure and attribute in one pilot. Dropping "upgrade planning" and "documentation frequency" for the pilot (as Dev Lead's simplification table suggests) would reduce measurement load and focus on PR quality and regression.
+- **Policy surface:** Governance defines four workflow-specific policy tables (PR review, test gen, docs, migration). For a single-repo pilot, a single "no client data; human merges; AI-assisted where used" rule plus PR template and .cursorrules may be enough. The full matrix is defensible for rollout; for pilot it may be more than necessary.
+- **Verdict:** The overall design is not over-engineered (no AI in CI, reversible, one PR bot). The risk is **scope** (Option B and all five KPIs in 90 days) rather than the architecture. Phasing (CI first, then bot, then test/doc) and "simplify first" already mitigate; sticking to Option A and 2–3 KPIs for the pilot would reduce over-engineering further.
+
+---
+
+## 4. Cost Blind Spots
+
+| Blind spot | Why it matters |
+|------------|----------------|
+| **Cursor/Copilot already in use** | Cost Governor treats Cursor as "existing." If the £500 cap is meant to cover *all* AI pipeline spend, and Cursor is already £X/month, the headroom for CodeRabbit + any extra usage is £500 − X. That is not explicit; teams may assume £500 is for *new* tools only. |
+| **Per-repo or per-seat PR bot** | CodeRabbit (and similar) may price per repo or per seat. Adding a second pilot repo or more engineers can push monthly cost up in steps. The "£200 scope" uses Bionic-only; if the team later wants CodeRabbit on a second repo, the cost step is not quantified. |
+| **API usage outside Cursor subscription** | If Cursor or Copilot usage exceeds subscription quotas, overage can appear on the bill. "Light doc generation" and "50 doc-generation requests per month" are not automatically enforced; without caps or monitoring, overage is a blind spot. |
+| **No budget for DPA or legal review** | Governance requires DPAs and possibly client communication. Legal or contract review (even internal) takes time; if external, it can cost. The initiative does not allocate budget or time for that. |
+| **Engineering weeks are opportunity cost** | 2.5–6 weeks of engineering time has a cost (delayed features, or overtime). It is not "free" because it is in-house; it competes with client work. The intake's "without destabilising client delivery" assumes that this fits; if the team is already stretched, the pilot may slip or quality may suffer. |
+
+---
+
+## 5. Operational Fragility
+
+- **PR bot as a single point of dependency:** Merge does not depend on the bot, so production is not fragile. But if the team comes to rely on bot comments and the vendor is down, rate-limited, or deprecated, the *habit* of "wait for bot then review" can create perceived fragility (delays, frustration). The doc correctly says "human review continues"; the risk is behavioural (team stops reviewing until bot posts) rather than technical.
+- **CI baseline and legacy paths:** If PHPStan/Rector are applied to a legacy repo with no prior static analysis, the first green baseline may require broad exclusions or level 0. "Main stays green" can mask a large baseline that never shrinks; then any new code in excluded paths is unchecked. Operationally, that is fragile for long-term quality — the doc mentions "baseline creep" but the pilot may ship with a big baseline and no scheduled time to reduce it.
+- **No automated check that "no client data" is respected:** Redaction is policy and training. There is no technical control (e.g. pre-commit hook or bot that scans PR title/description for client URLs or keys). A single mistake can trigger the Governance stop condition (disable tool, review); operationally, the pipeline is fragile to human error in a way that is acknowledged but not technically mitigated.
+- **Verdict:** Production deploy path is not fragile. Fragility is in (1) reliance on PR bot availability for workflow habit, (2) baseline debt if not actively managed, (3) dependence on humans not pasting sensitive data.
+
+---
+
+## 6. Governance Gaps
+
+- **Enforcement of redaction:** Governance defines what must not be sent (client names, URLs, credentials, PII) and recommends PR template checklist and .cursorrules. It does not say what happens when someone breaches (e.g. incident process, who is informed, whether the repo is excluded from the bot). A single breach triggers "immediate disable and review" but the "review" outcome (re-enable with more controls? permanent disable for that repo?) is not defined.
+- **Vendor DPAs in practice:** Governance and Cost Governor assume DPAs with Cursor, Copilot, CodeRabbit. Whether these are already in place or need to be negotiated is not stated. If they are not in place, pilot start may be delayed or the pilot may run with unmitigated sub-processor risk until DPA is signed.
+- **Client "informed" vs "approved":** Governance says inform clients and get formal sign-off if required by contract. It does not address what to do if a client objects (e.g. "we do not want our code in any AI tool"). Excluding that client's repo is implied; the process (who decides, how repo is scoped per client) is not spelled out.
+- **Audit "which PRs received AI review":** The doc suggests PR template "AI-assisted: yes" or a lightweight log. If the template is optional or rarely filled, the audit trail is incomplete. There is no requirement to make the field mandatory or to automate logging (e.g. "PR has bot comment ⇒ count as AI-assisted"). So governance depends on consistent manual disclosure.
+
+---
+
+## 7. Weak Metrics
+
+| KPI | Issue |
+|-----|--------|
+| **PR cycle time reduction ≥15%** | Confounded by PR size, area, and reviewer. To attribute to the bot, you need a comparison (same repo, similar PRs, with vs without bot). The doc says "compare median open→merge for PRs with vs without bot comments" — that is correct. But if the pilot has low PR volume, the comparison may be underpowered (few data points). Median is also sensitive to outliers (one very long PR skews the result). |
+| **Regression rate** | "No increase (or reduce)" and "post-merge defect/revert rate" are measurable. Attribution to AI pipeline is hard: regressions can be caused by many factors. The stop condition (>50% increase) is clear; the positive "we improved because of AI" is not causally strong. |
+| **Test coverage +5%** | Measurable (coverage report). The link to "AI-suggested tests merged" is qualitative (count of tests from AI) unless you tag commits or PRs. So you can measure coverage delta but not strictly "coverage gain from AI." |
+| **Upgrade planning time ≥20% reduction** | One data point per upgrade. "Time from start planning to runbook ready" is definable but comparison to "previous upgrade" is noisy (different scope, different people). Weak for a 90-day pilot unless an upgrade is already planned. |
+| **Documentation update frequency ≥1 doc PR/month** | Clear and measurable. Does not prove "AI improved docs" — only that someone merged a doc PR. Causal link to AI is "we used AI to draft"; that is not measured. |
+
+**Summary:** The KPIs are mostly measurable; attribution to the AI pipeline is weak for regression, upgrade planning, and doc freshness. PR cycle time is the most attributable if measured as "with vs without bot." Reducing to 2–3 KPIs (e.g. PR cycle time, regression rate, and optionally coverage) and defining them tightly would strengthen the pilot.
+
+---
+
+## 8. What Would Break This?
+
+**Scenario: One engineer pastes a client URL into a Cursor prompt while drafting a runbook.**
+
+- The content is sent to the AI vendor. Under Governance, that is a data exposure incident.
+- Stop condition: "Any confirmed leakage of client or PII data into AI tools → immediate disable of affected tool and review."
+- **What happens:** Cursor (or Copilot) is disabled for that repo or org; incident is logged; review determines cause and remediation. But:
+  - **Detection:** How is it "confirmed"? Only if the engineer reports it or someone audits prompts (which the doc says not to log). So detection is by self-report or chance.
+  - **Scope of disable:** Doc says "affected tool" and "for a repo or org." If the policy is "disable Cursor for the whole org," the entire team loses Cursor until the review is done. If "disable for that repo only," other repos continue; but the offending paste may have been in a runbook that touches multiple clients.
+  - **Recovery:** Re-enable criteria are not defined. "Review" could be "remind everyone of policy" or "mandatory training" or "no Cursor on client repos." The initiative does not specify.
+- **Realistic outcome:** The initiative survives (kill switch works, no production impact), but trust in "no client data" is damaged; one client may demand exclusion or assurance. The gap is **detection** (no technical control) and **recovery criteria** (undefined).
+
+---
+
+## 9. Confidence Adjustment
+
+- **Increased confidence:** The design is reversible, has no AI in CI, and keeps merge and deploy in human hands. Architect, DevOps, and Governance outputs are aligned and detailed. Option A is lean and the "simplify first" (CI + policy, then bot) is sensible. Cost controls and stop conditions are stated. These are solid.
+- **Reduced confidence:** Assumptions about doc freshness and test coverage improving without explicit ownership and time; weak causal link for several KPIs; cost and DPA/client-approval details not fully specified; detection of data leakage is reactive; recovery after an incident is undefined. Option B and five KPIs in 90 days add scope and measurement load.
+- **Verdict:** **Slightly reduced confidence** overall, but **no major rethink**. The initiative is pilotable and the risks are acknowledged. Recommendations:
+  - **Pilot with Option A and 2–3 KPIs** (e.g. PR cycle time, regression rate, and optionally coverage). Defer "upgrade planning time" and "documentation update frequency" to a later phase or drop from pilot.
+  - **Define incident recovery:** Before go-live, document "if we disable Cursor/bot due to data concern, re-enable when: [e.g. incident review done, remediation applied, and optionally client informed]."
+  - **Clarify cost scope:** State explicitly whether £500 includes or excludes existing Cursor/Copilot spend, and who owns the weekly cost check.
+  - **Tighten baseline:** Plan baseline capture over a defined window (e.g. 4 weeks) and minimum PR count (e.g. 10) so KPIs are interpretable; if the pilot repo has too few PRs, extend baseline or choose a busier repo.
+---
+
+# Cost Governor: £200/month Hard Ceiling
+
+*Assumptions: 5–8 engineers, 1 pilot repo, Cursor may be pre-existing. £200 = total recurring AI spend for this initiative (pipeline tools).*
+
+---
+
+## 1. Budget Constraint
+
+- **Monthly ceiling:** **£200** (hard; no approval for overage).
+- **One-off acceptable setup cost:** Up to 3–5 engineering days (CI + Bionic config + policy). No new infra spend; Bionic OSS or free tier only.
+
+---
+
+## 2. Primary Cost Drivers
+
+- **Cursor (or Copilot) subscription** — per seat; if inside £200, limits how many seats or whether Copilot can be added.
+- **Cursor/Copilot overage** — usage beyond subscription quota; drives variable API cost.
+- **PR review bot (SaaS)** — e.g. CodeRabbit: per repo or per seat; at £200 ceiling, **not allowed** (use Bionic only).
+- **Token/request volume** — Cursor/Copilot: more prompts, larger context, or premium models increase spend.
+- **Indexing** — continuous or large-codebase indexing in Cursor can increase usage; at £200, **no** paid indexing services; local/index only.
+
+---
+
+## 3. Cost Estimate (Rough) — £200 Ceiling
+
+| Scenario | Monthly range | Assumptions |
+|----------|----------------|-------------|
+| **Low** | **£0–£80** | Cursor pre-existing (outside £200); Bionic OSS self-hosted or free tier; no Copilot; no overage. £200 is headroom. |
+| **Expected** | **£80–£180** | Cursor inside £200 (e.g. 5 seats ≈ £80–120); Bionic only (free/OSS); no CodeRabbit; no Copilot; Cursor usage within subscription (no overage). |
+| **Worst-case** | **£200** (cap) | Cursor + Bionic hosted (if any small fee) + light overage or 1–2 Copilot seats; **controls below** keep at or under £200. |
+
+**Worst-case above £200 if uncontrolled:** Cursor + CodeRabbit + Copilot + overage → £300–500+. **Therefore:** CodeRabbit and Copilot are **excluded** at £200; Bionic only; Cursor usage capped.
+
+---
+
+## 4. Cost Controls (Concrete)
+
+### Rate limits
+
+| Control | Default | Notes |
+|---------|---------|--------|
+| **PR bot (Bionic)** | **15 PRs per repo per week** | If Bionic has usage limits or paid tier, cap PRs reviewed per week so cost is predictable (or £0 if free/self-hosted). |
+| **Cursor: "heavy" requests** | **25 per user per week** | "Heavy" = refactor, test gen, doc draft (multi-turn or large context). Completion and short explain don't count. Policy, not tool-enforced unless Cursor supports it. |
+| **Cursor: doc/test generation** | **20 per team per month** | Ad-hoc doc or test drafts; prevents runaway usage. |
+| **No Copilot** | **0 seats** | At £200, do not add Copilot; Cursor only. |
+
+### Context caps
+
+| Control | Default | Notes |
+|---------|---------|--------|
+| **PR bot context** | **30k tokens per PR** | Diff + minimal context only; no full repo. Configure Bionic (or equivalent) to limit context window. |
+| **Cursor: single request** | **No file > 500 lines**; **no paste > 8k characters** | .cursorrules + training: avoid "review entire repo" or huge paste; selection/snippet only for large files. |
+| **Cursor: no background index** | **No paid / cloud index** | Local index only; no continuous full-repo sync to external AI. |
+
+### Model tier selection
+
+| Tool | Tier | Notes |
+|------|------|--------|
+| **Cursor** | **Default / included model only** | Do not switch to premium or higher-cost model in settings. Use plan's default to avoid overage. |
+| **PR bot (Bionic)** | **Most economical** | If Bionic offers model choice, use lowest-cost option that still gives useful review. |
+| **No GPT-4 / Claude premium in pipeline** | N/A | Any "heavy" use stays on default Cursor model; no separate API calls to premium models for PR/test/doc. |
+
+### Caching strategy
+
+| Where | Rule |
+|-------|------|
+| **PR bot** | Cache by **diff hash** (if supported). Same diff = no new API call. Re-review only on new commits. |
+| **Cursor** | Rely on **local/conversation cache**; do not re-send same file repeatedly in one session. |
+| **CI** | **No AI in CI**; nothing to cache for AI. PHPStan/Rector are deterministic, no per-request cost. |
+
+### CI enforcement limits
+
+| Rule | Enforcement |
+|------|-------------|
+| **No AI calls in GitHub Actions** | **Code review**: no step in `.github/workflows/*` may call OpenAI, Anthropic, or other AI APIs. Grep in PR for `openai`, `anthropic`, `api.openai`, etc. |
+| **No new paid triggers** | No workflow step that would incur per-run AI cost (e.g. "summarise PR" job calling an API). CI runs only PHPStan, Rector, PHPUnit. |
+| **Branch protection** | No status check that depends on an external AI service; merge depends only on CI (PHPStan, Rector, tests) + human review. |
+
+*At £200 there is no AI in CI to limit; the enforcement is "keep it that way."*
+
+---
+
+## 5. Cheaper Alternatives (Within Initiative)
+
+| If over £200 | Change |
+|--------------|--------|
+| **PR bot is paid** | Use **Bionic OSS self-hosted** (or free tier only). Uninstall any paid PR bot. |
+| **Cursor overage** | Reduce "heavy" request limit (e.g. 15/user/week); enforce "no full-file paste"; add .cursorrules to prefer small selection. |
+| **Multiple repos** | **1 repo only** for PR bot and pilot; no AI PR review on other repos until budget allows. |
+| **Copilot in use** | **Remove Copilot**; Cursor only. |
+| **Cursor seats > 5** | Cap at **5 seats** for pilot (or whatever fits in £200 with no overage). |
+
+---
+
+## 6. Monitoring & Alerts
+
+| Metric | How | Alert threshold |
+|--------|-----|-----------------|
+| **Monthly spend per tool** | Billing (Cursor); Bionic dashboard if applicable. | **Projected > £180** for the month → alert owner. |
+| **Cursor usage vs plan** | Cursor dashboard (if available) or self-track "heavy" requests. | **Approaching plan limit** (e.g. 80% of quota) → remind team of rate limits. |
+| **PR bot calls** | Count PRs with bot comment per week. | Optional; no cost alert unless Bionic is paid. |
+| **Weekly review** | **Owner:** named person. **Cadence:** every Monday. **Action:** Log spend to date; if trend > £200, apply cheaper alternatives (section 5). |
+
+---
+
+## 7. Minimal Redesign to Fit £200
+
+If the original design (Option B, CodeRabbit, Copilot) would exceed £200:
+
+1. **PR review:** **Bionic only** (OSS or free tier). No CodeRabbit or other SaaS PR bot.
+2. **IDE:** **Cursor only**; no Copilot. Cursor seats capped to fit within £200 (e.g. 5 seats).
+3. **Scope:** **1 pilot repo** for PR bot; no AI PR review on other repos.
+4. **Workflows:** **No dedicated** doc-generation or test-generation runs that use extra API; ad-hoc Cursor only, within rate limits.
+5. **CI:** **No AI in CI** (already the case); no change.
+6. **Model:** Cursor default model only; no premium; no separate API calls for PR/test/doc.
+
+This is **Option A + strict caps**: CI (PHPStan, Rector, tests) + Bionic (free/OSS) + Cursor (capped seats and usage). No CodeRabbit, no Copilot, no overage.
+
+---
+
+## 8. Recommendation
+
+- **Fits with controls:** **Yes**, if:
+  - Bionic only (no CodeRabbit).
+  - Cursor only (no Copilot); Cursor within subscription (no overage) or Cursor cost + Bionic ≤ £200.
+  - Rate limits (PR bot 15/repo/week; Cursor 25 heavy/user/week, 20 doc+test team/month).
+  - Context caps (PR bot 30k tokens; Cursor no huge paste, no paid index).
+  - CI unchanged (no AI); enforcement by review.
+- **Does not fit:** If Cursor + CodeRabbit + Copilot or uncapped usage are required; then **minimal redesign** (section 7) applies so recurring stays ≤ £200.
+
+**Recommendation:** **Fits budget at £200** with Bionic-only PR review, Cursor-only IDE use, and the concrete controls above. Assign a single owner for weekly spend check and enforce rate/context caps from day one.
+
+---
+
+# Strategist: Decision and Pilot Plan
+
+## Decision: **Pilot**
+
+**Rationale**
+
+- **Proceed** (full rollout) is not appropriate: the design is unproven in this team and repo; all agents recommend pilot-in-one-repo first.
+- **Defer** is not justified: the problem (PR quality, upgrade friction, test coverage, doc freshness) is current; PHP 7.4 → 8.x and client delivery make the timing relevant; the design is coherent and reversible.
+- **Reject** is not justified: Architect, Dev Lead, DevOps, Governance, and Cost Governor all conclude the initiative is safe to pilot with controls; Critic reduced confidence only on scope and metrics, not on pilotability.
+- **Pilot** fits: validate CI + PR bot + policy in one repo for 90 days; use Option A (Bionic only, no CodeRabbit/Copilot at £200); measure 2–3 KPIs; enforce stop conditions; then go/no-go for wider rollout.
+
+**Budget for pilot:** Apply **£200/month** hard ceiling (Cost Governor); if the organisation prefers £500, the same pilot plan holds with CodeRabbit optional and Cost Governor controls at £500.
+
+---
+
+## 90-Day Roadmap
+
+| Week | Milestone | Owner | Deliverables |
+|------|-----------|--------|--------------|
+| **1–2** | CI + static analysis | WP/Laravel lead | PHPStan (WP stubs) + Rector in GitHub Actions on 1 repo; baseline so main is green |
+| **2** | Policy and guardrails | Lead + governance | One-pager (no client data in AI; no autonomous merge; reversible); PR template "AI-assisted" line; .cursorrules draft |
+| **3** | PR review bot | DevOps / lead | Bionic (OSS or free tier) on same repo; no merge rights; data policy in repo docs |
+| **3–4** | Baseline metrics | Lead | PR cycle time, regression rate, test coverage % for pilot repo (min. 4 weeks or 10 PRs for baseline) |
+| **4–6** | Steady state + refactor use | WP/Laravel | Use Cursor + Rector for one PHP 8.x or WP upgrade run; document time and issues |
+| **6–8** | Optional: test generation | Laravel/WP | Generate + human-edit tests for 1–2 services (if capacity); measure coverage delta; name owner for test quality |
+| **8–10** | Optional: docs | Lead | Define "doc update frequency"; optional checklist on merge; name owner for doc KPI |
+| **10–12** | Review and decide | All | KPI review; cost vs ceiling; team feedback; go/no-go for wider rollout or revert |
+
+**Scope note:** Weeks 1–4 are mandatory; weeks 6–10 (test/doc) are optional if capacity is limited. PR bot is introduced only after CI and policy are in place (per Dev Lead safe sequencing).
+
+---
+
+## KPIs (Pilot)
+
+| KPI | Target | How measured |
+|-----|--------|--------------|
+| **PR cycle time** | ≥15% reduction for PRs with AI review vs without | Median "open → merge" for PRs with bot comment vs without (same repo, similar period) |
+| **Regression rate** | No increase (or reduce) | Post-merge defect/revert rate in pilot repo vs baseline |
+| **Test coverage** (optional) | +5% or N new tests merged | PHPUnit/Pest coverage report; count of new tests from AI suggestions (if test trial runs) |
+
+**Attribution:** PR cycle time is the primary attributable KPI (with vs without bot). Regression rate is measurable; causal link to AI is weaker. Upgrade planning and documentation frequency are **deferred** to post-pilot unless an upgrade or doc owner is explicitly assigned.
+
+---
+
+## Stop Conditions
+
+| Condition | Action |
+|-----------|--------|
+| **Monthly spend > budget** (£200 or £500 per agreed ceiling) for **two consecutive months** without approval | Pause new AI pipeline spend; disable PR bot or reduce scope until back under ceiling; review with Cost Governor |
+| **Confirmed leakage** of client or PII data into AI tools | **Immediate** disable of affected tool; incident review; remediation before any re-enable |
+| **Regression rate** in pilot repo **>50% vs baseline** | Pause AI PR review on that repo until investigated; human-only review continues |
+| **Team vote** "not useful" (e.g. <30% find PR bot helpful) **after 8 weeks** | Pause or reconfigure PR bot; document feedback for go/no-go |
+| **CI blocked** (PHPStan/Rector repeatedly failing main) | Revert or relax failing job; fix in branch; no production impact |
+
+---
+
+## First 30-Day Deliverables
+
+| By end of week | Deliverable | Owner |
+|----------------|-------------|--------|
+| **Week 1** | Pilot repo chosen; PHPStan added to GitHub Actions; baseline config (level 0 or path exclusions) so main is green | WP/Laravel lead |
+| **Week 1** | Rector added to same workflow (PHP 8.x preset); CI runs on PR; branch protection requires both jobs | WP/Laravel lead |
+| **Week 2** | One-pager published: no client data in AI; no autonomous merge; reversible; "AI-assisted" on PRs | Lead + governance |
+| **Week 2** | PR template updated with "AI-assisted review: yes/no" and checklist "No client names, URLs, credentials, PII" | Lead |
+| **Week 2** | .cursorrules draft in pilot repo: no client data in prompts; WP/Laravel conventions (optional) | Lead |
+| **Week 3** | Bionic installed on pilot repo (OSS or free tier); no merge rights; config: diff-only, max 30k tokens per PR | DevOps / lead |
+| **Week 3** | Data policy and "no client data" documented in repo (e.g. README or CONTRIBUTING) | Lead |
+| **Week 4** | Baseline recorded: PR cycle time (median), regression rate, test coverage % for pilot repo | Lead |
+| **Week 4** | First weekly cost check completed; spend logged; alert threshold set (£180 if £200 ceiling) | Cost owner (named) |
+| **Week 4** | 30-day review: CI stable? Bot useful? Any stop condition triggered? Proceed to weeks 5–12 or adjust | Lead |
+
+**Gate for month 2:** CI green on main; Bionic live and non-blocking; baseline metrics recorded; no stop condition triggered; cost within ceiling.

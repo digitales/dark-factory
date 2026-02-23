@@ -10,6 +10,7 @@ export default withMermaid(defineConfig({
   description: 'Research report — spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams.',
   titleTemplate: ':title | Elixirr Digital',
   base,
+  srcExclude: ['**/*-RECONCILED.md', '**/2026-02-23_cost-governor-200.md', '**/2026-02-23_critic-stress-test.md'],
   themeConfig: {
     siteTitle: 'Research',
     logoLink: '/',
@@ -23,6 +24,7 @@ export default withMermaid(defineConfig({
         { text: 'Reports', link: '/reports/' },
         { text: 'Dark Factories & AI-Generated Code', link: '/reports/dark-factory/' },
         { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
+        { text: 'AI-Augmented Development Pipelines (Reconciled)', link: '/reports/ai-augmented-dev-pipeline/' },
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
       ],
       '/reports/dark-factory/': [
@@ -42,6 +44,24 @@ export default withMermaid(defineConfig({
             { text: '10. Adopting the Shift', link: '/reports/dark-factory/10-adopting-the-shift' },
             { text: '11. Assumptions & Follow-Up', link: '/reports/dark-factory/11-assumptions-follow-up' },
             { text: '12. References', link: '/reports/dark-factory/12-references' },
+          ],
+        },
+      ],
+      '/reports/ai-augmented-dev-pipeline/': [
+        { text: 'Report overview', link: '/reports/ai-augmented-dev-pipeline/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '1. Overview', link: '/reports/ai-augmented-dev-pipeline/01-overview' },
+            { text: '2. PR Review (AI-Augmented)', link: '/reports/ai-augmented-dev-pipeline/02-pr-review' },
+            { text: '3. Refactoring (AI-Assisted)', link: '/reports/ai-augmented-dev-pipeline/03-refactoring' },
+            { text: '4. Migration Intelligence', link: '/reports/ai-augmented-dev-pipeline/04-migration-intelligence' },
+            { text: '5. Test Generation (AI-Assisted)', link: '/reports/ai-augmented-dev-pipeline/05-test-generation' },
+            { text: '6. Documentation (AI-Assisted)', link: '/reports/ai-augmented-dev-pipeline/06-documentation' },
+            { text: '7. Tooling Comparison (OSS vs SaaS)', link: '/reports/ai-augmented-dev-pipeline/07-tooling-comparison' },
+            { text: '8. Governance and Controls', link: '/reports/ai-augmented-dev-pipeline/08-governance-and-controls' },
+            { text: '9. 90-Day Roadmap', link: '/reports/ai-augmented-dev-pipeline/09-90-day-roadmap' },
+            { text: '10. KPIs and Risks', link: '/reports/ai-augmented-dev-pipeline/10-kpis-and-risks' },
           ],
         },
       ],
