@@ -3,6 +3,11 @@ title: Exercises and Practice
 description: Hands-on exercises to practise spec-driven development — spec, plan, tasks, and scenarios for PHP, WordPress and Laravel.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-exercises-caption">
+  <img src="/report/report-09-exercises-and-practice.png" alt="Hands-on exercises to practise spec, plan, tasks and scenarios" loading="lazy" class="report-section-image">
+  <figcaption id="fig-exercises-caption">Hands-on exercises to practise spec, plan, tasks and scenarios</figcaption>
+</figure>
+
 ## 9. Exercises and Practice
 
 This section gives the development team **concrete exercises** to practise the spec-driven workflow without touching production. Each exercise focuses on one part of the pipeline (Specify → Plan → Tasks → Implement) and uses examples that fit PHP, WordPress and Laravel work.
