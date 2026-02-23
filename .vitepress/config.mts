@@ -22,6 +22,8 @@ export default withMermaid(defineConfig({
       '/reports/': [
         { text: 'Reports', link: '/reports/' },
         { text: 'Dark Factories & AI-Generated Code', link: '/reports/dark-factory/' },
+        { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
+        { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
       ],
       '/reports/dark-factory/': [
         { text: 'Report overview', link: '/reports/dark-factory/' },
@@ -42,6 +44,10 @@ export default withMermaid(defineConfig({
             { text: '12. References', link: '/reports/dark-factory/12-references' },
           ],
         },
+      ],
+      '/reports/ai-transformation-programme/': [
+        { text: 'Report overview', link: '/reports/ai-transformation-programme/' },
+        { text: '1. AI Transformation Whitepaper', link: '/reports/ai-transformation-programme/01-whitepaper' },
       ],
     },
     socialLinks: [
