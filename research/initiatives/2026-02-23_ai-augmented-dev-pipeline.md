@@ -879,3 +879,155 @@ Merge; "doc update frequency" KPI = count of doc PRs merged per month
 - **Safe to pilot:** **Option A** — CI (PHPStan, then Rector) + optional Bionic + policy + baseline metrics. Add refactor/migration use when CI is stable. Keep test and doc as ad-hoc Cursor use.
 - **Option B:** **Safe to pilot with simplification** — Same as A for phases 1–4; add coverage report and "structured" Cursor use (repo rules) before adding test-generation and docs workflows. Introduce test and doc workflows only after PR bot and CI have been stable for 4+ weeks and ownership for doc/test KPIs is assigned.
 - **Simplify first:** Start with **CI + policy only** (no PR bot in week 1). Get CI green and baseline metrics; then add PR bot. That minimises risk and engineering weeks for first value.
+
+---
+
+# DevOps: Review of Intake + Architect Output
+
+## 1. Infrastructure Footprint Estimate
+
+- **No new runtime services.** All pipeline changes are:
+  - **GitHub Actions** (existing): additional jobs (PHPStan, Rector, PHPUnit/Pest; Option B: coverage upload).
+  - **GitHub App** (PR bot): Bionic or CodeRabbit runs in vendor/external infrastructure; no self-hosted runners or new VMs.
+- **Application stack (WordPress, Laravel, Redis, MySQL, queues):** Unchanged. No AI or new agents in production or staging.
+- **Cursor/Copilot:** Client-side or existing SaaS; no new server-side footprint.
+
+**Footprint:** **None** for application infra; **CI only** (Actions minutes + optional GH App).
+
+---
+
+## 2. CI Runtime Impact
+
+| Job | Typical duration (estimate) | Trigger | Blocks merge? |
+|-----|-----------------------------|---------|----------------|
+| **PHPStan** | 1–4 min | PR / push | Yes (if required by branch protection) |
+| **Rector** (dry-run / check) | 1–3 min | PR / push | Yes |
+| **PHPUnit / Pest** | 2–8 min (repo-dependent) | PR / push | Yes |
+| **Coverage report (Option B)** | +0.5–1 min (upload artifact or codecov) | PR / push | No (informational) |
+
+**Total added CI time per PR (Option A):** ~4–15 min (PHPStan + Rector + existing tests). Depends on codebase size and existing test suite; **often ~2–5 min** for PHPStan + Rector alone if paths are scoped and Composer/cache is used.
+
+**Mitigation:** Use `actions/cache` for Composer and vendor; run PHPStan/Rector only on relevant paths (e.g. `app/`, `src/`, plugin dirs); parallel jobs where possible so total wall-clock is max(job) not sum(job).
+
+**AI in CI:** **None.** Architect design explicitly keeps all AI out of GitHub Actions. No API calls to AI from workflows; no token spend or latency from AI in CI.
+
+---
+
+## 3. GitHub Actions Cost
+
+- **Pricing model:** GitHub-hosted runners bill by job minutes (Linux: 2,000 min/month free for private repos; then per-minute).
+- **Extra minutes per PR (rough):** ~3–10 min per PR for PHPStan + Rector + (if not already present) PHPUnit. Option B: +~1 min for coverage upload.
+- **Impact:** For a small team (e.g. 20–40 PRs/month), **~60–400 extra minutes/month** — often within free tier for private repos; if over, cost is still low (order of dollars, not hundreds).
+- **No AI-related cost in Actions:** No third-party API calls from workflows; no AI spend in CI.
+
+**Runtime cost estimate:** **Low** (CI minutes only; no new infrastructure or AI in CI).
+
+---
+
+## 4. Reliability Risk
+
+| Component | Risk | Mitigation |
+|----------|------|------------|
+| **GitHub Actions** | Outage or degraded GitHub; job queue delay | Use standard Actions; no custom critical path; deploy is not gated on AI. |
+| **PHPStan / Rector** | New job fails (config, version, path) | Pin versions in composer; run on branch before merge; baseline so main stays green; document required PHP/extensions. |
+| **PR bot (Bionic / CodeRabbit)** | Bot down or rate-limited; slow or missing comments | **Merge does not depend on bot.** Human review + CI pass are sufficient. Bot is best-effort first pass. |
+| **Branch protection** | Misconfig allows merge without CI | Keep branch protection requiring CI success + human review; no “require PR bot approval”. |
+
+**Deploy path:** Unchanged. No AI or PR bot in deploy gates. Reliability of **production deployments** is unaffected; only **PR review experience** is affected if the bot is down.
+
+**Operational complexity:** **Low** (deterministic CI + optional external bot).
+
+---
+
+## 5. Observability Requirements
+
+| What to observe | Where | Purpose |
+|-----------------|--------|---------|
+| **Workflow run status** | GitHub Actions → Actions tab, or API | See pass/fail per PR; no need for separate dashboard if team uses GitHub. |
+| **Job duration** | GitHub Actions (job summary) | Detect slowdown (e.g. PHPStan 10 min); tune caching or paths. |
+| **PR bot presence** | Optional: count PRs with bot comment (e.g. weekly) | Confirm bot is firing; not required for merge. |
+| **Spend (if SaaS PR bot)** | Vendor dashboard / billing | Cost control; not CI-internal. |
+
+**No custom metrics server or APM required.** GitHub’s UI and optional export (e.g. API for “workflow runs”) are sufficient. If desired, a simple scheduled job can query GitHub API for “workflow runs last 7 days” and post to Slack or a doc.
+
+**AI-in-CI:** There is no AI in CI to observe. Observability is “CI health” and optional “PR bot active”.
+
+---
+
+## 6. Failure Recovery Model
+
+| Failure | Recovery |
+|---------|----------|
+| **PHPStan or Rector job fails on main (e.g. bad rule)** | Revert the workflow or the rule-set PR; or temporarily exclude path in config; fix in branch and re-merge. |
+| **CI red for many PRs (e.g. new baseline)** | Restore previous baseline or path exclusions so main is green; fix baseline in dedicated PR(s). |
+| **PR bot down or wrong comments** | No action required for merge. Optionally: disable GH App until fixed; human review only. |
+| **GitHub outage** | Same as today: wait for GitHub; no pipeline-specific playbook. |
+
+**No database or production state to restore.** Rollback is “revert workflow file and/or disable PR bot”.
+
+---
+
+## 7. Kill Switch and Rollback Strategy
+
+**Kill switch (stop AI-related pipeline behaviour quickly):**
+
+1. **PR bot:** In GitHub: **Settings → Integrations → GitHub Apps → [Bionic or CodeRabbit] → Uninstall** (or disable for the repo). Immediate effect: no new bot comments; existing comments remain.
+2. **CI (PHPStan/Rector):** Option A — **Branch protection:** temporarily remove requirement for the new status check so merges can proceed without it. Option B — **Revert** the commit that added the PHPStan/Rector job(s) so the workflow no longer runs them. Option C — **Allow failure:** change the job to `continue-on-error: true` so it does not block merge (not recommended long-term).
+3. **Cursor/Copilot:** Org/repo policy: stop using for that repo; revoke or restrict access if managed centrally.
+
+**Rollback (restore previous pipeline state):**
+
+1. **Workflow:** `git revert <commit that added PHPStan/Rector jobs>` and push. Branch protection can stay as-is if the reverted workflow no longer reports that check.
+2. **PR bot:** Reinstall or re-enable the GH App when ready.
+3. **Document:** Keep a one-line runbook: “Pipeline rollback: revert `.github/workflows/<file>` for CI; uninstall [PR bot] under GitHub Apps.”
+
+**Blast radius if misconfigured:** **Low.** Bot cannot merge. CI cannot deploy by itself. Worst case: CI is red and PRs can’t merge until fixed or check is disabled; no production impact.
+
+---
+
+## 8. Performance Impact Risk
+
+- **Application (production):** **None.** No runtime AI or new services.
+- **CI:** Added job time per PR (see §2). Risk: slow PR feedback if jobs are not cached or are run over too many paths. Mitigation: cache Composer; scope paths; parallelise jobs.
+- **Developer experience:** PR bot may take 30–90 s to post comments; human can review before bot finishes. No change to merge criteria.
+
+**Performance impact risk:** **Low.**
+
+---
+
+## 9. Minimal AI-in-CI Monitoring Checklist
+
+Because **there is no AI in CI** in the Architect design, this checklist is minimal and focuses on “pipeline health” and “no accidental AI in CI”.
+
+**Weekly (or per release):**
+
+- [ ] **No AI in Actions:** Confirm no workflow step calls external AI APIs (no OpenAI, Anthropic, or similar from `.github/workflows/`). Grep or manual review.
+- [ ] **CI green on main:** Main branch has required checks passing (PHPStan, Rector, tests). No prolonged red.
+- [ ] **Job duration:** Spot-check last 5–10 workflow runs; no job > ~10 min without reason (e.g. large codebase). If so, tune paths or cache.
+- [ ] **PR bot (if enabled):** Optional — “Do we see bot comments on recent PRs?” If not and expected, check GH App installed and repo permissions.
+
+**On change to workflow or bot:**
+
+- [ ] **After adding/changing PHPStan or Rector:** Run workflow on a test branch; confirm main stays green after merge or baseline updated.
+- [ ] **After adding PR bot:** Open a draft PR; confirm bot posts (or is disabled); confirm merge still requires human approval and CI.
+
+**Incident:**
+
+- [ ] **If CI broken:** Revert workflow or relax branch protection; fix in branch; no production rollback needed.
+- [ ] **If PR bot misbehaves:** Uninstall GH App for repo; human review only until fixed.
+
+**Dashboard:** Optional. E.g. “GitHub Actions” tab + optional weekly digest (run count, failure count). No dedicated AI-in-CI dashboard required.
+
+---
+
+## 10. Recommendation
+
+- **Infrastructure footprint:** None (CI + GH App only).
+- **Runtime cost:** Low (Actions minutes; no AI in CI).
+- **Monitoring:** Workflow success/duration; optional PR bot activity; no new infra.
+- **Failure recovery:** Revert workflow; disable bot; no production impact.
+- **Blast radius:** Low (bot can’t merge; CI doesn’t deploy).
+- **Performance impact:** Low (CI adds a few minutes per PR).
+- **Operational complexity:** Low.
+
+**Recommendation:** **Safe for production.** Pilot in one repo first; use the minimal checklist above; keep no AI in CI as a hard constraint so operational surface stays small and rollback is trivial.
