@@ -20,6 +20,6 @@ This report summarises research into **Dark Factories** and **AI-generated code*
 - **Scenario-based development** uses end-to-end user stories (scenarios), often held outside the codebase like a holdout set, validated by behaviour (including LLM-as-judge where appropriate).
 - **Specifications** should be the source of truth: living, executable artifacts that drive implementation. Recommended approach: Specify → Plan → Tasks → Implement, with checkpoints and constitution/principles.
 - **Spec structure** benefits from templates (e.g. Spec Kit, StrongDM-style specs), clear separation of what/why vs how, and versioning alongside code.
-- **Adoption** (Section 9): workflow changes; where Jira and GitHub sit; skills by level (junior to lead); example constitutions and a draft; agent rules and roles (Spec, Plan, Tasks, Implement, Validate) and coordination via markdown context.
+- **Adoption** (Section 10): workflow changes; where Jira and GitHub sit; skills by level (junior to lead); example constitutions and a draft; agent rules and roles (Spec, Plan, Tasks, Implement, Validate) and coordination via markdown context.
 
 The report is structured so it can be converted to an HTML microsite or PDF (sections, table of contents, and clear headings).

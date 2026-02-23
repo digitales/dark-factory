@@ -8,11 +8,11 @@ description: Workflow changes, Jira and GitHub, skills by level, constitutions, 
   <figcaption id="fig-adopting-caption">Spec-before-code gate, constitution, and skills by level</figcaption>
 </figure>
 
-## 9. Adopting the Shift: Workflow, Tools, Skills, and Constitution
+## 10. Adopting the Shift: Workflow, Tools, Skills, and Constitution
 
 This section outlines concrete workflow changes to support the shift, where Atlassian Cloud (Jira) and GitHub fit, skills expected at each level from junior to lead, and example constitutions plus a draft for the team and company.
 
-### 9.1 Workflow Changes to Aid the Shift
+### 10.1 Workflow Changes to Aid the Shift
 
 Adopt these process changes incrementally so the shift is sustainable:
 
@@ -24,7 +24,7 @@ Adopt these process changes incrementally so the shift is sustainable:
 - **Constitution in the loop.** Every technical plan references the team constitution (stack, security, testing, naming). New engineers and agents read the constitution before generating plans or code. Review plans for constitution compliance.
 - **Short retrospectives on spec quality.** Periodically ask: "Did the spec/plan reduce rework or cause it?" Use that to refine templates and the constitution.
 
-### 9.2 Where Jira (Atlassian Cloud) and GitHub Sit
+### 10.2 Where Jira (Atlassian Cloud) and GitHub Sit
 
 **Jira (Atlassian Cloud)** — Backlog, prioritisation, and traceability:
 
@@ -43,7 +43,7 @@ Adopt these process changes incrementally so the shift is sustainable:
 
 In short: **Jira** = what we're doing and when (backlog, status, commercials); **GitHub** = what we're building and how (specs, code, PRs, CI). They complement each other; neither replaces the other.
 
-### 9.3 Skills Required by Level (Junior to Lead)
+### 10.3 Skills Required by Level (Junior to Lead)
 
 In a spec-driven, agent-assisted world, the mix of skills shifts by level. Below is a concise view of what each level should be able to do.
 
@@ -61,7 +61,7 @@ In a spec-driven, agent-assisted world, the mix of skills shifts by level. Below
 - **Senior:** Own pipeline quality for an area, design validation and holdout strategy, evolve constitution, mentor.
 - **Lead:** Own constitution and workflow, align with product/consultancy, own tooling and agent strategy.
 
-### 9.4 Example Constitutions and a Draft for This Team
+### 10.4 Example Constitutions and a Draft for This Team
 
 **What a constitution is.** A constitution is a short, stable document that states the team's (or company's) technical principles: stack, quality bar, security, testing, naming, and what "good" looks like. Every technical plan and agent run should respect it. It is the contract between humans and agents so that generated code fits the organisation.
 
@@ -113,7 +113,7 @@ In a spec-driven, agent-assisted world, the mix of skills shifts by level. Below
 
 A constitution for the **company** (e.g. Elixirr-wide) might be a shorter, higher-level document (e.g. "We use spec-driven development; all technical plans reference the relevant product constitution; we do not commit secrets"). Individual products or teams can then have a more detailed constitution that inherits or references the company one.
 
-### 9.5 Agent Rules, Roles, and Context (Markdown)
+### 10.5 Agent Rules, Roles, and Context (Markdown)
 
 **Do we need specific agent rules?** Yes. Agent rules (Cursor rules, Claude Code skills, or Copilot instructions) are what make the workflow repeatable and safe: they load the right context (constitution, stack, templates) and constrain output so generated code and specs stay aligned with the team. Without rules, each run is ad hoc and quality drifts.
 

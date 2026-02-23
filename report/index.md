@@ -19,8 +19,9 @@ Each section has an illustration at the top of its page. Below are the sections 
 | [6. Scenario-Based Development](/report/05-scenario-based-development) | Scenarios, holdout, satisfaction |
 | [7. Creating Specifications](/report/06-creating-specifications) | SDD approach, checkpoints, Spec Kit, Cursor rules |
 | [8. Spec Structure & Examples](/report/07-spec-structure-examples) | Templates, scenario docs, public references |
-| [9. Adopting the Shift](/report/08-adopting-the-shift) | Workflow, Jira/GitHub, skills, constitution, agent rules |
-| [10. Assumptions & Follow-Up](/report/09-assumptions-follow-up) | Assumptions and questions for the team |
-| [11. References](/report/10-references) | Primary sources and further reading |
+| [9. Exercises and Practice](/report/07a-exercises) | Hands-on exercises: spec, plan, tasks, scenarios |
+| [10. Adopting the Shift](/report/08-adopting-the-shift) | Workflow, Jira/GitHub, skills, constitution, agent rules |
+| [11. Assumptions & Follow-Up](/report/09-assumptions-follow-up) | Assumptions and questions for the team |
+| [12. References](/report/10-references) | Primary sources and further reading |
 
 The report is structured so it can be read section by section from the sidebar or as a linked set of pages. The source Markdown is retained in the project; the full single-document version is available at `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` if needed.

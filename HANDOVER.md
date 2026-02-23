@@ -18,7 +18,7 @@ When you move to a new repo, this folder **is** the new project. The only extern
 
 - **Canonical report (original location):**  
   `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` (in the original Dezeen/workspace repo).
-- **In this project:** the report content is duplicated in **`report/index.md`** (with VitePress frontmatter). The body is the full report (all 11 sections).
+- **In this project:** the report content is duplicated in **`report/index.md`** (with VitePress frontmatter). The body is the full report (all 12 sections).
 - **For the new repo:** either:
   - **Option A:** Copy `DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` into the new repo (e.g. `docs/` or project root) and treat it as the single source of truth; update `report/index.md` by copying from it when the report changes, **or**
   - **Option B:** Keep only `report/index.md` as the source and remove references to an external path.

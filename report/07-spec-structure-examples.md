@@ -90,3 +90,7 @@ Format (example):
 | tasks.md  | Implementable task list    | Generated from plan|
 | scenarios | Behavioural validation     | Product / QA       |
 | constitution | Principles and constraints | Team               |
+
+### 8.7 Practising the structure
+
+To build fluency, the report includes **[Exercises and Practice](/report/07a-exercises)** (Section 9): hands-on exercises for writing specs, plans, tasks and holdout scenarios, plus a spec-delta review exercise. They use WordPress- and Laravel-friendly examples and can be run in 15–90 minutes each.

@@ -8,9 +8,9 @@ description: Primary sources and additional references for Dark Factories and sp
   <figcaption id="fig-references-caption">References and further reading — primary sources and additional references</figcaption>
 </figure>
 
-## 11. References and Further Reading
+## 12. References and Further Reading
 
-### 11.1 Primary Sources (Provided Links)
+### 12.1 Primary Sources (Provided Links)
 
 - Nate's Newsletter — *The dark factory is real, most developers are getting slower, and your org chart is the bottleneck* (5-level framework, spec as most valuable skill): [natesnewsletter.substack.com](https://natesnewsletter.substack.com/p/the-5-level-framework-that-explains)
 - StrongDM Attractor — Coding agent loop spec (markdown-only repo): [github.com/strongdm/attractor](https://github.com/strongdm/attractor) (see `coding-agent-loop-spec.md`)
@@ -21,7 +21,7 @@ description: Primary sources and additional references for Dark Factories and sp
 - GitHub Blog — *Spec-driven development with AI: Get started with a new open source toolkit*: [github.blog/ai-and-ml/generative-ai/...](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
 - GitHub Spec Kit — Open-source toolkit and templates: [github.com/github/spec-kit](https://github.com/github/spec-kit)
 
-### 11.2 Additional References
+### 12.2 Additional References
 
 - Dan Shapiro — *The Five Levels: from Spicy Autocomplete to the Dark Factory*: [danshapiro.com/blog/2026/01/...](https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/)
 - StrongDM Software Factory — Narrative, principles, techniques: [factory.strongdm.ai](https://factory.strongdm.ai)
