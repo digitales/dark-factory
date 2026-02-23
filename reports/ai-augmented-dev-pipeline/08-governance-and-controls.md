@@ -38,7 +38,7 @@ flowchart TB
 
 ## 4. Tooling Options (OSS vs SaaS)
 
-Governance does not prescribe specific tools beyond: PR bot receives diff only; Cursor used with sanitised code; DPAs/SCCs for SaaS (Cursor, and CodeRabbit if used at £500). Prefer Bionic OSS or self-hosted to reduce sub-processor surface at £200.
+Governance does not prescribe specific tools beyond: PR bot receives diff only; Cursor (team subscription) used with sanitised code; DPAs/SCCs for SaaS (Cursor, and CodeRabbit if used at £500). Prefer Bionic OSS or self-hosted to reduce sub-processor surface at pilot budget.
 
 ## 5. Guardrails & Controls
 
@@ -47,7 +47,7 @@ Governance does not prescribe specific tools beyond: PR bot receives diff only; 
 - **Purpose:** Development assistance only (PR review, refactor, migration, test, doc suggestions). No production user data or client PII in AI path.
 - **Scope:** Code and diffs only. No `.env`, `wp-config`, credentials, or client names/URLs in PR descriptions, branch names, commit messages, or prompts.
 - **Merge:** Humans only. No autonomous merge. Branch protection: CI pass + human review.
-- **Reversibility:** Disable PR bot via GitHub App; revert CI workflow; restrict Cursor by repo/org. Document kill switch.
+- **Reversibility:** Disable PR bot via GitHub App; revert CI workflow; for Cursor (team subscription): reduce seats or change plan, or restrict by repo/org. Document kill switch.
 - **Audit:** Record "AI-assisted" on PRs; do not log prompt content without policy. Log incidents (tool disabled, reason, remediation).
 - **Ownership:** Named owner for cost check; named owner for doc/test KPIs when those are in scope.
 
@@ -71,7 +71,7 @@ Governance does not prescribe specific tools beyond: PR bot receives diff only; 
 - [ ] PR bot has no merge rights; branch protection requires CI + human review.
 - [ ] No client data in PR bot or Cursor prompts; redaction and policy in place.
 - [ ] One-pager and PR template published; .cursorrules in pilot repo.
-- [ ] Cost owner named; weekly spend check and alert threshold set.
+- [ ] Cost owner named; weekly spend check for Bionic/other; team Cursor plan limits documented.
 - [ ] Stop conditions and incident recovery (re-enable criteria) documented.
 - [ ] Clients informed (and formal approval obtained if required).
 

@@ -16,7 +16,7 @@ Test coverage is insufficient; writing tests is time-consuming. Team wants to in
 
 ## 2. AI Opportunity
 
-Developer selects class/method in Cursor; asks for PHPUnit/Pest test suggestions. Developer edits (assertions, data providers, mocks) and commits. CI runs tests; no automated "AI creates test PR". At £200: ad-hoc Cursor only; rate limit (e.g. 20 doc+test team/month). Named owner for "generated test quality" so tests are maintained (reconciled from Critic/Dev Lead).
+Developer selects class/method in Cursor; asks for PHPUnit/Pest test suggestions. Developer edits (assertions, data providers, mocks) and commits. CI runs tests; no automated "AI creates test PR". Ad-hoc Cursor only, within team subscription plan limits. Named owner for "generated test quality" so tests are maintained (reconciled from Critic/Dev Lead).
 
 ## 3. Proposed Architecture
 
@@ -37,7 +37,7 @@ flowchart TB
 | Role | Tool | Pilot |
 |------|------|-------|
 | Execution | PHPUnit or Pest | In CI |
-| Suggestions | Cursor | Yes; no Copilot at £200 |
+| Suggestions | Cursor | Yes; team Cursor subscription only |
 | Scaffolding | PHPUnit/Pest + manual or scripts | Optional |
 
 No separate test-generation API or SaaS; Cursor only, within rate limits.
@@ -47,13 +47,13 @@ No separate test-generation API or SaaS; Cursor only, within rate limits.
 - **Output:** All generated tests reviewed and edited by a human before commit. No autonomous test PRs (Governance).
 - **Input:** Sanitised code only; no credentials or client data in prompts. .cursorrules: no client names, production URLs, credentials, PII (Governance).
 - **Ownership:** Named owner for "generated test quality" and maintenance (Reconciliation, Dev Lead).
-- **Rate:** 20 doc+test team/month (Cost Governor at £200).
+- **Rate:** Within team Cursor subscription plan limits.
 
 ## 6. Failure Modes
 
 - **Generated tests low quality or brittle:** Human review and ownership; treat as normal PR review. Owner responsible for maintenance.
 - **Coverage delta small:** Critic: "1–2 services" may not move repo-wide % much. KPI is +5% or N new tests if trial runs; optional for pilot.
-- **Cursor overage:** Enforce rate limit; prefer small selection; no full-file paste.
+- **Cursor plan limit:** Stay within plan; prefer small selection; no full-file paste. Hitting plan limits is usage/availability, not cost; document plan caps and align internal guidance.
 
 ## 7. KPIs
 

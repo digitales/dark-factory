@@ -40,14 +40,14 @@ flowchart TB
 | Area | OSS | SaaS (local) | Pilot |
 |------|-----|--------------|-------|
 | Rule execution | Rector (CI), PHPStan (CI) | — | Both in CI |
-| Suggestions | — | Cursor | Cursor only; no Copilot at £200 |
+| Suggestions | — | Cursor | Team Cursor subscription only; no Copilot |
 
 Rector: PHP 8.x preset; optional WP rule set after baseline is green. PHPStan: WordPress stubs, Laravel plugin; level 0 initially, then raise in dedicated PRs.
 
 ## 5. Guardrails & Controls
 
 - **CI:** Rector runs on every PR (or scoped paths); full test run required. No Rector-only mass PR without agreement; refactor in small PRs.
-- **Cursor:** No client data in prompts; no file >500 lines or paste >8k chars (.cursorrules). "Heavy" requests capped (e.g. 25/user/week at £200).
+- **Cursor:** No client data in prompts; no file >500 lines or paste >8k chars (.cursorrules). Stay within team Cursor subscription plan limits.
 - **Reversibility:** Revert workflow to remove Rector; or exclude paths in config. Cursor use is policy-based; no pipeline dependency.
 
 ## 6. Failure Modes

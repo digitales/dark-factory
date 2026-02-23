@@ -54,7 +54,7 @@ No migration-specific SaaS beyond Cursor. Runbooks are internal; use placeholder
 
 - **Runbook content:** No client names, production URLs, or credentials. Use placeholders or internal-only docs not sent to AI (Governance).
 - **Execution:** Human-driven; each change via PR; CI (PHPStan, Rector, tests) must pass. No AI in CI.
-- **Cursor:** Sanitised code only; rate limits (e.g. 25 heavy/user/week, 20 doc+test team/month at £200).
+- **Cursor:** Sanitised code only; stay within team Cursor subscription plan limits.
 
 ## 6. Failure Modes
 

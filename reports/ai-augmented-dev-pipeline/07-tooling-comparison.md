@@ -1,6 +1,6 @@
 ---
 title: Tooling Comparison (OSS vs SaaS)
-description: Bionic, Cursor, PHPStan, Rector — pilot choices at £200 and £500, no AI in CI.
+description: Bionic + team Cursor subscription, PHPStan, Rector — pilot choices; budget for Bionic/other; no AI in CI.
 ---
 
 <figure class="report-section-image-wrapper" aria-labelledby="fig-tooling-caption">
@@ -12,7 +12,7 @@ description: Bionic, Cursor, PHPStan, Rector — pilot choices at £200 and £50
 
 ## 1. Problem Context
 
-Pipeline needs proven tools only; no hallucinated or speculative tooling. Budget (£200 pilot) forces trade-offs: Bionic only for PR, Cursor only for IDE, no CodeRabbit or Copilot at £200.
+Pipeline needs proven tools only; no hallucinated or speculative tooling. Cursor is a team subscription with limits (fixed/cap per seat). Budget £200 (or £500) applies to Bionic and other AI tools; Bionic only for PR at pilot, no CodeRabbit or Copilot.
 
 ## 2. AI Opportunity
 
@@ -28,7 +28,7 @@ flowchart TB
     Pest[PHPUnit/Pest]
     Bionic[Bionic PR bot]
   end
-  subgraph SaaS_controlled[SaaS / Capped]
+  subgraph SaaS_controlled[Team Cursor subscription]
     Cursor[Cursor]
   end
   PR[Pull Request] --> PHPStan
@@ -43,22 +43,22 @@ flowchart TB
 
 **Comparison table (OSS vs SaaS)**
 
-| Area | OSS / self-hosted | SaaS | Pilot choice (£200) | Pilot choice (£500) |
-|------|-------------------|------|---------------------|----------------------|
-| PR review | Bionic (GitHub App), Reviewpad | CodeRabbit, GitHub Copilot for PRs | **Bionic only** | Bionic or CodeRabbit |
-| Static analysis | PHPStan, Psalm, Rector, PHPCompatibility | — | **PHPStan, Rector** in CI | Same |
-| Refactor / migration | Rector (CI), PHPStan | Cursor, Copilot (local) | **Rector in CI; Cursor local** | Same; Copilot optional |
-| Test generation | PHPUnit, Pest, scaffolding | Cursor, Copilot | **Cursor only** (ad-hoc) | Cursor; Copilot optional |
-| Documentation | MkDocs, Docusaurus, phpDocumentor | Cursor, Copilot, Sweep | **Cursor only** (ad-hoc) | Cursor; optional Sweep |
-| IDE / local | — | Cursor, GitHub Copilot | **Cursor only** | Cursor + optional Copilot |
+| Area | OSS / self-hosted | SaaS | Pilot choice |
+|------|-------------------|------|--------------|
+| PR review | Bionic (GitHub App), Reviewpad | CodeRabbit, GitHub Copilot for PRs | **Bionic only** (budget £200); £500 allows CodeRabbit |
+| Static analysis | PHPStan, Psalm, Rector, PHPCompatibility | — | **PHPStan, Rector** in CI |
+| Refactor / migration | Rector (CI), PHPStan | Cursor, Copilot (local) | **Rector in CI; team Cursor local** |
+| Test generation | PHPUnit, Pest, scaffolding | Cursor, Copilot | **Team Cursor only** (ad-hoc, within plan limits) |
+| Documentation | MkDocs, Docusaurus, phpDocumentor | Cursor, Copilot, Sweep | **Team Cursor only** (ad-hoc, within plan limits) |
+| IDE / local | — | Cursor, GitHub Copilot | **Team Cursor subscription only** |
 
-**Conflict resolution:** Cost Governor and Strategist: at £200, Bionic only, Cursor only, no CodeRabbit, no Copilot. Architect and Dev Lead: Option A (Bionic, Cursor) is safe to pilot. Reconciled: Option A is the recommended architecture; £500 allows CodeRabbit and Copilot with rate limits and alerts.
+**Cursor:** Team-based subscription with limits. Cost is fixed or cap per seat; £200/£500 budget applies to Bionic (and CodeRabbit at £500), not Cursor. Rate limits follow the subscription plan (e.g. fast/slow request caps per month); align internal guidance (e.g. “prefer small selection”, “no full-file paste”) to stay within plan. No overage spend for Cursor when within plan; hitting plan limits is a usage/availability issue, not a cost breach. Reversibility: reduce seats or change plan rather than only restrict by repo.
 
 ## 5. Guardrails & Controls
 
 - **CI:** No SaaS AI in GitHub Actions. Grep on PR for `openai`, `anthropic`, etc. in workflows (Cost Governor).
-- **PR bot:** Bionic: 15 PRs/repo/week; 30k tokens/PR max. No CodeRabbit at £200.
-- **Cursor:** Default model only; no premium; 25 heavy/user/week, 20 doc+test team/month; no paid index (Cost Governor).
+- **PR bot:** Bionic: 15 PRs/repo/week; 30k tokens/PR max. No CodeRabbit at pilot budget.
+- **Cursor:** Team subscription only; stay within plan limits (e.g. fast/slow caps); default model, no paid index. Document plan caps; align internal guidance.
 
 ## 6. Failure Modes
 
@@ -67,11 +67,11 @@ flowchart TB
 
 ## 7. KPIs
 
-- **Cost:** Monthly spend ≤ £200 (or £500 if agreed); weekly check; alert at £180 (or £450).
+- **Cost:** Bionic and other AI tools: monthly spend ≤ £200 (or £500 if agreed); weekly check; alert at £180 (or £450). Cursor: team subscription, no separate spend tracking when within plan.
 - **CI health:** No AI in CI; workflow success and job duration as per DevOps checklist.
 
 ## 8. Actionable Next Steps
 
-1. Confirm budget ceiling (£200 or £500) and lock tool set (Bionic only vs Bionic or CodeRabbit; Cursor only vs Cursor + Copilot).
+1. Confirm budget ceiling for Bionic/other (£200 or £500) and lock tool set; confirm team Cursor subscription and document plan limits.
 2. Document chosen stack in repo (README or docs) and in one-pager.
 3. Enforce "no AI in CI" via code review of every workflow change.

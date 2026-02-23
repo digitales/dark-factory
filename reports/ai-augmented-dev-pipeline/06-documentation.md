@@ -16,7 +16,7 @@ README, runbooks, and API/hook docs drift as code and deployment change. Team ne
 
 ## 2. AI Opportunity
 
-Developer or lead uses Cursor to draft README/runbook/ADR updates from code or config context; human approves and commits. Optional: "on merge to main" checklist or issue template ("if deployment/env changed, update runbook"). No AI in CI that pushes doc changes. At £200: ad-hoc only; no dedicated doc-generation runs; optional checklist (Strategist).
+Developer or lead uses Cursor to draft README/runbook/ADR updates from code or config context; human approves and commits. Optional: "on merge to main" checklist or issue template ("if deployment/env changed, update runbook"). No AI in CI that pushes doc changes. Ad-hoc only, within team Cursor plan limits; no dedicated doc-generation runs; optional checklist (Strategist).
 
 ## 3. Proposed Architecture
 
@@ -47,7 +47,7 @@ No Sweep or autonomous doc bot; Cursor only, human commits.
 - **Content:** No client names, production URLs, or credentials in prompts or in public docs (Governance). Internal runbooks: same redaction for content sent to AI.
 - **Output:** All doc changes approved and committed by a human. No autonomous doc PRs (Governance).
 - **Ownership:** Named owner for "documentation update frequency" (Reconciliation, Dev Lead); avoids vague "someone will do it" (Critic).
-- **Rate:** Part of 20 doc+test team/month at £200 if doc drafts use "heavy" Cursor.
+- **Rate:** Within team Cursor subscription plan limits when doc drafts use "heavy" Cursor.
 
 ## 6. Failure Modes
 

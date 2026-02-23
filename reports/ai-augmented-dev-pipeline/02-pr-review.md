@@ -16,7 +16,7 @@ PR review is a bottleneck: reviewer availability and consistency vary; PHP 8.x a
 
 ## 2. AI Opportunity
 
-A PR bot (Bionic) receives the diff (and minimal context) and posts comments: summary, security/breaking hints, optional PHP 8.x/WP deprecation flags. Human reviewer still approves and merges; merge never depends on the bot. At £200, only Bionic (OSS or free tier) is used; CodeRabbit is excluded.
+A PR bot (Bionic) receives the diff (and minimal context) and posts comments: summary, security/breaking hints, optional PHP 8.x/WP deprecation flags. Human reviewer still approves and merges; merge never depends on the bot. Only Bionic (OSS or free tier) is used for PR review; CodeRabbit is excluded at pilot budget.
 
 ## 3. Proposed Architecture
 
@@ -40,7 +40,7 @@ sequenceDiagram
 | Option | Tool | Pilot choice | Note |
 |--------|------|--------------|------|
 | OSS | Bionic (GitHub App) | **Yes** | OSS or free tier; diff-only; 30k tokens/PR cap. |
-| SaaS | CodeRabbit | No at £200 | Allowed only if budget is £500 and cost controlled. |
+| SaaS | CodeRabbit | No at pilot budget | Allowed only if budget is £500 and cost controlled. |
 
 Cursor is not used for "review entire PR" in pipeline; that is the bot's role. Local Cursor remains for completion and ad-hoc explain/refactor.
 
@@ -50,7 +50,7 @@ Cursor is not used for "review entire PR" in pipeline; that is the bot's role. L
 - **Redaction:** PR title/description and branch name must not contain client names, production URLs, API keys, or PII. PR template checklist: "I confirm no client names, URLs, credentials, or PII in this PR."
 - **Merge:** Bot has no merge rights. Branch protection: CI pass + human review required.
 - **Audit:** "AI-assisted review: yes" in PR template or label. Optional: log PR numbers that received bot comments.
-- **Rate limit:** 15 PRs per repo per week (Cost Governor at £200).
+- **Rate limit:** 15 PRs per repo per week (Cost Governor).
 
 ## 6. Failure Modes
 

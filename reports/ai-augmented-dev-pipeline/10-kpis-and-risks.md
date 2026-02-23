@@ -44,7 +44,7 @@ KPIs are measured via GitHub (PR cycle, merge events), defect/revert tracking (r
 
 ## 5. Guardrails & Controls
 
-- **Cost:** Weekly check; alert at £180 (£200 ceiling) or £450 (£500); named cost owner.
+- **Cost:** Bionic/other: weekly check; alert at £180 (£200 ceiling) or £450 (£500). Cursor: team subscription; document plan limits and name usage owner.
 - **Stop conditions:** Hard thresholds below; no override without explicit review and approval.
 
 ## 6. Failure Modes
@@ -69,7 +69,7 @@ Risks and mitigations are in the risk register below. Reconciled failure mode: d
 
 | Risk | Likelihood | Impact | Mitigation | Owner |
 |------|------------|--------|-------------|--------|
-| Cost over £200 (or £500) | Medium | Budget breach | Bionic only; Cursor only at £200; rate limits; weekly check; alert at £180/£450 | Cost owner |
+| Cost over £200 (or £500) for Bionic/other | Medium | Budget breach | Bionic only within budget; team Cursor (no spend tracking); weekly check; alert at £180/£450 | Cost owner |
 | Client or PII data in AI | Low | Compliance; client trust | Redaction policy; PR template; .cursorrules; training; stop condition = immediate disable | Lead / governance |
 | Regression rate increase | Low | Quality | Baseline; stop condition >50% vs baseline → pause AI PR review | Lead |
 | PR bot noisy or unhelpful | Medium | Adoption | Tune config; 2-week feedback; stop condition <30% find helpful after 8 weeks → pause/reconfigure | Lead |
@@ -82,15 +82,16 @@ Risks and mitigations are in the risk register below. Reconciled failure mode: d
 
 | Condition | Action |
 |-----------|--------|
-| Monthly spend > budget (£200 or £500) for **two consecutive months** without approval | Pause new AI pipeline spend; disable PR bot or reduce scope until under ceiling; review with Cost Governor |
+| Monthly spend on Bionic/other > budget (£200 or £500) for **two consecutive months** without approval | Pause new AI pipeline spend; disable PR bot or reduce scope until under ceiling; review with Cost Governor |
 | **Confirmed** leakage of client or PII data into AI tools | **Immediate** disable of affected tool; incident review; remediation before re-enable; document re-enable criteria |
 | Regression rate in pilot repo **>50% vs baseline** | Pause AI PR review on that repo until investigated; human-only review continues |
 | **<30%** of team find PR bot helpful **after 8 weeks** | Pause or reconfigure PR bot; document feedback for go/no-go |
 | CI blocked (PHPStan/Rector repeatedly failing main) | Revert or relax failing job; fix in branch; no production impact |
+| Cursor plan limit hit | Usage/availability issue, not cost; document plan caps; align internal guidance; consider seat or plan change if sustained |
 
 **Next actions**
 
-1. Assign cost owner and document alert threshold (Lead).
+1. Assign cost owner and document alert threshold for Bionic/other (Lead); document team Cursor plan limits and align internal caps to plan.
 2. Record baseline (PR cycle time, regression rate, coverage) by end of week 4 (Lead).
 3. Document incident process and re-enable criteria (Lead).
 4. Schedule 4-week and 12-week KPI and cost reviews (Lead).
