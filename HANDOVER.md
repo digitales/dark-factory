@@ -55,8 +55,8 @@ dark-factory-docs/
 
 - **`base: '/dark-factory-docs/'`** — Set for deployment under a subpath (e.g. GitHub Pages under `/<repo>/`). **For a repo that is the only site:** set `base: '/'`.
 - **`ignoreDeadLinks: true`** — Avoids build failure on dead links (e.g. in README).
-- **Nav:** Home, Report, Elixirr Digital (external link to https://www.elixirrdigital.com).
-- **Sidebar:** Single “Report” group with links to each report section (`/report/#1-executive-summary`, etc.).
+- **Nav:** Home, Reports, Elixirr Digital (external link to https://www.elixirrdigital.com).
+- **Sidebar:** Reports index at `/reports/`; Dark Factory at `/reports/dark-factory/` with sections (e.g. `/reports/dark-factory/01-executive-summary`). Other reports under `reports/<slug>/`.
 - **Footer:** “Part of Elixirr Digital” and “Your digital partner — Experience digital solutions that challenge the ordinary.” with link to elixirrdigital.com.
 - **Search:** `provider: 'local'` (built-in local search).
 - **`siteTitle`:** “Elixirr Digital”.

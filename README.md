@@ -26,10 +26,13 @@ The workflow (`.github/workflows/deploy-pages.yml`) builds the site with `base: 
 
 ## Structure
 
-- **`index.md`** — Home with hero and links to the report.
-- **`report/index.md`** — Full report (all sections); sidebar and outline provide in-page navigation.
-- **`.vitepress/theme/`** — Elixirr Digital colours and footer (brand green/teal, footer link to elixirrdigital.com).
-- **`.vitepress/config.mts`** — Nav (Home, Report, Elixirr Digital), sidebar (report sections), local search, Mermaid for diagrams.
+- **`index.md`** — Home with hero and links to reports.
+- **`reports/index.md`** — Reports landing page (lists all reports).
+- **`reports/dark-factory/`** — Dark Factories & AI-Generated Code report (self-contained; own sidebar and sections).
+- **`reports/<other>/`** — Add further self-contained reports under `reports/<slug>/` with their own sidebars in config.
+- **`public/report/`** — Shared report images (e.g. Dark Factory section images); image paths in markdown stay `/report/report-*.png`.
+- **`.vitepress/theme/`** — Elixirr Digital colours and footer (same branding for all pages).
+- **`.vitepress/config.mts`** — Nav (Home, Reports, Elixirr Digital), sidebars per report path, local search, Mermaid.
 
 ## Branding
 

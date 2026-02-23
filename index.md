@@ -11,7 +11,7 @@ hero:
     alt: Developers, designers, and consultants together in a modern office; figure in dungarees at the collaboration table.
   actions:
     - text: Read the report
-      link: /report/
+      link: /reports/dark-factory/
       type: primary
     - text: Elixirr Digital
       link: https://www.elixirrdigital.com
@@ -19,13 +19,13 @@ hero:
 features:
   - title: What is a Dark Factory?
     details: A development model where humans write specifications and approve outcomes; AI agents implement, validate, and ship. No human writes or reviews code.
-    link: /report/02-what-is-a-dark-factory
+    link: /reports/dark-factory/02-what-is-a-dark-factory
   - title: Consultancy environment
     details: How the workflow applies when the dev team sits inside a consultancy (e.g. Elixirr); roles of consultants, developers, and account managers.
-    link: /report/05-consultancy-environment
+    link: /reports/dark-factory/05-consultancy-environment
   - title: Adopting the shift
     details: Workflow changes, Jira and GitHub, skills by level (junior to lead), constitutions, and agent rules—all in one place.
-    link: /report/10-adopting-the-shift
+    link: /reports/dark-factory/10-adopting-the-shift
 footer: Part of Elixirr Digital — Your digital partner. Experience digital solutions that challenge the ordinary.
 ---
 
