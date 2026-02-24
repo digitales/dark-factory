@@ -107,7 +107,8 @@ const factoryImageUrl = withBase('/dark-factory-hero.png')
       <template #aside-ads-before><slot name="aside-ads-before" /></template>
       <template #aside-ads-after><slot name="aside-ads-after" /></template>
     </VPContent>
-    <VPFooter />
+    <VPFooter v-if="frontmatter.pageClass !== 'hmc-slide-deck'" />
+    <footer v-else class="hmc-deck-footer">© Hows My Commute</footer>
     <slot name="layout-bottom" />
     </div>
   </div>

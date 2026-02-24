@@ -8,10 +8,10 @@
    Scope: only when the layout has the HMC slide deck class
    -------------------------------------------------------------------------- */
 
-/* Background: match howsmycommute.com — very light sky blue, morning-light feel */
+/* Background: gradient from howsmycommute.com — sky blue, morning-light */
 .Layout.hmc-slide-deck {
   --hmc-bg: #f5f9fc;
-  --hmc-bg-gradient: linear-gradient(180deg, #f8fbff 0%, #f5f9fc 30%, #f5f9fc 100%);
+  --hmc-bg-gradient: linear-gradient(180deg, #e3f0f9 0%, #eef6fc 40%, #f5f9fc 100%);
   --hmc-primary: #4da3d9;
   --hmc-green: #7fbf9f;
   --hmc-amber: #f2c57c;
@@ -26,6 +26,11 @@
 .Layout.hmc-slide-deck .VPContent {
   background: var(--hmc-bg-gradient) !important;
   min-height: 100vh;
+}
+
+/* Nav: not fixed on HMC deck so it scrolls away with content */
+.Layout.hmc-slide-deck .VPNav {
+  position: static !important;
 }
 
 /* Full-width content, no sidebar or outline for a clean deck */
@@ -149,10 +154,16 @@
   border-bottom: 1px solid rgba(77, 163, 217, 0.1);
 }
 
-/* Footer: same family as page background */
-.Layout.hmc-slide-deck .VPFooter {
-  background: rgba(245, 249, 252, 0.95);
-  border-top: 1px solid rgba(77, 163, 217, 0.08);
+/* HMC deck custom footer: copyright Hows My Commute */
+.Layout.hmc-slide-deck .hmc-deck-footer {
+  margin-top: auto;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--hmc-text-2);
+  background: linear-gradient(180deg, transparent 0%, rgba(227, 240, 249, 0.5) 100%);
+  border-top: 1px solid rgba(77, 163, 217, 0.12);
+  font-family: var(--hmc-font);
 }
 
 /* Ensure no dark mode override on this page */
