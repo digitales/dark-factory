@@ -10,6 +10,11 @@ export default withMermaid(defineConfig({
   description: 'Research report — spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams.',
   titleTemplate: ':title | Elixirr Digital',
   base,
+  head: [
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap' }],
+  ],
   srcExclude: ['**/*-RECONCILED.md', '**/2026-02-23_cost-governor-200.md', '**/2026-02-23_critic-stress-test.md'],
   themeConfig: {
     siteTitle: 'Research',
@@ -70,6 +75,7 @@ export default withMermaid(defineConfig({
         { text: 'Report overview', link: '/reports/ai-transformation-programme/' },
         { text: '1. AI Transformation Whitepaper', link: '/reports/ai-transformation-programme/01-whitepaper' },
       ],
+      '/reports/ai-as-an-interface/': [],
     },
     socialLinks: [
       { icon: 'linkedin', link: 'https://www.linkedin.com/company/elixirr-digital' },

@@ -1,6 +1,7 @@
 ---
 title: AI as an Interface Layer
 description: Hows My Commute AI Integration Case Study
+pageClass: hmc-slide-deck
 ---
 
 <section class="slide">

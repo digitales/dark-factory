@@ -1,0 +1,165 @@
+/**
+ * Hows My Commute — slide deck branding
+ * Calm, reassuring, morning-light aesthetic. No dark themes, no aggressive colours.
+ * Applied when pageClass: hmc-slide-deck (e.g. AI as an Interface Layer report).
+ */
+
+/* --------------------------------------------------------------------------
+   Scope: only when the layout has the HMC slide deck class
+   -------------------------------------------------------------------------- */
+
+.Layout.hmc-slide-deck {
+  --hmc-bg: #f5f9fc;
+  --hmc-primary: #4da3d9;
+  --hmc-green: #7fbf9f;
+  --hmc-amber: #f2c57c;
+  --hmc-text: #2c3e50;
+  --hmc-text-2: #334e68;
+  --hmc-font: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+/* Full-width content, no sidebar or outline for a clean deck */
+.Layout.hmc-slide-deck .VPSidebar,
+.Layout.hmc-slide-deck .VPLocalNav,
+.Layout.hmc-slide-deck .aside {
+  display: none !important;
+}
+
+.Layout.hmc-slide-deck .VPContent {
+  max-width: none;
+}
+
+.Layout.hmc-slide-deck .vp-doc {
+  max-width: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-family: var(--hmc-font);
+}
+
+/* Page background: light sky, morning feel */
+.Layout.hmc-slide-deck .layout-content {
+  background: var(--hmc-bg);
+}
+
+.Layout.hmc-slide-deck .VPContent .container {
+  max-width: none;
+}
+
+/* --------------------------------------------------------------------------
+   Slide blocks: rounded cards, generous space, soft shadow, top accent
+   -------------------------------------------------------------------------- */
+
+.Layout.hmc-slide-deck .slide {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 920px;
+  margin: 2rem auto;
+  padding: 3rem;
+  background: var(--hmc-bg);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.Layout.hmc-slide-deck .slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background: var(--hmc-primary);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.Layout.hmc-slide-deck .slide h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--hmc-text);
+  font-family: var(--hmc-font);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.Layout.hmc-slide-deck .slide ul {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--hmc-text-2);
+  font-family: var(--hmc-font);
+}
+
+.Layout.hmc-slide-deck .slide li {
+  margin-bottom: 0.5rem;
+}
+
+.Layout.hmc-slide-deck .slide p {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--hmc-text-2);
+  font-family: var(--hmc-font);
+}
+
+/* Speaker notes: subtle, not distracting */
+.Layout.hmc-slide-deck .slide details.notes,
+.Layout.hmc-slide-deck .slide .notes {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.65;
+  color: var(--hmc-text-2);
+  font-family: var(--hmc-font);
+}
+
+.Layout.hmc-slide-deck .slide details.notes summary {
+  cursor: pointer;
+  color: var(--hmc-primary);
+}
+
+/* Diagram / code block: soft container, no harsh lines */
+.Layout.hmc-slide-deck .slide pre {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--hmc-text-2);
+  border: 1px solid rgba(77, 163, 217, 0.12);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* Horizontal rules between slides: soft divider */
+.Layout.hmc-slide-deck .vp-doc hr {
+  border: none;
+  margin: 0;
+  height: 0;
+}
+
+/* Nav bar: soften when on HMC deck (optional) */
+.Layout.hmc-slide-deck .VPNavBar {
+  background: rgba(245, 249, 252, 0.95);
+  border-bottom: 1px solid rgba(77, 163, 217, 0.1);
+}
+
+/* Footer: light, calm */
+.Layout.hmc-slide-deck .VPFooter {
+  background: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(77, 163, 217, 0.08);
+}
+
+/* Ensure no dark mode override on this page */
+.Layout.hmc-slide-deck .vp-doc {
+  --vp-c-brand-1: var(--hmc-primary);
+  --vp-c-brand-2: var(--hmc-green);
+  --vp-c-brand-3: var(--hmc-amber);
+}
+
+.Layout.hmc-slide-deck a {
+  color: var(--hmc-primary);
+}
+
+.Layout.hmc-slide-deck a:hover {
+  color: #3d8ab8;
+}
