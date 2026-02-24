@@ -26,6 +26,7 @@ export default withMermaid(defineConfig({
         { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
         { text: 'AI-Augmented Development Pipelines (Reconciled)', link: '/reports/ai-augmented-dev-pipeline/' },
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
+        { text: 'AI as an Interface Layer', link: '/reports/ai-as-an-interface/' },
       ],
       '/reports/dark-factory/': [
         { text: 'Report overview', link: '/reports/dark-factory/' },
