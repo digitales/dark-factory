@@ -8,11 +8,14 @@ pageClass: hmc-slide-deck
 
 # AI as an Interface Layer: A Hows My Commute Case Study
 
+**Hows My Commute**
+
 - Production integration case study, not a chatbot demo
 - Laravel backend with OpenAPI and OAuth2 (Passport) as the integration boundary
 - Reuse of existing domain logic and APIs; AI sits in front of them
 - Mixed audience: product, engineering, and leadership
 - Focus on reusable patterns for bringing AI safely into product systems
+- Suitable for sharing externally: clients, partners, and technical audiences
 
 <details class="notes">
   <summary>Speaker Notes</summary>
@@ -30,8 +33,8 @@ pageClass: hmc-slide-deck
 - Web-first product designed as a calm reassurance layer over daily travel
 - Advisory and decision-support, not an analytics-heavy or control-room experience
 - Existing API already powers the current UI (routes, times, status)
-- The AI layer reuses those same endpoints and services
-- Surface extension, not rewrite: we add a conversational entry point without replacing backend logic
+- The AI layer reuses those same endpoints and services; users can ask in natural language (e.g. “How long to work?”) and receive an answer from their saved commute data
+- Surface extension, not rewrite: a conversational entry point is added without replacing backend logic
 
 <details class="notes">
   <summary>Speaker Notes</summary>
@@ -97,7 +100,7 @@ OpenAPI Contract
   ↓
 OAuth (Laravel Passport)
   ↓
-HMC API
+HMC API (Hows My Commute)
   ↓
 Domain Logic
   ↓
@@ -245,8 +248,8 @@ Assistant Response
 - Faster feature layering: new entry points (voice, chat, assistants) can reuse the same backend
 - Reduced rebuild cost by extending surfaces instead of rewriting systems
 - Identify candidate systems that already expose structured, well-defined APIs
-- Reuse the pattern across internal products: editorial insights, analytics, support, reporting
-- Which of our systems already expose structured APIs that could become AI-accessible?
+- Reuse the pattern across products: editorial insights, analytics, support, reporting
+- Which existing systems already expose structured APIs that could become AI-accessible?
 
 <details class="notes">
   <summary>Speaker Notes</summary>
