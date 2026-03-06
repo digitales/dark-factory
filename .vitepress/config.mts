@@ -31,6 +31,7 @@ export default withMermaid(defineConfig({
         { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
         { text: 'AI-Augmented Development Pipelines (Reconciled)', link: '/reports/ai-augmented-dev-pipeline/' },
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
+        { text: 'Agentic Engineering Techniques', link: '/reports/agentic-engineering-techniques/' },
         { text: 'AI as an Interface Layer', link: '/reports/ai-as-an-interface/' },
       ],
       '/reports/dark-factory/': [
@@ -74,6 +75,21 @@ export default withMermaid(defineConfig({
       '/reports/ai-transformation-programme/': [
         { text: 'Report overview', link: '/reports/ai-transformation-programme/' },
         { text: '1. AI Transformation Whitepaper', link: '/reports/ai-transformation-programme/01-whitepaper' },
+      ],
+      '/reports/agentic-engineering-techniques/': [
+        { text: 'Report overview', link: '/reports/agentic-engineering-techniques/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '1. Executive Summary', link: '/reports/agentic-engineering-techniques/01-executive-summary' },
+            { text: '2. Technique Inventory', link: '/reports/agentic-engineering-techniques/02-technique-inventory' },
+            { text: '3. Current State Assessment', link: '/reports/agentic-engineering-techniques/03-current-state' },
+            { text: '4. High-Impact Gaps', link: '/reports/agentic-engineering-techniques/04-high-impact-gaps' },
+            { text: '5. Medium-Impact Gaps', link: '/reports/agentic-engineering-techniques/05-medium-impact-gaps' },
+            { text: '6. Pattern Matching', link: '/reports/agentic-engineering-techniques/06-pattern-matching' },
+            { text: '7. Action Plan', link: '/reports/agentic-engineering-techniques/07-action-plan' },
+          ],
+        },
       ],
       '/reports/ai-as-an-interface/': [],
     },

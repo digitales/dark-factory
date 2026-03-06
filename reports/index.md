@@ -16,6 +16,7 @@ Research and insight reports — same Elixirr Digital branding and site structur
 | [AI in the WordPress + Laravel Pipeline](/reports/ai-wp-laravel-pipeline/) | Structural AI integration beyond code completion: PR review, refactoring, migration, testing, documentation, tooling, security, 90-day pilot, KPIs, and risks. |
 | [AI-Augmented Development Pipelines (Reconciled)](/reports/ai-augmented-dev-pipeline/) | Reconciled plan: CI + Bionic + Cursor at £200 pilot; guardrails, governance, 90-day roadmap, KPIs, and risk register. |
 | [AI Transformation Research Programme](/reports/ai-transformation-programme/) | Strategic AI transition programme: workstreams, prioritisation matrix, 12-month roadmap, PoC templates, governance and policy, capability maturity model. |
+| [Agentic Engineering Techniques](/reports/agentic-engineering-techniques/) | Research analysis of the Agentic Engineering Book — technique inventory, gap analysis, pattern matching, and prioritised action plan for the multi-agent research workflow. |
 | [AI as an Interface Layer](/reports/ai-as-an-interface/) | Hows My Commute case study: production AI integration, OpenAPI + OAuth as a reusable pattern, security and strategic implications. |
 | [AI Second Brain](/reports/ai-second-brain/) | How AI can create and consume a shared second brain: data lifecycle, meeting notes, coding agents, prompt management, tool comparison, governance, 90-day pilot, KPIs, and risks. |
 
