@@ -24,6 +24,6 @@ Each section has an illustration at the top of its page. Below are the sections 
 | [11. Assumptions & Follow-Up](/reports/dark-factory/11-assumptions-follow-up) | Assumptions and questions for the team |
 | [12. References](/reports/dark-factory/12-references) | Primary sources and further reading |
 
-**Related research:** [Theme-only WordPress theme audit](/reports/theme-only-audit/) — technical audit of a hybrid ACF block theme, native migration path, and plugin extraction roadmap (April 2026).
+**Related research:** [Theme-only theme audit](/reports/theme-only-audit/) (current; WordPress 7.0 context) — same theme, [historic edition (2)](/reports/theme-only-audit-2/) for the prior snapshot.
 
 The report is structured so it can be read section by section from the sidebar or as a linked set of pages. The source Markdown is retained in the project; the full single-document version is available at `docs/DARK_FACTORY_AI_CODE_RESEARCH_REPORT.md` if needed.

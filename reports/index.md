@@ -13,7 +13,8 @@ Research and insight reports — same Elixirr Digital branding and site structur
 | Report | Description |
 |--------|-------------|
 | [Dark Factories & AI-Generated Code](/reports/dark-factory/) | Spec-driven development, consultancy dynamics, and adoption for PHP, WordPress and Laravel teams. |
-| [Theme-only WordPress theme audit](/reports/theme-only-audit/) | Nine-part audit of a hybrid ACF block theme: conventions, native APIs, performance, security, dependencies, blocks, extraction, and roadmap. |
+| [Theme-only theme audit](/reports/theme-only-audit/) | Current nine-part theme-only audit, including WordPress 7.0 and `autoRegister` context, migration, and roadmap. |
+| [Theme-only theme audit (2)](/reports/theme-only-audit-2/) | Historic prior edition, frozen snapshot for reference (before the WordPress 7.0 update). |
 | [AI in the WordPress + Laravel Pipeline](/reports/ai-wp-laravel-pipeline/) | Structural AI integration beyond code completion: PR review, refactoring, migration, testing, documentation, tooling, security, 90-day pilot, KPIs, and risks. |
 | [AI-Augmented Development Pipelines (Reconciled)](/reports/ai-augmented-dev-pipeline/) | Reconciled plan: CI + Bionic + Cursor at £200 pilot; guardrails, governance, 90-day roadmap, KPIs, and risk register. |
 | [AI Transformation Research Programme](/reports/ai-transformation-programme/) | Strategic AI transition programme: workstreams, prioritisation matrix, 12-month roadmap, PoC templates, governance and policy, capability maturity model. |

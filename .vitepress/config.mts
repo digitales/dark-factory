@@ -28,7 +28,8 @@ export default withMermaid(defineConfig({
       '/reports/': [
         { text: 'Reports', link: '/reports/' },
         { text: 'Dark Factories & AI-Generated Code', link: '/reports/dark-factory/' },
-        { text: 'Theme-only WordPress theme audit', link: '/reports/theme-only-audit/' },
+        { text: 'Theme-only theme audit', link: '/reports/theme-only-audit/' },
+        { text: 'Theme-only theme audit (2)', link: '/reports/theme-only-audit-2/' },
         { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
         { text: 'AI-Augmented Development Pipelines (Reconciled)', link: '/reports/ai-augmented-dev-pipeline/' },
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
@@ -107,6 +108,23 @@ export default withMermaid(defineConfig({
             { text: '6. Blocks and components', link: '/reports/theme-only-audit/06-blocks-and-components' },
             { text: '7. Reusability and plugin extraction', link: '/reports/theme-only-audit/07-reusability-and-plugin-extraction' },
             { text: '8. Roadmap', link: '/reports/theme-only-audit/08-roadmap' },
+          ],
+        },
+      ],
+      '/reports/theme-only-audit-2/': [
+        { text: 'Report overview (audit 2)', link: '/reports/theme-only-audit-2/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '0. Summary', link: '/reports/theme-only-audit-2/00-summary' },
+            { text: '1. Conventions and structure', link: '/reports/theme-only-audit-2/01-conventions-and-structure' },
+            { text: '2. Non-native APIs', link: '/reports/theme-only-audit-2/02-non-native-apis' },
+            { text: '3. Performance', link: '/reports/theme-only-audit-2/03-performance' },
+            { text: '4. Security', link: '/reports/theme-only-audit-2/04-security' },
+            { text: '5. Dependencies', link: '/reports/theme-only-audit-2/05-dependencies' },
+            { text: '6. Blocks and components', link: '/reports/theme-only-audit-2/06-blocks-and-components' },
+            { text: '7. Reusability and plugin extraction', link: '/reports/theme-only-audit-2/07-reusability-and-plugin-extraction' },
+            { text: '8. Roadmap', link: '/reports/theme-only-audit-2/08-roadmap' },
           ],
         },
       ],

@@ -1,9 +1,9 @@
 ---
-title: Theme-only WordPress theme audit
-description: Nine-part technical audit of the theme-only starter — structure, native APIs, performance, security, dependencies, blocks, extraction, and phased roadmap.
+title: Theme-only theme audit
+description: Nine-part technical audit of a hybrid ACF block theme, updated for WordPress 7.0 (PHP-only `autoRegister` blocks), native migration, extraction, and phased roadmap. Supersedes audit 2.
 ---
 
-Commissioned 22 April 2026, against commit `d3359e2` on `develop`. The audit covers `wordpress/wp-content/themes/theme-only/`: a hybrid classic theme with ACF blocks, a native-first migration strategy, and a path toward Composer-distributed `edwp/*` packages.
+**Current edition** (replaces the historic [audit 2 →](/reports/theme-only-audit-2/)). Commissioned 22 April 2026, against commit `d3359e2` on `develop`. The audit covers `wordpress/wp-content/themes/theme-only/`: a hybrid classic theme with ACF blocks, a native-first migration strategy, and a path toward Composer-distributed `edwp/*` packages. **Context:** [WordPress 7.0](https://make.wordpress.org/core/2026/03/03/php-only-block-registration/) (April 2026) is factored in — including `autoRegister` block registration, InnerBlocks limitations, and revised phase effort in the [roadmap](/reports/theme-only-audit/08-roadmap).
 
 ## Report sections
 
@@ -23,5 +23,6 @@ Start with [0. Summary](/reports/theme-only-audit/00-summary) for scope, severit
 
 ## Related reports
 
+- [Theme-only theme audit (2) — historic](/reports/theme-only-audit-2/) — prior snapshot before the WordPress 7.0 revision, for side-by-side comparison.
 - [Dark Factories and AI-Generated Code](/reports/dark-factory/) — spec-driven and AI-assisted development context for the same team.
 - [AI in the WordPress + Laravel Pipeline](/reports/ai-wp-laravel-pipeline/) — AI integration patterns that complement theme modernisation work.
