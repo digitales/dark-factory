@@ -35,6 +35,7 @@ export default withMermaid(defineConfig({
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
         { text: 'Agentic Engineering Techniques', link: '/reports/agentic-engineering-techniques/' },
         { text: 'AI as an Interface Layer', link: '/reports/ai-as-an-interface/' },
+        { text: 'nWave vs Superpowers', link: '/reports/agentic-framework-comparison/' },
       ],
       '/reports/dark-factory/': [
         { text: 'Report overview', link: '/reports/dark-factory/' },
@@ -94,6 +95,15 @@ export default withMermaid(defineConfig({
         },
       ],
       '/reports/ai-as-an-interface/': [],
+      '/reports/agentic-framework-comparison/': [
+        { text: 'Report overview', link: '/reports/agentic-framework-comparison/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: 'Executive summary (leadership)', link: '/reports/agentic-framework-comparison/executive-summary' },
+          ],
+        },
+      ],
       '/reports/theme-only-audit/': [
         { text: 'Report overview', link: '/reports/theme-only-audit/' },
         {

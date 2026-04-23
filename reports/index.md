@@ -21,6 +21,7 @@ Research and insight reports — same Elixirr Digital branding and site structur
 | [Agentic Engineering Techniques](/reports/agentic-engineering-techniques/) | Research analysis of the Agentic Engineering Book — technique inventory, gap analysis, pattern matching, and prioritised action plan for the multi-agent research workflow. |
 | [AI as an Interface Layer](/reports/ai-as-an-interface/) | Hows My Commute case study: production AI integration, OpenAPI + OAuth as a reusable pattern, security and strategic implications. |
 | [AI Second Brain](/reports/ai-second-brain/) | How AI can create and consume a shared second brain: data lifecycle, meeting notes, coding agents, prompt management, tool comparison, governance, 90-day pilot, KPIs, and risks. |
+| [nWave vs Superpowers](/reports/agentic-framework-comparison/) | Comparative technical research on two agentic development approaches, plus a [one-page leadership brief and decision matrix](/reports/agentic-framework-comparison/executive-summary). |
 
 More reports will be added here. Each has its own table of contents and navigation in the sidebar.
 
