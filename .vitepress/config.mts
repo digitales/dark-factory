@@ -35,7 +35,9 @@ export default withMermaid(defineConfig({
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
         { text: 'Agentic Engineering Techniques', link: '/reports/agentic-engineering-techniques/' },
         { text: 'AI as an Interface Layer', link: '/reports/ai-as-an-interface/' },
+        { text: 'Structured-Prompt-Driven Development (SPDD)', link: '/reports/structured-prompt-driven/' },
         { text: 'nWave vs Superpowers', link: '/reports/agentic-framework-comparison/' },
+        { text: 'PR Review Continuity Under Capacity Loss', link: '/reports/pr-review-continuity/' },
       ],
       '/reports/dark-factory/': [
         { text: 'Report overview', link: '/reports/dark-factory/' },
@@ -101,6 +103,34 @@ export default withMermaid(defineConfig({
           text: 'Sections',
           items: [
             { text: 'Executive summary (leadership)', link: '/reports/agentic-framework-comparison/executive-summary' },
+          ],
+        },
+      ],
+      '/reports/structured-prompt-driven/': [
+        { text: 'Microsite overview', link: '/reports/structured-prompt-driven/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '1. What SPDD is & REASONS', link: '/reports/structured-prompt-driven/01-spdd-and-reasons' },
+            { text: '2. Workflow & openspdd', link: '/reports/structured-prompt-driven/02-openspdd-and-workflow' },
+            { text: '3. Case study — billing engine', link: '/reports/structured-prompt-driven/03-case-study-billing-engine' },
+            { text: '4. Skills, fitness & trade-offs', link: '/reports/structured-prompt-driven/04-skills-fitness-and-trade-offs' },
+            { text: '5. Sources & next steps', link: '/reports/structured-prompt-driven/05-sources-and-next-steps' },
+          ],
+        },
+      ],
+      '/reports/pr-review-continuity/': [
+        { text: 'Microsite overview', link: '/reports/pr-review-continuity/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '1. Problem shape and signals', link: '/reports/pr-review-continuity/01-problem-shape-and-signals' },
+            { text: '2. Failure modes and risk model', link: '/reports/pr-review-continuity/02-failure-modes-and-risk-model' },
+            { text: '3. Operating model for constrained capacity', link: '/reports/pr-review-continuity/03-operating-model-for-constrained-review-capacity' },
+            { text: '4. PR design and work slicing patterns', link: '/reports/pr-review-continuity/04-pr-design-and-work-slicing-patterns' },
+            { text: '5. AI-assisted review without blind trust', link: '/reports/pr-review-continuity/05-ai-assisted-review-without-blind-trust' },
+            { text: '6. 30-60-90 rollout', link: '/reports/pr-review-continuity/06-30-60-90-rollout' },
+            { text: '7. Sources and evidence map', link: '/reports/pr-review-continuity/07-sources-and-evidence-map' },
           ],
         },
       ],
