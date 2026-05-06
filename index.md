@@ -13,7 +13,7 @@ hero:
     - text: Read the report
       link: /reports/dark-factory/
       type: primary
-    - text: New: PR review continuity research
+    - text: "New: PR review continuity research"
       link: /reports/pr-review-continuity/
       type: secondary
     - text: Elixirr Digital
