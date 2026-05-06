@@ -24,4 +24,4 @@ Each section is available as its own page; use the sidebar to navigate.
 
 The report is structured so it can be read section by section from the sidebar or as a linked set of pages. Source: `research/initiatives/2026-02-23_ai-augmented-dev-pipeline-RECONCILED.md`.
 
-**Hero images:** Pencil-drawn section header concepts (one per section) are specified in [Hero image concepts](hero-image-concepts) for illustration or image-generation use.
+**Hero images:** Pencil-drawn section header concepts (one per section) are specified in [Hero image concepts](/reports/hero-image-concepts) for illustration or image-generation use.

@@ -102,7 +102,7 @@ export default withMermaid(defineConfig({
         {
           text: 'Sections',
           items: [
-            { text: 'Executive summary (leadership)', link: '/reports/agentic-framework-comparison/executive-summary' },
+            { text: 'Executive summary (leadership)', link: '/reports/agentic-framework-comparison/00-executive-summary' },
           ],
         },
       ],

@@ -8,7 +8,7 @@ description: Comparative technical research on two agentic development methodolo
 
 | | |
 |---|--|
-| **Leadership one-pager** | [Executive summary & decision matrix](/reports/agentic-framework-comparison/executive-summary) |
+| **Leadership one-pager** | [Executive summary & decision matrix](/reports/agentic-framework-comparison/00-executive-summary) |
 
 ## Research objective
 
