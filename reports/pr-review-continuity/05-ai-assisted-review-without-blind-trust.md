@@ -3,6 +3,11 @@ title: AI-assisted review without blind trust
 description: How to use AI as first-pass review support while preserving human accountability and security posture.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pr-ai-guardrails-caption">
+  <img src="/report/ai-pipeline-08-governance-and-controls.png" alt="Guardrailed AI workflow with a controlled gate and checklist" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pr-ai-guardrails-caption">AI guardrails: assistance inside policy boundaries, with human authority at merge</figcaption>
+</figure>
+
 # AI-assisted review without blind trust
 
 ## Recommended AI role in constrained periods

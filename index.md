@@ -13,6 +13,9 @@ hero:
     - text: Read the report
       link: /reports/dark-factory/
       type: primary
+    - text: New: PR review continuity research
+      link: /reports/pr-review-continuity/
+      type: secondary
     - text: Elixirr Digital
       link: https://www.elixirrdigital.com
       type: secondary
@@ -26,6 +29,9 @@ features:
   - title: Adopting the shift
     details: Workflow changes, Jira and GitHub, skills by level (junior to lead), constitutions, and agent rules—all in one place.
     link: /reports/dark-factory/10-adopting-the-shift
+  - title: PR review continuity under capacity loss
+    details: New microsite on maintaining safe review quality when key reviewers are unavailable: risk tiers, PR sizing, AI guardrails, and a 30-60-90 rollout.
+    link: /reports/pr-review-continuity/
 footer: Part of Elixirr Digital — Your digital partner. Experience digital solutions that challenge the ordinary.
 ---
 

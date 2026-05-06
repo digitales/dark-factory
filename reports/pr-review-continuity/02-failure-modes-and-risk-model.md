@@ -3,6 +3,11 @@ title: Failure modes and risk model
 description: The main ways quality and security degrade when PR review understanding is incomplete.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pr-risk-model-caption">
+  <img src="/report/ai-pipeline-10-kpis-and-risks.png" alt="A balance representing review pressure versus quality and risk outcomes" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pr-risk-model-caption">Risk model: review pressure must be balanced against quality and security outcomes</figcaption>
+</figure>
+
 # Failure modes and risk model
 
 ## Primary failure modes

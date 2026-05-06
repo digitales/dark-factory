@@ -4,6 +4,11 @@ title: PR Review Continuity Under Capacity Loss
 description: Research microsite on maintaining safe, effective pull-request review when key developers are unavailable or cannot fully understand large AI-augmented changes.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pr-continuity-caption">
+  <img src="/report/ai-pipeline-02-pr-review.png" alt="Manuscript-style PR with margin notes and a human approval hand at the merge gate" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pr-continuity-caption">PR continuity: AI first-pass notes with a human-controlled merge gate</figcaption>
+</figure>
+
 # PR Review Continuity Under Capacity Loss
 
 This microsite addresses a specific operating risk: a period where one or more developers cannot fully understand PR contents or cannot perform deep review consistently.

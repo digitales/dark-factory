@@ -3,6 +3,11 @@ title: Operating model for constrained review capacity
 description: A practical review process when reviewer attention is limited but risk tolerance is unchanged.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pr-operating-model-caption">
+  <img src="/report/ai-pipeline-01-overview.png" alt="A structured pipeline with checks converging to a human gate" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pr-operating-model-caption">Operating model: risk-tiered flow with deterministic checks before human approval</figcaption>
+</figure>
+
 # Operating model for constrained review capacity
 
 ## Principles
