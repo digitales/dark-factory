@@ -38,6 +38,7 @@ export default withMermaid(defineConfig({
         { text: 'Structured-Prompt-Driven Development (SPDD)', link: '/reports/structured-prompt-driven/' },
         { text: 'nWave vs Superpowers', link: '/reports/agentic-framework-comparison/' },
         { text: 'PR Review Continuity Under Capacity Loss', link: '/reports/pr-review-continuity/' },
+        { text: 'Agency Project Lifecycle — AI Opportunity Analysis', link: '/reports/agency-project-lifecycle/' },
       ],
       '/reports/dark-factory/': [
         { text: 'Report overview', link: '/reports/dark-factory/' },
@@ -131,6 +132,18 @@ export default withMermaid(defineConfig({
             { text: '5. AI-assisted review without blind trust', link: '/reports/pr-review-continuity/05-ai-assisted-review-without-blind-trust' },
             { text: '6. 30-60-90 rollout', link: '/reports/pr-review-continuity/06-30-60-90-rollout' },
             { text: '7. Sources and evidence map', link: '/reports/pr-review-continuity/07-sources-and-evidence-map' },
+          ],
+        },
+      ],
+      '/reports/agency-project-lifecycle/': [
+        { text: 'Report overview', link: '/reports/agency-project-lifecycle/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: '1. Standard Agency Workflow', link: '/reports/agency-project-lifecycle/01-standard-workflow' },
+            { text: '2. Pain Points and Waste Map', link: '/reports/agency-project-lifecycle/02-pain-points' },
+            { text: '3. AI and Tooling Opportunity Map', link: '/reports/agency-project-lifecycle/03-ai-opportunity-map' },
+            { text: '4. Prioritised Recommendations', link: '/reports/agency-project-lifecycle/04-recommendations' },
           ],
         },
       ],
