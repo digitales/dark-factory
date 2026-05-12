@@ -3,6 +3,11 @@ title: Prioritised Recommendations
 description: Ranked interventions by impact, effort, and readiness for an Elixirr Digital context.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-recommendations-caption">
+  <img src="/report/agency-lifecycle-04-recommendations.png" alt="Engineer's workbench with tools arranged by priority tier" loading="lazy" class="report-section-image">
+  <figcaption id="fig-recommendations-caption">Engineer's workbench with tools arranged by priority tier</figcaption>
+</figure>
+
 # 4. Prioritised Recommendations
 
 Interventions ranked by **expected impact on margin, quality, and delivery speed** — weighted for the Elixirr Digital context (WordPress/Laravel, consultancy model, existing tooling).

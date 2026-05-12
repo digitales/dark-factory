@@ -3,6 +3,11 @@ title: Pain Points and Waste Map
 description: Where time, quality, and margin are lost in a standard agency project flow — phase by phase.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-pain-points-caption">
+  <img src="/report/agency-lifecycle-02-pain-points.png" alt="Pipeline with cracks and leaks at estimation, content, and spec phases" loading="lazy" class="report-section-image">
+  <figcaption id="fig-pain-points-caption">Pipeline with cracks and leaks at estimation, content, and spec phases</figcaption>
+</figure>
+
 # 2. Pain Points and Waste Map
 
 Before looking at solutions, it is worth mapping where agencies typically lose time, quality, or margin. These are the structural problems that exist regardless of team skill — they are process failures, not people failures.

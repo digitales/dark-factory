@@ -3,6 +3,11 @@ title: Standard Agency Workflow
 description: The canonical 11-phase design-and-build project flow most agencies follow, with typical timelines and deliverables.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-standard-workflow-caption">
+  <img src="/report/agency-lifecycle-01-standard-workflow.png" alt="Eleven-phase project path from estimation to post-launch support" loading="lazy" class="report-section-image">
+  <figcaption id="fig-standard-workflow-caption">Eleven-phase project path from estimation to post-launch support</figcaption>
+</figure>
+
 # 1. Standard Agency Workflow
 
 This section maps the canonical flow that most design-and-build agencies follow for a mid-sized project (8–16 weeks). Variations exist, but the phases and handoff points are broadly consistent across the industry.

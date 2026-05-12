@@ -3,6 +3,11 @@ title: AI and Tooling Opportunity Map
 description: Phase-by-phase analysis of where AI or new tooling can improve the agency project lifecycle, with maturity ratings.
 ---
 
+<figure class="report-section-image-wrapper" aria-labelledby="fig-ai-opportunity-caption">
+  <img src="/report/agency-lifecycle-03-ai-opportunity-map.png" alt="Surveyor's map with pins marking AI opportunities across the project flow" loading="lazy" class="report-section-image">
+  <figcaption id="fig-ai-opportunity-caption">Surveyor's map with pins marking AI opportunities across the project flow</figcaption>
+</figure>
+
 # 3. AI and Tooling Opportunity Map
 
 Each phase is assessed against three dimensions:

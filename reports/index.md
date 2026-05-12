@@ -29,10 +29,9 @@ Research and insight reports — same Elixirr Digital branding and site structur
 | [Agentic Engineering Techniques](/reports/agentic-engineering-techniques/) | Research analysis of the Agentic Engineering Book — technique inventory, gap analysis, pattern matching, and prioritised action plan for the multi-agent research workflow. |
 | [AI as an Interface Layer](/reports/ai-as-an-interface/) | Hows My Commute case study: production AI integration, OpenAPI + OAuth as a reusable pattern, security and strategic implications. |
 | [AI Second Brain](/reports/ai-second-brain/) | How AI can create and consume a shared second brain: data lifecycle, meeting notes, coding agents, prompt management, tool comparison, governance, 90-day pilot, KPIs, and risks. |
-| [Structured-Prompt-Driven Development (SPDD)](/reports/structured-prompt-driven/) | Research microsite on Thoughtworks’ SPDD method (Fowler, 2026): REASONS Canvas, openspdd workflow, billing case study, skills and fitness — links to the primary article. |
+| [Structured-Prompt-Driven Development (SPDD)](/reports/structured-prompt-driven/) | Research microsite on Thoughtworks' SPDD method (Fowler, 2026): REASONS Canvas, openspdd workflow, billing case study, skills and fitness — links to the primary article. |
 | [nWave vs Superpowers](/reports/agentic-framework-comparison/) | Comparative technical research on two agentic development approaches, plus a [one-page leadership brief and decision matrix](/reports/agentic-framework-comparison/00-executive-summary). |
 | [PR Review Continuity Under Capacity Loss](/reports/pr-review-continuity/) | Operational model for periods when reviewers cannot fully understand or deeply review every PR: sizing rules, risk tiers, AI guardrails, and a 30-60-90 rollout. |
-
 | [Agency Project Lifecycle — AI Opportunity Analysis](/reports/agency-project-lifecycle/) | Full-lifecycle analysis from estimation to post-launch: standard workflow, pain points, AI opportunity map, and prioritised recommendations. |
 
 More reports will be added here. Each has its own table of contents and navigation in the sidebar.
