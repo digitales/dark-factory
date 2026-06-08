@@ -2,7 +2,7 @@
 
 **Date:** 2026-06-08  
 **Status:** Approved  
-**Goal:** Sync all AWS CodeCommit repositories in `us-east-1` to `~/Sites/codecommit/` for local analysis tooling (Cursor, linters, grep, codebase review).
+**Goal:** Sync all AWS CodeCommit repositories in `us-east-1` to `~/Sites/edi/` for local analysis tooling (Cursor, linters, grep, codebase review).
 
 ## Problem
 
@@ -12,7 +12,7 @@ Some code lives in [AWS CodeCommit](https://us-east-1.console.aws.amazon.com/cod
 
 | Requirement | Decision |
 |-------------|----------|
-| Target layout | `~/Sites/codecommit/{repositoryName}/` |
+| Target layout | `~/Sites/edi/{repositoryName}/` |
 | Scope | All repos in the AWS account, `us-east-1` |
 | Clone depth | Shallow (`--depth 1`) on first clone |
 | Deepen option | `--deepen {name}` runs `git fetch --unshallow` for one repo |
@@ -55,7 +55,7 @@ flowchart TD
     Clone["git clone --depth 1\n(HTTPS URL)"]
     Pull["git pull --ff-only"]
     Deepen["git fetch --unshallow\n(optional flag)"]
-    Sites["~/Sites/codecommit/{name}/"]
+    Sites["~/Sites/edi/{name}/"]
 
     Script --> AWS --> Loop --> Exists
     Exists -->|no| Clone --> Sites
@@ -70,7 +70,7 @@ flowchart TD
 | `scripts/sync-codecommit-repos.sh` | Entry point: list repos, clone or pull, report summary |
 | AWS CLI | Discovery — `list-repositories`, `get-repository` for clone URL |
 | Git + credential helper | Clone/pull over HTTPS using existing global config |
-| `~/Sites/codecommit/` | Local workspace root for analysis tooling |
+| `~/Sites/edi/` | Local workspace root for analysis tooling |
 
 ### Prerequisites (already configured)
 
@@ -92,7 +92,7 @@ The credential helper handles authentication automatically.
 
 ### Sync logic per repo
 
-1. If `~/Sites/codecommit/{name}/` does not exist → `git clone --depth 1 {https-url} {path}`
+1. If `~/Sites/edi/{name}/` does not exist → `git clone --depth 1 {https-url} {path}`
 2. If it exists and is a git repo → `git -C {path} pull --ff-only`
 3. If directory exists but is not a git repo → skip with warning
 4. If `--deepen {name}` → `git -C {path} fetch --unshallow` (only if shallow)
@@ -104,7 +104,7 @@ Environment variables or flags, with defaults:
 | Variable / flag | Default | Purpose |
 |-----------------|---------|---------|
 | `CODECOMMIT_REGION` | `us-east-1` | AWS region |
-| `CODECOMMIT_ROOT` | `~/Sites/codecommit` | Local clone root |
+| `CODECOMMIT_ROOT` | `~/Sites/edi` | Local clone root |
 | `AWS_PROFILE` | unset | Passed through to `aws` if set |
 
 ### Usage
@@ -139,7 +139,7 @@ Environment variables or flags, with defaults:
 ```
 Synced 12 repos: 3 cloned, 8 pulled, 1 failed
 Failed: legacy-archive (permission denied)
-Root: ~/Sites/codecommit
+Root: ~/Sites/edi
 ```
 
 ## Verification
@@ -147,7 +147,7 @@ Root: ~/Sites/codecommit
 Manual checks (no automated test suite):
 
 1. `aws codecommit list-repositories --region us-east-1` — repo count matches console
-2. First sync — directories appear under `~/Sites/codecommit/`
+2. First sync — directories appear under `~/Sites/edi/`
 3. Re-run — existing repos pull, no duplicate clones
 4. Open one repo in Cursor — indexing works
 5. `--deepen one-repo` — `git log` shows full history

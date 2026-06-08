@@ -24,6 +24,24 @@ npm install
 
 The workflow (`.github/workflows/deploy-pages.yml`) builds the site with `base: /<repo-name>/` so assets and links work at `https://<user>.github.io/<repo>/`.
 
+## Scripts
+
+### Sync CodeCommit repos for local analysis
+
+Clones or updates all AWS CodeCommit repositories in `us-east-1` under `~/Sites/edi/` (one directory per repo).
+
+**Prerequisites:** AWS CLI profile `CodeCommitReader-710388360265`, CodeCommit HTTPS credential helper (see `docs/superpowers/specs/2026-06-08-codecommit-bulk-clone-design.md`).
+
+The sync script exports `AWS_PROFILE` automatically so git clone/pull uses the same credentials as the AWS CLI.
+
+```bash
+./scripts/sync-codecommit-repos.sh
+./scripts/sync-codecommit-repos.sh --deepen my-repo
+./scripts/test-sync-codecommit-repos.sh
+```
+
+Environment overrides: `CODECOMMIT_REGION`, `CODECOMMIT_ROOT`, `CODECOMMIT_AWS_PROFILE`, `AWS_PROFILE`.
+
 ## Structure
 
 - **`index.md`** — Home with hero and links to reports.
