@@ -16,7 +16,7 @@ PR review is a bottleneck: reviewer availability and consistency vary; PHP 8.x a
 
 ## 2. AI Opportunity
 
-A PR bot (Bionic) receives the diff (and minimal context) and posts comments: summary, security/breaking hints, optional PHP 8.x/WP deprecation flags. Human reviewer still approves and merges; merge never depends on the bot. Only Bionic (OSS or free tier) is used for PR review; CodeRabbit is excluded at pilot budget. Diffs should pass through the [PII gateway sanitiser](/reports/ai-augmented-dev-pipeline/08a-pii-gateway) before the bot API call.
+A PR bot (Bionic) receives the diff (and minimal context) and posts comments: summary, security/breaking hints, optional PHP 8.x/WP deprecation flags. Human reviewer still approves and merges; merge never depends on the bot. Only Bionic (OSS or free tier) is used for PR review; CodeRabbit is excluded at pilot budget. Diffs should pass through the [PII gateway sanitiser](/reports/pii-gateway/01-architecture-spec) before the bot API call.
 
 ## 3. Proposed Architecture
 

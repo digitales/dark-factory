@@ -19,10 +19,11 @@ Each section is available as its own page; use the sidebar to navigate.
 | [6. Documentation (AI-Assisted)](/reports/ai-augmented-dev-pipeline/06-documentation) | README, runbooks, API docs — Cursor drafts, human approval |
 | [7. Tooling Comparison (OSS vs SaaS)](/reports/ai-augmented-dev-pipeline/07-tooling-comparison) | Bionic + team Cursor; budget for Bionic/other; no AI in CI |
 | [8. Governance and Controls](/reports/ai-augmented-dev-pipeline/08-governance-and-controls) | UK GDPR, redaction, client approval, safe deployment checklist |
-| [8a. PII Gateway (addendum)](/reports/ai-augmented-dev-pipeline/08a-pii-gateway) | Automated redaction architecture; Presidio spec for Bionic + Cursor |
 | [9. 90-Day Roadmap](/reports/ai-augmented-dev-pipeline/09-90-day-roadmap) | Pilot phases 0–30, 30–60, 60–90 — milestones and success criteria |
 | [10. KPIs and Risks](/reports/ai-augmented-dev-pipeline/10-kpis-and-risks) | Quantifiable KPIs, risk register, stop conditions, next actions |
 
 The report is structured so it can be read section by section from the sidebar or as a linked set of pages. Source: `research/initiatives/2026-02-23_ai-augmented-dev-pipeline-RECONCILED.md`.
+
+**Related research:** Automated PII enforcement for this pilot is tracked separately in [PII Gateway for Dev AI](/reports/pii-gateway/) (assumptions and positioning in progress).
 
 **Hero images:** Pencil-drawn section header concepts (one per section) are specified in [Hero image concepts](/reports/hero-image-concepts) for illustration or image-generation use.

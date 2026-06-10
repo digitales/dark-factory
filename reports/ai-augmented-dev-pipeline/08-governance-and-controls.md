@@ -67,13 +67,13 @@ Governance does not prescribe specific tools beyond: PR bot receives diff only; 
 
 **Automated enforcement (PII gateway addendum)**
 
-Manual redaction (steps 1–5 above) remains mandatory. The [PII Gateway addendum](/reports/ai-augmented-dev-pipeline/08a-pii-gateway) defines a local Presidio-based layer to **enforce** the same rules at the wire:
+Manual redaction (steps 1–5 above) remains mandatory. The [PII Gateway research project](/reports/pii-gateway/) explored a local Presidio-based enforcement layer — **shelved June 2026**; spec retained for reference only:
 
-- **Bionic path:** `sanitise-diff` CLI before any diff reaches the bot API (`block` on secrets and client blocklist).
-- **Cursor path:** optional local proxy on `127.0.0.1:8788` (`mask`/`block` before Anthropic/OpenAI traffic).
+- **Cursor path (Phase 0 priority):** local proxy on `127.0.0.1:8788` (`mask`/`block` before Anthropic/OpenAI traffic).
+- **PR review bot path (when adopted):** `sanitise-diff` CLI before any diff reaches the bot API (`block` on secrets and client blocklist).
 - **Audit:** metadata-only JSONL (entity counts, no prompt plaintext).
 
-Rollout: Phase 0 (regex + client blocklists on PR diffs) in days 0–14; Presidio + golden tests by day 30. Compression tools (e.g. Headroom) sit **after** redaction if used at all.
+Rollout was not approved. Manual redaction, training, and policy compliance remain the active controls. **Research archive:** [PII Gateway project](/reports/pii-gateway/).
 
 **Safe deployment checklist**
 
@@ -84,8 +84,7 @@ Rollout: Phase 0 (regex + client blocklists on PR diffs) in days 0–14; Presidi
 - [ ] Cost owner named; weekly spend check for Bionic/other; team Cursor plan limits documented.
 - [ ] Stop conditions and incident recovery (re-enable criteria) documented.
 - [ ] Clients informed (and formal approval obtained if required).
-- [ ] PII gateway diff sanitiser on Bionic path (or documented exception with audit-only baseline complete).
-- [ ] Per-client policy files for pilot repos; golden policy tests in CI.
+- [ ] Automated PII gateway — **deferred (shelved June 2026)**; manual redaction remains mandatory
 
 ## 6. Failure Modes
 
@@ -105,4 +104,4 @@ Rollout: Phase 0 (regex + client blocklists on PR diffs) in days 0–14; Presidi
 3. Document incident process and re-enable criteria (Lead).
 4. Inform clients and document; obtain formal sign-off where contractually required (Lead/governance).
 5. Confirm or negotiate DPAs for Cursor (and CodeRabbit if used) (Lead/governance).
-6. Implement PII gateway Phase 0 (diff sanitiser for Bionic); plan Phase 1 (Presidio + Cursor proxy) per [addendum](/reports/ai-augmented-dev-pipeline/08a-pii-gateway) (Lead/engineering).
+6. Complete PII gateway management approval using [management brief](/reports/pii-gateway/04-management-brief); implement code only after authorized repo is agreed (Lead/engineering).

@@ -32,6 +32,7 @@ export default withMermaid(defineConfig({
         { text: 'Theme-only theme audit (2)', link: '/reports/theme-only-audit-2/' },
         { text: 'AI in the WordPress + Laravel Pipeline', link: '/reports/ai-wp-laravel-pipeline/' },
         { text: 'AI-Augmented Development Pipelines (Reconciled)', link: '/reports/ai-augmented-dev-pipeline/' },
+        { text: 'PII Gateway for Dev AI', link: '/reports/pii-gateway/' },
         { text: 'AI Transformation Research Programme', link: '/reports/ai-transformation-programme/' },
         { text: 'Agentic Engineering Techniques', link: '/reports/agentic-engineering-techniques/' },
         { text: 'AI as an Interface Layer', link: '/reports/ai-as-an-interface/' },
@@ -78,6 +79,22 @@ export default withMermaid(defineConfig({
             { text: '10. KPIs and Risks', link: '/reports/ai-augmented-dev-pipeline/10-kpis-and-risks' },
           ],
         },
+        { text: 'Related: PII Gateway research', link: '/reports/pii-gateway/' },
+      ],
+      '/reports/pii-gateway/': [
+        { text: 'Project overview', link: '/reports/pii-gateway/' },
+        {
+          text: 'Sections',
+          items: [
+            { text: 'Assumptions & positioning', link: '/reports/pii-gateway/assumptions-and-positioning' },
+            { text: '1. Architecture spec', link: '/reports/pii-gateway/01-architecture-spec' },
+            { text: '2. Policy & EDI alignment', link: '/reports/pii-gateway/02-policy-and-edi-alignment' },
+            { text: '3. Developer impact', link: '/reports/pii-gateway/03-developer-impact' },
+            { text: '4. Management brief', link: '/reports/pii-gateway/04-management-brief' },
+            { text: '5. Headroom & compression', link: '/reports/pii-gateway/05-headroom-and-compression' },
+          ],
+        },
+        { text: 'Related: Dev pipeline pilot', link: '/reports/ai-augmented-dev-pipeline/' },
       ],
       '/reports/ai-transformation-programme/': [
         { text: 'Report overview', link: '/reports/ai-transformation-programme/' },

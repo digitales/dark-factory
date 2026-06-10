@@ -1,19 +1,21 @@
 ---
-title: PII Gateway (Governance Addendum)
-description: Technical architecture and minimal Presidio-based spec for automated redaction on the Bionic + Cursor pilot path.
+title: Architecture & Implementation Spec
+description: Technical architecture and Presidio spec for automated redaction on Cursor and PR-review egress paths. Working memory in dark-factory.
 ---
 
-# PII Gateway — Governance Addendum
+# Architecture & Implementation Spec
+
+> **Working memory:** all PII gateway research lives in [`reports/pii-gateway/`](/reports/pii-gateway/). EDI code or repo changes require **separate authorization**. Proposed future implementation home: `edi/dso-pii-gateway` (not started).
 
 Addendum to [8. Governance and Controls](/reports/ai-augmented-dev-pipeline/08-governance-and-controls). Extends the manual redaction workflow (PR template, `.cursorrules`, training) with **automated enforcement** at the trust boundary.
 
 ## 1. Problem Context
 
-Policy today relies on developer discipline: no client names, production URLs, credentials, or PII in PRs or Cursor prompts. That is necessary but not **testable**. A single mistake sends client data to Cursor or Bionic model APIs. UK GDPR and client contracts require demonstrable controls, not checklist compliance alone.
+Policy today relies on developer discipline: no client names, production URLs, credentials, or PII in PRs or Cursor prompts. That is necessary but not **testable**. A single mistake sends client data to Cursor or other third-party LLM APIs. UK GDPR and client contracts require demonstrable controls, not checklist compliance alone.
 
 ## 2. AI Opportunity
 
-A local PII gateway makes “no client data in AI path” **enforceable** without blocking the pilot architecture (diff-only Bionic, team Cursor, no AI in CI). Compression tools (e.g. Headroom) are out of scope here — they reduce tokens; they do not anonymise. Redaction runs **before** any optional compression layer.
+A local PII gateway makes “no client data in AI path” **enforceable** without blocking current practice (team Cursor locally; no AI in CI; PR bot path optional when adopted). Compression tools (e.g. Headroom) are out of scope here — they reduce tokens; they do not anonymise. Redaction runs **before** any optional compression layer.
 
 ## 3. Proposed Architecture
 
@@ -29,12 +31,12 @@ flowchart TB
   subgraph gh [GitHub / Actions]
     PR[PR diff payload]
     San[Diff sanitiser]
-    Bot[Bionic]
+    Bot[PR review bot]
   end
 
   subgraph vendor [Third-party LLM APIs]
     CursorAPI[Cursor / Anthropic / OpenAI]
-    BotAPI[Bionic model API]
+    BotAPI[PR bot model API]
   end
 
   Cursor --> GW
@@ -48,7 +50,7 @@ flowchart TB
 | Path | Gateway shape | Default mode | Rehydration |
 |------|---------------|--------------|-------------|
 | **Cursor** | Local HTTP proxy on `127.0.0.1:8788` | `block` on secrets; `mask` on PII | Optional (off in pilot) |
-| **Bionic** | CI or bot pre-hook: `pii-gateway sanitise-diff` | `block` on any client identifier | No — bot output is public on GitHub |
+| **PR review bot** (when used) | CI or bot pre-hook: `pii-gateway sanitise-diff` | `block` on any client identifier | No — bot output is public on the VCS |
 
 ### Component model
 
@@ -97,7 +99,7 @@ flowchart TB
 ```yaml
 version: 1
 mode: mask                    # IDE path default
-pr_bot_mode: block            # Stricter for Bionic diffs
+pr_bot_mode: block            # Stricter for PR diff channel
 
 block_on_detect:
   - api_key
@@ -210,13 +212,13 @@ Run in order; short-circuit on `block`:
 | Stop proxy process | Cursor falls back to direct API (document: disable in incident) |
 | `pii-gateway serve --mode passthrough --audit-only` | Log only; no redaction (baseline week, not production) |
 | Unset `OPENAI_BASE_URL` / Cursor proxy config | Bypass gateway on developer machine |
-| Remove Bionic sanitiser step | Bot receives raw diff (incident rollback) |
+| Remove PR diff sanitiser step | Bot receives raw diff (incident rollback) |
 
 Incident response unchanged from [Governance §6](/reports/ai-augmented-dev-pipeline/08-governance-and-controls): disable affected tool, review audit log, remediate, re-enable against criteria.
 
 ### Updated safe deployment checklist (gateway items)
 
-- [ ] `pii-gateway` diff sanitiser runs before every Bionic API call
+- [ ] `pii-gateway` diff sanitiser runs before every PR review bot API call (when a bot is in use)
 - [ ] Pilot developers use Cursor via local gateway **or** documented exception with audit-only week complete
 - [ ] Per-client policy files exist for all repos in pilot
 - [ ] Audit log path and retention documented; no plaintext prompts
@@ -236,18 +238,18 @@ Incident response unchanged from [Governance §6](/reports/ai-augmented-dev-pipe
 
 ## 7. KPIs
 
-- **Enforcement:** 100% of Bionic diff payloads pass through sanitiser (CI gate on webhook middleware)
+- **Enforcement:** 100% of PR diff payloads pass through sanitiser when a review bot is in use (CI gate on webhook middleware)
 - **Golden tests:** Policy test suite green on every policy change
 - **Incidents:** Zero confirmed client PII in vendor payloads during pilot
 - **Friction:** &lt; 5% of IDE sessions hit block (track via audit); tune allowlists if higher
 
-## 8. Minimal implementation spec (Presidio + Bionic + Cursor)
+## 8. Minimal implementation spec (Presidio + Cursor + PR bot path)
 
-### Repository layout
+### Repository layout (proposed — when authorized to implement)
 
 ```
-tools/pii-gateway/
-  README.md                 # Install, run, operator guide
+pii-gateway/                    # proposed: edi/dso-pii-gateway after approval
+  README.md
   pyproject.toml
   policies/
     default.yaml
@@ -340,19 +342,19 @@ def redact(text: str, *, channel: str, repo: str | None = None) -> RedactResult:
 **Developer setup:**
 
 ```bash
-cd tools/pii-gateway && pip install -e ".[dev]"
+cd pii-gateway && pip install -e ".[dev]"
 pii-gateway serve --port 8788 --upstream https://api.anthropic.com
 ```
 
 Configure Cursor to use `http://127.0.0.1:8788` as OpenAI-compatible base URL (or system proxy env vars per Cursor docs). Document exact steps in pilot onboarding.
 
-### Bionic diff sanitiser (`cli.py`)
+### PR diff sanitiser (`cli.py`)
 
 ```bash
-# In GitHub Action or Bionic webhook middleware, before model call:
+# In CI or bot webhook middleware, before model call (GitHub Actions, CodeBuild, etc.):
 git diff "${BASE}...${HEAD}" > /tmp/pr.diff
 pii-gateway sanitise-diff /tmp/pr.diff --repo "${GITHUB_REPOSITORY}" --fail-on-block
-# stdout → sanitised diff sent to Bionic
+# stdout → sanitised diff sent to the authorised PR review bot
 ```
 
 Exit codes: `0` ok, `1` policy block (fail PR check or skip bot with comment), `2` internal error.
@@ -374,22 +376,23 @@ Run: `pytest tests/golden/` and `pii-gateway test-policy policies/default.yaml t
 
 | Phase | Days | Deliverable |
 |-------|------|-------------|
-| **0** | 0–14 | `sanitise-diff` CLI + regex/client blocklists; wire into Bionic path |
-| **1** | 14–30 | Presidio + golden tests; Cursor proxy for willing pilot devs |
-| **2** | 30–60 | Per-client YAML for all pilot repos; audit dashboard or weekly JSONL review |
+| **0** | 0–14 | Cursor local proxy + regex/secret/client blocklists (no Presidio required) |
+| **1** | 14–30 | Presidio + golden tests; `sanitise-diff` CLI ready for PR bot when adopted |
+| **2** | 30–60 | Per-client YAML for all pilot repos; EDI enablement checklist update; audit review |
 | **3** | 60+ | Optional Headroom **after** gateway; pseudonymize + vault only if justified |
 
-Phase 0 does not require Presidio. Phase 1 is the recommended “minimal Presidio spec” complete.
+Phase 0 targets the path in use today (Cursor). Phase 1 is the recommended “minimal Presidio spec” complete.
 
 ## 9. Actionable Next Steps
 
 1. **Governance:** Approve gateway as enforcement layer for pilot; assign policy owner for `policies/clients/`.
-2. **Engineering:** Scaffold `tools/pii-gateway` per layout above; ship Phase 0 diff sanitiser.
-3. **Bionic:** Add pre-model hook or Action step calling `sanitise-diff --fail-on-block`.
-4. **Cursor:** Document proxy setup; add to onboarding alongside `.cursorrules`.
-5. **CI:** Run golden policy tests on every change to `policies/`.
-6. **Audit:** Define log path (`~/.pii-gateway/audit.jsonl`); include in incident runbook.
+2. **Engineering:** After authorization, implement per layout above (proposed `edi/dso-pii-gateway`); ship Phase 0 Cursor proxy.
+3. **Cursor:** Document proxy setup; add to `dso-cursor-ai-enablement` onboarding alongside `.cursorrules`.
+4. **Engineering (Phase 1):** Add Presidio, golden tests, and `sanitise-diff` CLI for future PR bot use.
+5. **PR review bot (when adopted):** Add pre-model hook or CI step calling `sanitise-diff --fail-on-block`.
+6. **CI:** Run golden policy tests on every change to `policies/`.
+7. **Audit:** Define log path (`~/.pii-gateway/audit.jsonl`); include in incident runbook.
 
 ---
 
-**Related:** [8. Governance and Controls](/reports/ai-augmented-dev-pipeline/08-governance-and-controls) · [2. PR Review](/reports/ai-augmented-dev-pipeline/02-pr-review) · [9. 90-Day Roadmap](/reports/ai-augmented-dev-pipeline/09-90-day-roadmap)
+**Related:** [Project index](/reports/pii-gateway/) · [Policy & EDI alignment](/reports/pii-gateway/02-policy-and-edi-alignment) · [Developer impact](/reports/pii-gateway/03-developer-impact) · [Management brief](/reports/pii-gateway/04-management-brief) · [Dev pipeline governance](/reports/ai-augmented-dev-pipeline/08-governance-and-controls)
